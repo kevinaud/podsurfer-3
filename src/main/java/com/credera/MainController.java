@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 	@RequestMapping("/")
 	public @ResponseBody String home() {
-		return "index";
+		return "It works! :)";
 	}
 	
 	@RequestMapping("/map")
