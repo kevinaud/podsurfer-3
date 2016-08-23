@@ -19,10 +19,9 @@
             })
             .state('root.feature', {
                 url: 'feature',
-                abstract: true,
                 views: {
                     'content@root': {
-                      templateUrl: 'public/feature/feature.html',
+                      templateUrl: 'feature/feature.html',
                       controller: 'FeatureController',
                       controllerAs: 'feature'
                     }
