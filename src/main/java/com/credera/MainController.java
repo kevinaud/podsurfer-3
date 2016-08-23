@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MainController {
 	@RequestMapping("/")
-	public @ResponseBody String home() {
-		return "It works! :)";
+	public String home() {
+		return "index.html";
 	}
-	
+
 	@RequestMapping("/map")
 	public @ResponseBody String map() {
 		return "map";
