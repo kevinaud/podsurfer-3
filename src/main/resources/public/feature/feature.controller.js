@@ -1,5 +1,5 @@
 angular // jshint ignore:line
-    .module('app.feature')
+    .module('podsurfer.feature')
     .controller('FeatureController', FeatureController);
 
 FeatureController.$inject = ['$scope'];

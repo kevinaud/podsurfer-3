@@ -2,31 +2,39 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('podsurfer')
         .config(config)
-        .run(run)
-        .controller('AppCtrl', AppCtrl);
+        .run(run);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
-    AppCtrl.$inject = ['$rootScope', '$scope', '$uibModal'];
 
     function config($stateProvider, $urlRouterProvider, $httpProvider) {
 
-        $stateProvider
-            .state('root', {
-                url: '/',
-                abstract: true,
-            })
-            .state('root.feature', {
-                url: 'feature',
-                views: {
-                    'content@root': {
-                      templateUrl: 'feature/feature.html',
-                      controller: 'FeatureController',
-                      controllerAs: 'feature'
-                    }
+      $stateProvider
+        .state('root', {
+            url: '/',
+            abstract: true,
+            views: {
+                'main': {
+                    templateUrl: 'layout/shell.html'
+                },
+                'header@root': {
+                    templateUrl: 'layout/header.html',
+                    // controller: 'HeaderController',
+                    // controllerAs: 'header'
                 }
-            });
+            }
+        })
+        .state('root.feature', {
+            url: 'feature',
+            views: {
+                'tab-content@root': {
+                  templateUrl: 'feature/feature.html',
+                  controller: 'FeatureController',
+                  controllerAs: 'feature'
+                }
+            }
+        })
 
         $urlRouterProvider.rule(function($injector, $location) {
             var path = $location.path(),
@@ -55,10 +63,5 @@
         $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams) {
             $state.go('root.content');
         });
-    }
-
-    function AppCtrl($rootScope, $scope, $uibModal) {
-      var myApp = this;
-
     }
 })();

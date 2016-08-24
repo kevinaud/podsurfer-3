@@ -7,9 +7,10 @@
       <meta name="viewport" content="width=device-width" />
   </head>
 
-  <body>
-      Welcome to Podsurfer!
-      <main ui-view="content"></main>
+  <body ng-app="podsurfer">
+      <main ui-view="main"></main>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+      <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
       <script src="app.module.js"></script>
       <script src="app.route.js"></script>
       <script src="feature/feature.module.js"></script>
