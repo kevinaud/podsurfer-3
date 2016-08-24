@@ -1,67 +1,34 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('podsurfer')
-        .config(config)
-        .run(run);
+    angular.module('app')
+      .config(config)
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
+    config.$inject = ['$stateProvider', '$urlRouterProvider'];
+    function config($stateProvider, $urlRouterProvider) {
 
-    function config($stateProvider, $urlRouterProvider, $httpProvider) {
+      $urlRouterProvider.otherwise('/home');
 
       $stateProvider
-        .state('root', {
-            url: '/',
-            abstract: true,
-            views: {
-                'main': {
-                    templateUrl: 'layout/shell.html'
-                },
-                'header@root': {
-                    templateUrl: 'layout/header.html',
-                    // controller: 'HeaderController',
-                    // controllerAs: 'header'
-                }
-            }
+        .state('home', {
+          url: '/home',
+          templateUrl: 'home/home.html',
+          controller: 'homeController',
+          controllerAs: 'home'
         })
-        .state('root.feature', {
-            url: 'feature',
-            views: {
-                'tab-content@root': {
-                  templateUrl: 'feature/feature.html',
-                  controller: 'FeatureController',
-                  controllerAs: 'feature'
-                }
-            }
+        .state('about', {
+          url: '/about',
+          templateUrl: 'about/about.html',
+          controller: 'aboutController',
+          controllerAs: 'about'
         })
+        .state('contact', {
+          url: '/contact',
+          templateUrl: 'contact/contact.html',
+          controller: 'contactController',
+          controllerAs: 'contact'
 
-        $urlRouterProvider.rule(function($injector, $location) {
-            var path = $location.path(),
-                search = $location.search();
-            if (path !== '/' && path[path.length - 1] === '/') {
-                if (search === {}) {
-                    return path.substr(0, path.length - 1);
-                } else {
-                    var params = [];
-                    angular.forEach(search, function(v, k) {
-                        params.push(k + '=' + v);
-                    });
-                    return path.substr(0, path.length - 1) + '?' + params.join('&');
-                }
-            }
-        }).otherwise('/feature');
-
-    }
-
-
-
-    function run($rootScope, $state) {
-        /*
-         *  Implemented to handle resolve errors for page refresh events
-         */
-        $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams) {
-            $state.go('root.content');
         });
-    }
+    };
+
 })();

@@ -1,19 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <head>
-      <meta charset="utf-8">
-      <title>Podsurfer</title>
-      <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-      <meta name="viewport" content="width=device-width" />
-  </head>
 
-  <body ng-app="podsurfer">
-      <main ui-view="main"></main>
-      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-      <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
-      <script src="app.module.js"></script>
-      <script src="app.route.js"></script>
-      <script src="feature/feature.module.js"></script>
-      <script src="feature/feature.controller.js"></script>
-  </body>
+<html ng-app="app">
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+  <script src="app.js"></script>
+  <script src="app.route.js"></script>
+  <script src="about/about.controller.js"></script>
+  <script src="contact/contact.controller.js"></script>
+  <script src="home/home.controller.js"></script>
+  <script src="home/home.endpoints.service.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="home">PodSurfer</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+        <li><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
+        <li><a ui-sref="contact"><i class="fa fa-comment"></i> Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="main">
+    <div ui-view></div>
+  </div>
+
+</body>
+
 </html>
