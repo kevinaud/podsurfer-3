@@ -20,8 +20,11 @@ For developing Java code, and for running the project, you should use either Ecl
 ## Bootstrap
 [Bootstrap](http://getbootstrap.com/) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web. It contains several plug-and-play components, such as buttons, panels, dropdowns, progress bars, and more. It also contains lots of CSS classes, as well as a [grid system](http://getbootstrap.com/css/#grid), to make styling a breeze, and help make your webpage more responsive. While you are not required to use bootstrap in your project, we've already included it for you, and using bootstrap components and CSS classes helps make your application look polished and cohesive.
 
+## Font Awesome
+[Font Awesome](http://fontawesome.io/) gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS. We've already included in the project, so take advantage of it!
+
 ## Lodash
-[Lodash](https://lodash.com/docs) is a JavaScript utility library. It includes several highly useful functions that can neaten up your JavaScript and reduce the amount of code you need to write.
+[Lodash](https://lodash.com/docs) is a JavaScript utility library. It includes several highly useful functions that can neaten up your JavaScript and reduce the amount of code you need to write. We've already included it in the project for you.
 
 ## Browser Developer Tools
 Obviously, you should be using [Chrome](https://www.google.com/chrome/browser/desktop/index.html) as your default browser ;) But if you do not, just find the developer tools guide for your lesser browser. The browser developer tools are a super useful, super powerful set of web authoring and debugging tools built right into your browser. The [DevTools](https://developer.chrome.com/devtools) provide web developers deep access into the internals of the browser and their web application. Use the DevTools to efficiently track down layout issues, set JavaScript breakpoints, and get insights for code optimization.
