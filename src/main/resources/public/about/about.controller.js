@@ -1,8 +1,12 @@
-angular.module('app')
-  .controller('aboutController', aboutController);
+(function() {
+  'use strict';
 
-aboutController.$inject = [];
-function aboutController() {
-  var vm = this;
-  vm.message = 'About';
-}
+    angular.module('app')
+      .controller('aboutController', aboutController);
+
+    aboutController.$inject = [];
+    function aboutController() {
+      var vm = this;
+      vm.message = 'About';
+    }
+})();

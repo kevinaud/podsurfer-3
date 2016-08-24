@@ -1,1 +1,18 @@
-{{home.welcome}}
+<div class="container">
+    <div class="row">
+        <h2 class="text-center">{{home.welcome}} <h2>
+    </div>
+
+   <hr class="row"/>
+    <div class="row">
+        <div class="col-xs-offset-4 col-xs-4">
+            <button type="button" class="btn btn-primary btn-lg btn-block"
+                    ng-click="home.getZen()">
+                Get Your Zen
+            </button>
+        </div>
+        <div class="col-xs-12 text-center   ">
+            <h3 ng-class="{'text-danger': home.outOfZen}">{{home.zen}}</h3>
+        </div>
+    </div>
+</div>
