@@ -7,6 +7,6 @@
     aboutController.$inject = [];
     function aboutController() {
       var vm = this;
-      vm.message = 'About';
+      vm.message = 'About Page';
     }
 })();
