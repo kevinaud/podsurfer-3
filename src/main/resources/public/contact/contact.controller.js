@@ -4,42 +4,19 @@
     angular.module('app')
         .controller('contactController', contactController);
 
-    contactController.$inject = [];
-    function contactController() {
+    contactController.$inject = ['$http', 'contactService'];
+    function contactController($http, contactService) {
       var vm = this;
-      vm.mentors = [
-        {
-          name: 'Kelleigh Maroney',
-          email: 'kmaroney@credera.com',
-          hobbies: [],
-          university: 'Baylor Univsersity'
-        },{
-          name: 'Graeme Scruggs',
-          email: 'gscruggs@credera.com',
-          hobbies: [],
-          university: 'Southern Methodist University'
-        },{
-          name: 'Christopher Blewett',
-          email: 'cblewett@credera.com',
-          hobbies: [],
-          university: 'Baylor Univsersity'
-        },{
-          name: 'Trey Sedate',
-          email: 'tsedate@credera.com',
-          hobbies: [],
-          university: 'Baylor Univsersity'
-        },{
-          name: 'John Lutteringer',
-          email: 'jlutteringer@credera.com',
-          hobbies: [],
-          university: 'Baylor Univsersity'
-        },{
-          name: 'Ali Momin',
-          email: 'amomin@credera.com',
-          hobbies: [],
-          university: 'Texas A&M Univsersity'
-        }
 
-      ]
+
+      contactService.getMentors()
+      .then(function(response) {
+        vm.mentors = response.data;
+      }, function(reason) {
+        console.log('The call to /mentors failed');
+        vm.mentors = [];
+      });
+
+      
     }
 })();
