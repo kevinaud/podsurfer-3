@@ -21,7 +21,7 @@ For developing Java code, and for running the project, you should use either Ecl
 [Bootstrap](http://getbootstrap.com/) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web. It contains several plug-and-play components, such as buttons, panels, dropdowns, progress bars, and more. It also contains lots of CSS classes, as well as a [grid system](http://getbootstrap.com/css/#grid), to make styling a breeze, and help make your webpage more responsive. While you are not required to use bootstrap in your project, we've already included it for you, and using bootstrap components and CSS classes helps make your application look polished and cohesive.
 
 ## Font Awesome
-[Font Awesome](http://fontawesome.io/) gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS. We've already included in the project, so take advantage of it!
+[Font Awesome](http://fontawesome.io/icons/) gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS. We've already included in the project, so take advantage of it!
 
 ## Lodash
 [Lodash](https://lodash.com/docs) is a JavaScript utility library. It includes several highly useful functions that can neaten up your JavaScript and reduce the amount of code you need to write. We've already included it in the project for you.
