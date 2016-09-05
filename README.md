@@ -1,4 +1,11 @@
-# PodSurfer Template Project
+# PodSurfer - Group 3
+
+## Group Members
+Kevin Aud
+Libby Smetak
+Jack Swenson
+Connor Shride
+Quoc-bao Huynh
 
 ## Using Git
 For this project, you will need to manage your project using Git. Git is a version control system that is used for software development and other version control tasks. As a distributed revision control system it is aimed at speed, data integrity, and support for distributed, non-linear workflows.
