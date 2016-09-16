@@ -1,27 +1,30 @@
-<div class="container">
-    <div class="row">
-        <h3 class="text-center"> 2016 Credera Mentors </h3>
-        <h5 class="text-center"> Get to know us! </h5>
+<div layout="column">
+
+    <div flex><h3 class="text-center title"> 2016 Credera Mentors </h3></div>
+    <div flex><h4 class="text-center sub-title"> Get to know us! </h5></div>
+
+    <div flex-offset="5" flex="90">
+        <div layout="column">
+            <div flex>
+                <div layout="row">
+
+                    <div flex><h3>Name</h3></div>
+                    <div flex><h3>E-mail</h3></div>
+                    <div flex><h3>University</h3></div>
+
+                </div>
+            </div>
+            <div ng-repeat="mentor in contact.mentors" flex>
+                <md-divider style="width: 95%"></md-divider>
+                <div layout="row" class="mentor">
+                    
+                    <div flex>{{mentor.name}}</div>
+                    <div flex>{{mentor.email}}</div>
+                    <div flex>{{mentor.university}}</div>
+                
+                </div>
+            </div>
+        </div>
     </div>
 
-    <hr class="row" />
-    <br/>
-    <div class="row">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <td><h4>Name</h4></td>
-                    <td><h4>E-mail</h4></td>
-                    <td><h4>University</h4></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="mentor in contact.mentors">
-                    <td>{{mentor.name}}</td>
-                    <td>{{mentor.email}}</td>
-                    <td>{{mentor.university}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 </div>
