@@ -1,18 +1,33 @@
-<div class="container">
-    <div class="row">
-        <h2 class="text-center">{{home.welcome}} <h2>
-    </div>
+<div layout="row">
 
-   <hr class="row"/>
-    <div class="row">
-        <div class="col-xs-offset-4 col-xs-4">
-            <button type="button" class="btn btn-primary btn-lg btn-block"
-                    ng-click="home.getZen()">
-                Get Your Zen
-            </button>
+    <md-card class="zen-card" flex-offset="5" flex="90">
+
+        <div layout="row">
+
+            <div layout="column" flex="100">
+                <h2 class="text-center home-title"> {{home.welcome}} <h2>
+            </div>
+
         </div>
-        <div class="col-xs-12 text-center   ">
-            <h3 ng-class="{'text-danger': home.outOfZen}">{{home.zen}}</h3>
+        
+        <div layout="row">
+
+            <div layout="column" flex-offset="40" flex="20">
+                <md-button class="md-raised md-primary" ng-click="home.getZen()">
+                    Get Your Zen
+                </md-button>
+            </div>
+
         </div>
-    </div>
+
+        <div layout="row">
+
+            <div layout="column" flex="100">
+                <h3 class="text-center zen-text" ng-class="{'text-danger': home.outOfZen}">{{home.zen}}</h3>
+            </div>
+
+        </div>
+
+    </md-card>
+
 </div>

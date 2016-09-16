@@ -1,3 +1,38 @@
 * {
   font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+}
+
+.title {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.sub-title {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.home-title {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: normal;
+}
+
+.zen-card {
+  margin-top: 40px;
+  padding: 30px;
+}
+
+.zen-text {
+  font-weight: normal;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mentor {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
