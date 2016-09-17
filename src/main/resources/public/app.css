@@ -36,3 +36,37 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+md-input-container {
+  margin: 0px !important;
+}
+
+.login-card {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-top: 10px;
+}
+
+.login-field {
+  margin-left: 15px !important;
+  margin-right: 15px !important;
+}
+
+.login-submit {
+  margin-right: 15px !important;
+}
+
+.sign-up-card {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-top: 10px;
+}
+
+.sign-up-field {
+  margin-left: 15px !important;
+  margin-right: 15px !important;
+}
+
+.sign-up-submit {
+  margin-right: 15px !important;
+}

@@ -41,6 +41,18 @@
           controller: 'contactController',
           controllerAs: 'contact'
 
+        })
+        .state('login', {
+          url: '/login',
+          templateUrl: 'login/login.html',
+          controller: 'loginController',
+          controllerAs: 'login'
+        })
+        .state('sign-up', {
+          url: '/sign-up',
+          templateUrl: 'sign-up/sign-up.html',
+          controller: 'signUpController',
+          controllerAs: 'sign-up'
         });
     };
 

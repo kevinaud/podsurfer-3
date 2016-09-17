@@ -1,0 +1,44 @@
+<div layout="row">
+  <div flex>
+
+    <h1 class="text-center">Sign Up</h1>
+
+  </div>
+</div>
+<div layout="row">
+  <div flex="40" flex-offset="30">
+
+    <md-card class="sign-up-card" layout="column">
+
+      <md-input-container class="sign-up-field">
+        <label>Email Address</label>
+        <input ng-model="user.wmail">
+      </md-input-container>
+
+      <md-input-container class="sign-up-field">
+        <label>Username</label>
+        <input ng-model="user.username">
+      </md-input-container>
+    
+      <md-input-container class="sign-up-field">
+        <label>Password</label>
+        <input ng-model="user.password" type="password">
+      </md-input-container>
+
+      <md-input-container class="sign-up-field">
+        <label>Confirm Password</label>
+        <input ng-model="user.confirmPassword" type="password">
+      </md-input-container>
+
+      <div flex>
+        <div layout="row" layout-align="end center">
+
+          <md-button class="md-raised md-primary sign-up-submit">Submit</md-button>
+
+        </div>
+      </div>
+      
+    </md-card>
+      
+  </div>
+</div>
