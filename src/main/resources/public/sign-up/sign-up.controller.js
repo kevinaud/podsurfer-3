@@ -4,7 +4,7 @@
     angular.module('app')
       .controller('signUpController', signUpController);
 
-    function signUpController() {
+    function signUpController($scope) {
       
       var user = {
         email: '',
@@ -13,6 +13,13 @@
         confirmPassword: ''
       };
 
+      $scope.submitForm = function() {
+        console.log(JSON.stringify(this.user));
+      };
+
+    }
+
+    function submitForm() {
     }
 
 })();
