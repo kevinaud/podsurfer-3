@@ -2,17 +2,44 @@
   'use strict';
 
     angular.module('app')
-      .controller('signUpController', signUpController);
-
-    function signUpController() {
+      .controller('signUpController', ['$scope', '$http', function($scope, $http) {
       
       var user = {
         email: '',
-        username: '',
+        name: '',
         password: '',
         confirmPassword: ''
       };
 
-    }
+      $scope.submitForm = function() {
+        
+        var payload = JSON.stringify({
+          email: this.user.email,
+          name: this.user.name,
+          password: this.user.password
+        });
+
+        var req = {
+          method: 'POST',
+          url: 'http://localhost:8080/sign-up',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: payload 
+        }
+
+        $http(req).then(function(response){
+          console.log('SUCCESS', response);
+
+          var data = JSON.parse(response.data.message);
+          console.log(data.token);
+
+        }, function(response){
+          console.log('ERROR', response); ActiveXObject             
+        });
+
+      };
+
+    }]);
 
 })();
