@@ -28,10 +28,6 @@
 
         return homeEndpoints.getZen().then(success, error);
       }
-
-      function goToSignup() {
-        //redirect to signup page
-      }
     }
 
 })();
