@@ -14,8 +14,6 @@
       $scope.error = "";
 
       $scope.submitForm = function() {
-        console.log($scope.user);
-        console.log('SUBMIT');
 
         //if all fields completed
         if($scope.user.email.length > 0 && $scope.user.name.length > 0
@@ -26,6 +24,7 @@
 
             $scope.error = "";
             var payload = JSON.stringify($scope.user);
+            console.log('PAYLOAD', payload);
 
             var req = {
               method: 'POST',
@@ -39,8 +38,15 @@
             $http(req).then(function (response) {
               console.log('SUCCESS', response);
 
-              var data = JSON.parse(response.data.message);
-              console.log(data.token);
+              var message = JSON.parse(response.data.message);
+              console.log('DATA', response.data);
+              console.log('MESSAGE', message)
+
+              if(response.data.success === false || message.name === "ValidationError") {
+                console.log('ERRORS', message.errors);
+                $scope.error = message.message;
+              }
+
 
             }, function (response) {
               console.log('ERROR', response);
