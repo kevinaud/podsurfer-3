@@ -9,6 +9,7 @@
       var vm = this;
 
       vm.welcome = 'Welcome to PodSurfer';
+      vm.signupPrompt = 'New to PodSurfer? Create an account!'
       vm.outOfZen = false;
       vm.getZen = getZen;
 
@@ -28,7 +29,9 @@
         return homeEndpoints.getZen().then(success, error);
       }
 
-
+      function goToSignup() {
+        //redirect to signup page
+      }
     }
 
 })();
