@@ -10,32 +10,142 @@
 
     <md-card class="sign-up-card" layout="column">
 
-      <form name="signUpForm" ng-submit="submitForm()" novalidate>
+      <form name="form" ng-submit="submitForm()" novalidate>
 
         <md-input-container class="sign-up-field">
           <label>Name</label>
-          <input type="text" ng-model="user.name">
+          
+          <input 
+            type="text" 
+            name="name" 
+            id="name" 
+            ng-model="user.name" 
+            required>
+
         </md-input-container>
+
+        <div class="form-error-box" ng-show="form.name.$invalid && form.name.$dirty">
+
+          <div class="form-error-message" ng-show="form.name.$error.required">
+            This field is required
+          </div>
+
+        </div>
 
         <md-input-container class="sign-up-field">
           <label>Email Address</label>
-          <input type="text" ng-model="user.email">
+          
+          <input 
+            type="email"
+            name="email" 
+            id="email" 
+            ng-model="user.email" 
+            required>
+        
         </md-input-container>
+
+        <div class="form-error-box" ng-show="form.email.$invalid && form.email.$dirty">
+
+          <div class="form-error-message" ng-show="form.email.$error.required">
+            This field is required
+          </div>
+
+          <div class="form-error-message" ng-show="form.email.$error.email">
+            Must be a valid email address
+          </div>
+
+        </div>
       
         <md-input-container class="sign-up-field">
           <label>Password</label>
-          <input ng-model="user.password" type="text">
+
+          <input 
+            data-ng-model='user.password' 
+            type="password" 
+            name='password' 
+            ng-minlength="8"
+            contain-uppercase
+            contain-lowercase
+            contain-special-char
+            required>
+
         </md-input-container>
+
+        <div class="form-error-box" ng-show="form.password.$invalid && form.password.$dirty">
+
+          <div class="form-error-message" ng-show="form.password.$error.required">
+            This field is required
+          </div>
+
+          <div class="form-error-message" ng-show="form.password.$error.containUppercase">
+            Must contain at least one uppercase character
+          </div>
+
+          <div class="form-error-message" ng-show="form.password.$error.containLowercase">
+            Must contain at least one lowercase character
+          </div>
+
+          <div class="form-error-message" ng-show="form.password.$error.containSpecialChar">
+            Must contain at least one special character
+          </div>
+
+          <div class="form-error-message" ng-show="form.password.$error.minlength">
+            Must be at least 8 characters long
+          </div>
+
+        </div>
 
         <md-input-container class="sign-up-field">
           <label>Confirm Password</label>
-          <input ng-model="user.confirmPassword" type="password">
+
+          <input 
+            ng-model='user.password_verify' 
+            type="password" 
+            name='confirm_password'
+            ng-minlength="8"
+            contain-uppercase
+            contain-lowercase
+            contain-special-char
+            data-password-verify="user.password"
+            required>
+
         </md-input-container>
+
+        <div class="form-error-box" ng-show="form.confirm_password.$invalid && form.confirm_password.$dirty">
+
+          <div ng-show="form.confirm_password.$error.required">
+            This field is required
+          </div>
+
+          <div class="form-error-message" ng-show="form.confirm_password.$error.containUppercase">
+            Must contain at least one uppercase character
+          </div>
+
+          <div class="form-error-message" ng-show="form.confirm_password.$error.containLowercase">
+            Must contain at least one lowercase character
+          </div>
+
+          <div class="form-error-message" ng-show="form.confirm_password.$error.containSpecialChar">
+            Must contain at least one special character
+          </div>
+
+          <div class="form-error-message" ng-show="form.confirm_password.$error.minlength">
+            Must be at least 8 characters long
+          </div>
+
+          <div class="form-error-message" ng-show="form.confirm_password.$error.passwordVerify">
+            Passwords do not match
+          </div>
+
+        </div>
 
         <div flex>
           <div layout="row" layout-align="end center">
 
-            <md-button type="submit" class="md-raised md-primary sign-up-submit">Submit</md-button>
+            <md-button 
+              type="submit" 
+              ng-disabled="form.$invalid"
+              class="md-raised md-primary sign-up-submit">Submit</md-button>
 
           </div>
         </div>
