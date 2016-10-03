@@ -10,35 +10,45 @@
 
     <md-card class="sign-up-card" layout="column">
 
-      <md-input-container class="sign-up-field">
-        <label>Email Address</label>
-        <input ng-model="user.wmail">
-      </md-input-container>
+      <form name="signUpForm" ng-submit="submitForm()" novalidate>
 
-      <md-input-container class="sign-up-field">
-        <label>Username</label>
-        <input ng-model="user.username">
-      </md-input-container>
-    
-      <md-input-container class="sign-up-field">
-        <label>Password</label>
-        <input ng-model="user.password" type="password">
-      </md-input-container>
+        <md-input-container class="sign-up-field">
+          <label>Name</label>
+          <input type="text" ng-model="user.name">
+        </md-input-container>
 
-      <md-input-container class="sign-up-field">
-        <label>Confirm Password</label>
-        <input ng-model="user.confirmPassword" type="password">
-      </md-input-container>
+        <md-input-container class="sign-up-field">
+          <label>Email Address</label>
+          <input type="text" ng-model="user.email">
+        </md-input-container>
+      
+        <md-input-container class="sign-up-field">
+          <label>Password</label>
+          <input ng-model="user.password" type="text">
+        </md-input-container>
 
-      <div flex>
-        <div layout="row" layout-align="end center">
+        <md-input-container class="sign-up-field">
+          <label>Confirm Password</label>
+          <input ng-model="user.confirmPassword" type="password">
+        </md-input-container>
 
-          <md-button class="md-raised md-primary sign-up-submit">Submit</md-button>
-
+        <div flex>
+          <div layout="row" layout-align="center">
+            <ng-message style="color:red" when="error">{{ error }}</ng-message>
+          </div>
         </div>
-      </div>
+
+        <div flex>
+          <div layout="row" layout-align="end center">
+
+            <md-button type="submit" class="md-raised md-primary sign-up-submit">Submit</md-button>
+
+          </div>
+        </div>
+
+      </form>
       
     </md-card>
-      
+
   </div>
 </div>
