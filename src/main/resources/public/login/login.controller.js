@@ -21,7 +21,7 @@
 
           var req = {
             method: 'POST',
-            url: 'http://localhost:8080/login',
+            url: 'https://podsurfer3.herokuapp.com/login',
             headers: { 'Content-Type': 'application/json' },
             data: payload
           };
