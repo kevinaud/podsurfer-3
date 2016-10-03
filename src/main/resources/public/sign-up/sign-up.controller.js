@@ -44,6 +44,8 @@
 
               if(response.data.success === false || message.name === "ValidationError") {
                 console.log('ERRORS', message.errors);
+                console.log('PASSWORD', message.errors.password);
+                console.log('EMAIL', message.errors.email);
                 $scope.error = message.message;
               }
 
