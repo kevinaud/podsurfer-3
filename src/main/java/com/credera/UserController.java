@@ -24,6 +24,6 @@ public class UserController {
 	}
 
     @ResponseBody @RequestMapping("/login")
-    public Response loginUser(@RequestBody User user) { return api.signUpUser(user); }
+    public Response loginUser(@RequestBody User user) { return api.loginUser(user); }
 
 }
