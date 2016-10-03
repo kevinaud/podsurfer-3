@@ -9,26 +9,33 @@
   <div flex="40" flex-offset="30">
 
     <md-card class="login-card" layout="column">
+      <form name="loginForm" ng-submit="submitForm()" novalidate>
+        <md-input-container class="login-field">
+          <label>Username</label>
+          <input ng-model="user.username">
+        </md-input-container>
 
-      <md-input-container class="login-field">
-        <label>Username</label>
-        <input ng-model="user.username">
-      </md-input-container>
-    
-      <md-input-container class="login-field">
-        <label>Password</label>
-        <input ng-model="user.password" type="password">
-      </md-input-container>
+        <md-input-container class="login-field">
+          <label>Password</label>
+          <input ng-model="user.password" type="password">
+        </md-input-container>
 
-      <div flex>
-        <div layout="row" layout-align="end center">
-
-          <md-button class="md-raised md-primary login-submit">Submit</md-button>
-
+        <div flex>
+          <div layout="row" layout-align="center">
+            <ng-message style="color:red" when="error">{{ error }}</ng-message>
+          </div>
         </div>
-      </div>
-      
+
+        <div flex>
+          <div layout="row" layout-align="end center">
+            <md-button type="submit" class="md-raised md-primary login-submit">Submit</md-button>
+          </div>
+        </div>
+
+      </form>
+
     </md-card>
       
   </div>
 </div>
+
