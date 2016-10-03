@@ -30,9 +30,14 @@
 
             function(response) {
               console.log('SUCCESS', response);
+              console.log('DATA',response.data);
 
-              var data = JSON.parse(response.data.message);
-              console.log(data.token);
+              //var message = JSON.parse(response.data);
+              //console.log('MESSAGE', message);
+
+              if(response.data.success === false) {
+                $scope.error = response.data.message;
+              }
             },
             function(response) {
               console.log('ERROR', response);
