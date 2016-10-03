@@ -33,6 +33,12 @@
         </md-input-container>
 
         <div flex>
+          <div layout="row" layout-align="center">
+            <ng-message style="color:red" when="error">{{ error }}</ng-message>
+          </div>
+        </div>
+
+        <div flex>
           <div layout="row" layout-align="end center">
 
             <md-button type="submit" class="md-raised md-primary sign-up-submit">Submit</md-button>
@@ -42,7 +48,7 @@
 
       </form>
       
-    </md-card>2
-      
+    </md-card>
+
   </div>
 </div>
