@@ -20,6 +20,7 @@ public class PodsurferAPI {
 	public Response signUpUser(User newUser) {
 		return apiPostRequest("/user", newUser);
 	}
+	public Response loginUser(User user) { return apiPostRequest("/login", user); }
 	
 	public Response apiPostRequest(String endpoint, Object payload) {
 		
