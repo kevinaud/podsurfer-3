@@ -13,11 +13,11 @@
 
       $scope.submitForm = function() {
 
-        console.log($scope.user);
         //if required fields not empty
         if($scope.user.username.length > 0 && $scope.user.password.length > 0) {
-          console.log('valid form');
+          $scope.error = "";
           var payload = JSON.stringify($scope.user);
+          console.log('PAYLOAD', payload);
 
           var req = {
             method: 'POST',
@@ -40,7 +40,6 @@
           );
         }
         else {
-          console.log('invalid');
           $scope.error = "Required fields not completed"
         }
       }

@@ -24,6 +24,7 @@
           //if password confirmation is same length as password
           if($scope.user.confirmPassword.length === $scope.user.password.length) {
 
+            $scope.error = "";
             var payload = JSON.stringify($scope.user);
 
             var req = {
