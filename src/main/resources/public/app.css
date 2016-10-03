@@ -64,8 +64,22 @@ md-input-container {
 .sign-up-field {
   margin-left: 15px !important;
   margin-right: 15px !important;
+  width: calc(100% - 30px);
 }
 
 .sign-up-submit {
   margin-right: 15px !important;
+}
+
+.form-error-box {
+  width: calc(100% - 60px);
+  background: #EF9A9A;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  padding: 15px;
+}
+
+.form-error-message {
+  color: white !important;
 }
