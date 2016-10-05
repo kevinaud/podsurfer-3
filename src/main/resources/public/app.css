@@ -20,8 +20,8 @@
 }
 
 .zen-card {
-  margin-top: 40px;
-  padding: 30px;
+  margin-top: 30px;
+  padding: 20px;
 }
 
 .zen-text {
@@ -57,16 +57,29 @@ md-input-container {
 }
 
 .sign-up-card {
-  padding-top: 25px;
-  padding-bottom: 25px;
-  margin-top: 10px;
+  margin-top: 20px;
+  padding: 20px;
 }
 
 .sign-up-field {
   margin-left: 15px !important;
   margin-right: 15px !important;
+  width: calc(100% - 30px);
 }
 
 .sign-up-submit {
   margin-right: 15px !important;
+}
+
+.form-error-box {
+  width: calc(100% - 60px);
+  background: #EF9A9A;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  padding: 15px;
+}
+
+.form-error-message {
+  color: white !important;
 }

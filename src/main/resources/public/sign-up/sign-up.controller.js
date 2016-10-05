@@ -2,17 +2,21 @@
   'use strict';
 
     angular.module('app')
-      .controller('signUpController', signUpController);
-
-    function signUpController() {
+      .controller('signUpController', ['$scope', '$user', function($scope, $user) {
       
-      var user = {
+      $scope.user = {
         email: '',
-        username: '',
+        name: '',
         password: '',
-        confirmPassword: ''
+        password_verify: ''
       };
 
-    }
+      $scope.submitForm = function() {
+    
+        $user.signUp(this.user);
+
+      };
+
+    }]);
 
 })();

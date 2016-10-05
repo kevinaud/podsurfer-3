@@ -2,10 +2,10 @@
 
     <md-card class="zen-card" flex-offset="5" flex="90">
 
-        <div layout="row">
+        <div layout="row" layout-margin="10">
 
             <div layout="column" flex="100">
-                <h2 class="text-center home-title"> {{home.welcome}} <h2>
+                <h2 class="text-center home-title"> {{home.welcome}} </h2>
             </div>
 
         </div>
@@ -14,16 +14,43 @@
 
             <div layout="column" flex-offset="40" flex="20">
                 <md-button class="md-raised md-primary" ng-click="home.getZen()">
-                    Find Your Zen
+                    Find Your Zen!!!
                 </md-button>
+            </div>
+
+        </div>
+
+        <div layout="row" layout-margin="10">
+
+            <div layout="column" flex="100">
+                <h3 class="text-center zen-text" ng-class="{'text-danger': home.outOfZen}">{{home.zen}}</h3>
+            </div>
+
+        </div>
+
+    </md-card>
+
+</div>
+
+<!--Sign-up card-->
+<div layout="row">
+
+    <md-card class="sign-up-card" flex-offset="5" flex="90">
+
+        <div layout="row" layout-margin="10">
+
+            <div layout="column" flex="100">
+                <h2 class="text-center home-title"> {{home.signupPrompt}}</h2>
             </div>
 
         </div>
 
         <div layout="row">
 
-            <div layout="column" flex="100">
-                <h3 class="text-center zen-text" ng-class="{'text-danger': home.outOfZen}">{{home.zen}}</h3>
+            <div layout="column" flex-offset="40" flex="20">
+                <md-button class="md-raised md-primary" ui-sref="sign-up">
+                    Sign-Up
+                </md-button>
             </div>
 
         </div>
