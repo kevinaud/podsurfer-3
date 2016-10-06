@@ -19,13 +19,13 @@
 
 ```json
 {
- "name": String,
- "link: String,
- "release": Date (ISO 8601 format),
- "producer": String,
- "description": String,
- "tags": String [],
- "imageUrl": String
+ "name": "String",
+ "link": "String",
+ "release": "Date (ISO 8601 format)"",
+ "producer": "String",
+ "description": "String",
+ "tags": "String []",
+ "imageUrl": "String"
 }
 ```
 
@@ -42,11 +42,11 @@
 
 ```json
 {
- "number": Int,
- "name": String,
- "length": Int (number of seconds),
- "description": String,
- "upload_date": Date (ISO 8601 format)
+ "number": "Int",
+ "name": "String",
+ "length": "Int (number of seconds)",
+ "description": "String",
+ "upload_date": "Date (ISO 8601 format)"
 }
 ```
 
