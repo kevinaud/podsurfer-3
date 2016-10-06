@@ -1,13 +1,14 @@
 package com.elasticsearch;
 
-import com.credera.Response;
-import com.credera.Podcast;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.stereotype.Service;
 
+import com.credera.Response;
+import com.credera.Podcast;
+import com.credera.Episode;
 /**
  * Created by kevinaud on 10/4/16.
  */
@@ -29,7 +30,7 @@ public class Elasticsearch {
     }
 
     public String saveEpisode(Episode episode) {
-        return esPostObject("/podcasts/podcast", podcast);
+        return esPostObject("/podcasts/episode/?parent", episode);
     }
 
     public String getPodcastEpisodeByNumber(String podcastId, String episodeId) {
