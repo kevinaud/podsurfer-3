@@ -20,19 +20,70 @@ public class Elasticsearch {
 
     }
 
-    public Response addPodcast(Podcast podcast) {
+    public String savePodcast(Podcast podcast) {
+        return esPostObject("/podcasts/podcast", podcast);
+    }
 
-        return elasticsearchPostRequest("/podsurfer/podcast", podcast);
+    public String getPodcast(String podcastId) {
+        return esGetRequest("/podcasts/podcast/" + podcastId);
+    }
+
+    public String saveEpisode(Episode episode) {
+        return esPostObject("/podcasts/podcast", podcast);
+    }
+
+    public String getPodcastEpisodeByNumber(String podcastId, String episodeId) {
+
+        String query =  "{\n" +
+                        "    \"query\": {\n" +
+                        "        \"has_parent\": {\n" +
+                        "            \"type\": \"podcast\",\n" +
+                        "            \"query\": {\n" +
+                        "                \"terms\": {\n" +
+                        "                    \"_uid\": [ \"podcast#" + podcastId + "\" ]  \n" +
+                        "                }\n" +
+                        "            }\n" +
+                        "        }\n" +
+                        "    },\n" +
+                        "    \"filter\": {\n" +
+                        "       \"term\": {\n" +
+                        "           \"number\": " + episodeId + "\n" +
+                        "       }\n" +
+                        "    }\n" +
+                        "}";
+
+        return esPostString("/podcasts/episode/_search", query);
 
     }
 
-    public Response getHealth() {
+    public String getAllEpisodesForPodcast(String podcastId) {
 
-        return elasticsearchGetRequest("/_cluster/health?pretty=true");
+        String query =  "{\n" +
+                        "    \"query\": {\n" +
+                        "        \"has_parent\": {\n" +
+                        "            \"type\": \"podcast\",\n" +
+                        "            \"query\": {\n" +
+                        "                \"terms\": {\n" +
+                        "                    \"_uid\": [ \"podcast#" + podcastId + "\" ]  \n" +
+                        "                }\n" +
+                        "            }\n" +
+                        "        }\n" +
+                        "    }\n" +
+                        "}";
+
+        System.out.print(query);
+
+        return esPostString("/podcasts/episode/_search", query);
 
     }
 
-    public Response elasticsearchGetRequest(String endpoint) {
+    public String getHealth() {
+
+        return esGetRequest("/_cluster/health?pretty=true");
+
+    }
+
+    public String esGetRequest(String endpoint) {
 
         Response response = new Response();
         String requestUrl = elasticsearchUrl + endpoint;
@@ -42,17 +93,22 @@ public class Elasticsearch {
             HttpResponse<JsonNode> jsonResponse = Unirest.get(requestUrl)
                     .asJson();
 
-            response.setSuccess(true);
-            response.setMessage(jsonResponse.getBody().toString());
+            return jsonResponse.getBody().toString();
+
+            /*response.setSuccess(true);
+            response.setMessage(jsonResponse.getBody().toString());*/
         } catch (UnirestException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+
+            String errorResponse = "{ \"Error\": \"An Unexpected error occured\" }";
+            return errorResponse;
         }
 
-        return response;
+        // return response;
     };
 
-    public Response elasticsearchPostRequest(String endpoint, Object payload) {
+    public String esPostObject(String endpoint, Object payload) {
 
         Response response = new Response();
         String requestUrl = elasticsearchUrl + endpoint;
@@ -67,13 +123,48 @@ public class Elasticsearch {
 
             response.setSuccess(true);
             response.setMessage(jsonResponse.getBody().toString());
+
+            return jsonResponse.getBody().toString();
         } catch (UnirestException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+
+            String errorResponse = "{ \"Error\": \"An Unexpected error occured\" }";
+            return errorResponse;
         }
 
-        return response;
+        //return response;
     };
+
+    public String esPostString(String endpoint, String payload) {
+
+        Response response = new Response();
+        String requestUrl = elasticsearchUrl + endpoint;
+
+        try {
+
+            HttpResponse<JsonNode> jsonResponse = Unirest.post(requestUrl)
+                    .header("accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .body(payload)
+                    .asJson();
+
+            response.setSuccess(true);
+            response.setMessage(jsonResponse.getBody().toString());
+
+            return jsonResponse.getBody().toString();
+        } catch (UnirestException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+            String errorResponse = "{ \"Error\": \"An Unexpected error occured\" }";
+            return errorResponse;
+        }
+
+        //return response;
+    };
+
+
 }
 
 

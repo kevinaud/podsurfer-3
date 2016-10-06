@@ -17,8 +17,10 @@ public class SearchController {
 
     @ResponseBody
     @RequestMapping("/search/health")
-    public Response getClusterHealth(){
+    public String getClusterHealth(){
         return es.getHealth();
     }
+
+
 
 }
