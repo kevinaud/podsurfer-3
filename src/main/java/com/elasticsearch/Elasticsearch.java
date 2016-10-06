@@ -29,6 +29,7 @@ public class Elasticsearch {
         return esGetRequest("/podcasts/podcast/" + podcastId);
     }
 
+
     public String saveEpisode(Episode episode) {
         return esPostObject("/podcasts/episode/?parent", episode);
     }
@@ -73,6 +74,7 @@ public class Elasticsearch {
                         "}";
 
         System.out.print(query);
+
 
         return esPostString("/podcasts/episode/_search", query);
 
