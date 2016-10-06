@@ -21,7 +21,7 @@
 {
  "name": "String",
  "link": "String",
- "release": "Date (ISO 8601 format)"",
+ "release": "Date (ISO 8601 format)",
  "producer": "String",
  "description": "String",
  "tags": "String []",
