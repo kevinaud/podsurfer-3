@@ -43,7 +43,16 @@
         password: user.password
       });
 
-      $http(makePostRequest(payload)).then(function(response){
+      var req = {
+        method: 'POST',
+        url: 'https://podsurfer3.herokuapp.com/sign-up',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: payload 
+      };
+
+      $http(req).then(function(response){
         console.log('SUCCESS', response);
 
         let data = JSON.parse(response.data.message);
