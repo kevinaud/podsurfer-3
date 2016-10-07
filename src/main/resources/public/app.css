@@ -42,14 +42,14 @@ md-input-container {
 }
 
 .login-card {
-  padding-top: 25px;
-  padding-bottom: 25px;
-  margin-top: 10px;
+  margin-top: 20px;
+  padding: 20px;
 }
 
 .login-field {
   margin-left: 15px !important;
   margin-right: 15px !important;
+  width: calc(100% - 30px);
 }
 
 .login-submit {

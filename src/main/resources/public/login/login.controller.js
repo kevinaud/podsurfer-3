@@ -2,15 +2,19 @@
   'use strict';
 
     angular.module('app')
-      .controller('loginController', loginController);
+      .controller('loginController', ['$scope','$user', function($scope, $user) {
 
-    function loginController() {
-      
-      var user = {
+
+      $scope.user = {
         username: '',
         password: ''
       };
 
-    }
+      $scope.responseError = false;
+
+      $scope.submitForm = function() {
+        $user.login(user);
+      }
+    }]);
 
 })();

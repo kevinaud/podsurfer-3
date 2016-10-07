@@ -35,7 +35,7 @@
           'Content-Type': 'application/json'
         },
         data: payload 
-      }
+      };
 
       $http(req).then(function(response){
         console.log('SUCCESS', response);

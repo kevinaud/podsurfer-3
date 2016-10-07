@@ -6,27 +6,56 @@
   </div>
 </div>
 <div layout="row">
-  <div flex="40" flex-offset="30">
+  <div flex="30" flex-offset="35">
 
     <md-card class="login-card" layout="column">
 
-      <md-input-container class="login-field">
-        <label>Username</label>
-        <input ng-model="user.username">
-      </md-input-container>
-    
-      <md-input-container class="login-field">
-        <label>Password</label>
-        <input ng-model="user.password" type="password">
-      </md-input-container>
+      <form name="form" ng-submit="submit.Form()" novalidate>
 
-      <div flex>
-        <div layout="row" layout-align="end center">
+        <md-input-container class="login-field">
+          <label>Username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            ng-model="user.username"
+            required>
+        </md-input-container>
 
-          <md-button class="md-raised md-primary login-submit">Submit</md-button>
-
+        <div class="form-error-box" ng-show="form.username.$invalid && form.username.$dirty">
+          <div class="form-error-message" ng-show="form.username.$error.required">
+            This field is required
+          </div>
         </div>
-      </div>
+
+        <md-input-container class="login-field">
+          <label>Password</label>
+          <input
+            ng-model="user.password"
+            type="password"
+            name="password"
+            required>
+        </md-input-container>
+
+        <div class="form-error-box" ng-show="form.password.$invalid && form.password.$dirty">
+          <div class="form-error-message" ng-show="form.password.$error.required">
+            This field is required
+          </div>
+        </div>
+
+        <div flex>
+          <div layout="row" layout-align="end center">
+
+            <md-button
+              class="md-raised md-primary login-submit"
+              type="submit"
+              ng-disabled="form.$invalid">
+              Submit
+            </md-button>
+
+          </div>
+        </div>
+      </form>
       
     </md-card>
       
