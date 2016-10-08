@@ -6,14 +6,15 @@
 
 
       $scope.user = {
-        username: '',
+        email: '',
         password: ''
       };
 
       $scope.responseError = false;
 
       $scope.submitForm = function() {
-        $user.login(user);
+        $scope.responseError = true;
+        $user.login($scope.user);
       }
     }]);
 

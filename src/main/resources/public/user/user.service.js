@@ -14,10 +14,15 @@
       login: login
     };
 
+    var auth = false;
+
     return exports;
 
     function login(user){
-
+      let payload = JSON.stringify({
+        username: user.username,
+        password: user.password
+      });
     }
 
     function signUp(user){
