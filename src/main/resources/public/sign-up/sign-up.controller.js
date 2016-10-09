@@ -14,7 +14,7 @@
       $scope.responseError = false;
 
       $scope.submitForm = function() {
-        $scope.responseError = true;
+        $scope.resoponseError = true;
         $user.signUp(this.user);
 
       };
