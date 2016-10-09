@@ -23,4 +23,7 @@ public class UserController {
 		return api.signUpUser(newUser);
 	}
 
+	@ResponseBody @RequestMapping("/login")
+	public Response loginUser(@RequestBody User user) { return api.loginUser(user); }
+
 }
