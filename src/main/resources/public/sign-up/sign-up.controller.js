@@ -11,8 +11,10 @@
         password_verify: ''
       };
 
+      $scope.responseError = false;
+
       $scope.submitForm = function() {
-    
+        $scope.resoponseError = true;
         $user.signUp(this.user);
 
       };
