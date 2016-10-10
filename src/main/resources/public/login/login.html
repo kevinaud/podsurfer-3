@@ -14,8 +14,9 @@
 
         <md-input-container class="login-field">
           <label>Email Address</label>
+
           <input
-            type="text"
+            type="email"
             name="email"
             id="email"
             ng-model="user.email"
@@ -23,9 +24,15 @@
         </md-input-container>
 
         <div class="form-error-box" ng-show="form.email.$invalid && form.email.$dirty">
+
           <div class="form-error-message" ng-show="form.email.$error.required">
             This field is required
           </div>
+
+          <div class="form-error-message" ng-show="form.email.$error.email">
+            Must be a valid email address
+          </div>
+
         </div>
 
         <md-input-container class="login-field">
