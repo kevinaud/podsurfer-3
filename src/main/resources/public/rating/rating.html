@@ -1,29 +1,19 @@
 <div layout="row">
   <div layout="column">
     <div flex>
-      <md-icon id="1unfilled" ng-click="setRate(1)" ng-show="rate < 1">
-      </md-icon>
-      <md-icon id="1filled" ng-click="setRate(0)" ng-show="rate >= 1">
+      <md-icon class="rating-fire" ng-click="setRate(1)" ng-class="{rated: rate >= 1}">
         whatshot
       </md-icon>
-      <md-icon id="2unfilled" ng-click="setRate(2)" ng-show="rate < 2">
-      </md-icon>
-      <md-icon id="2filled" ng-click="setRate(1)" ng-show="rate >= 2">
+      <md-icon class="rating-fire" ng-click="setRate(2)" ng-class="{rated: rate >= 2}">
         whatshot
       </md-icon>
-      <md-icon id="3unfilled" ng-click="setRate(3)" ng-show="rate < 3">
-      </md-icon>
-      <md-icon id="3filled" ng-click="setRate(2)" ng-show="rate >= 3">
+      <md-icon class="rating-fire" ng-click="setRate(3)" ng-class="{rated: rate >= 3}">
         whatshot
       </md-icon>
-      <md-icon id="4unfilled" ng-click="setRate(4)" ng-show="rate < 4">
-      </md-icon>
-      <md-icon id="4filled" ng-click="setRate(3)" ng-show="rate >= 4">
+      <md-icon class="rating-fire" ng-click="setRate(4)" ng-class="{rated: rate >= 4}">
         whatshot
       </md-icon>
-      <md-icon id="5unfilled" ng-click="setRate(5)" ng-show="rate < 5">
-      </md-icon>
-      <md-icon id="5filled" ng-click="setRate(4)" ng-show="rate >= 5">
+      <md-icon class="rating-fire" ng-click="setRate(5)" ng-class="{rated: rate >= 5}">
         whatshot
       </md-icon>
     </div>
