@@ -83,3 +83,45 @@ md-input-container {
 .form-error-message {
   color: white !important;
 }
+
+.rated {
+  color: #F44336;
+}
+
+.rating-fire:focus {
+  outline:0;
+}
+
+.rating-fire:hover {
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+button
+
+
