@@ -57,7 +57,7 @@
         .state('rating', {
           url: '/rating',
           templateUrl: 'rating/rating.html',
-          controller: 'ratingController',
+          controller: 'ratingComponent',
           controllerAs: 'rating'
         });
     };

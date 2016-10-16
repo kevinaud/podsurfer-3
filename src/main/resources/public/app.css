@@ -96,7 +96,13 @@ md-input-container {
   cursor: pointer;
 }
 
+.rating-star:focus{
+  outline: 0;
+}
 
+.rating-star:hover{
+  cursor: pointer;
+}
 
 
 
