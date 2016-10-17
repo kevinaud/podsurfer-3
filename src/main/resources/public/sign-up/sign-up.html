@@ -139,13 +139,21 @@
 
         </div>
 
+        <div class="form-error-box" ng-show="responseError">
+          <div class="form-error-message" ng-show="responseError">
+            ResponseError
+          </div>
+        </div>
+
         <div flex>
           <div layout="row" layout-align="end center">
 
             <md-button 
               type="submit" 
               ng-disabled="form.$invalid"
-              class="md-raised md-primary sign-up-submit">Submit</md-button>
+              class="md-raised md-primary sign-up-submit">
+              Sign Up
+            </md-button>
 
           </div>
         </div>
