@@ -82,6 +82,10 @@ public class Elasticsearch {
 
     }
 
+    public String searchAll() {
+        return esGetRequest("/podcasts/_search");
+    }
+
     public String searchAll(SearchQuery searchQuery) {
 
         String query =  "{\n" +
@@ -96,6 +100,10 @@ public class Elasticsearch {
         
     }
 
+    public String searchPodcast() {
+        return esGetRequest("/podcasts/podcast/_search");
+    }
+
     public String searchPodcast(SearchQuery searchQuery) {
 
         String query =  "{\n" +
@@ -108,6 +116,10 @@ public class Elasticsearch {
 
         return esPostString("/podcasts/podcast/_search", query);
 
+    }
+
+    public String searchEpisode() {
+        return esGetRequest("/podcasts/episode/_search");
     }
 
     public String searchEpisode(SearchQuery searchQuery) {
