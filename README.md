@@ -63,10 +63,11 @@
 
 
  * **/search**
-  * **POST** - search both podcasts and episodes
-   * ```json
-     {
-        "query": "<insert query here>"
-     }
-     ```
-  * **GET** - returns all podcasts and all episodes
+    * **POST** - search both podcasts and episodes
+        * request body format:
+          ```
+          {
+            "query": "<insert search term(s) here>"
+          }
+          ```
+    * **GET** - returns all podcasts and all episodes
