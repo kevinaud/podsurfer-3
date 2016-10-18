@@ -58,3 +58,15 @@
  * **GET** - Retrieve all information for an individual episode of a podcast.
  * **POST** - Update the information for an individual episode of a podcast
  * **The second parameter is the episode number, not the episode Id.** A query to /podcast/1/episodes/2 would return the second episode of the podcast with an id of 1, however that episodes unique identifier may not be (and probably isn't) equal to 2. Each episode has an "id"  as well as a "number." **An episode's "id" distinguishes it from every other episode in the database, including episodes from other podcasts, whereas an episode's number only distinguishes it from other episodes of it's own podcast**
+
+ # Search
+
+
+ * **/search**
+  * **POST** - search both podcasts and episodes
+   * ```json
+     {
+        "query": "<insert query here>"
+     }
+     ```
+  * **GET** - returns all podcasts and all episodes
