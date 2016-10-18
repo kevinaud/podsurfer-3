@@ -71,3 +71,23 @@
           }
           ```
     * **GET** - returns all podcasts and all episodes
+
+ * **/search/podcasts**
+    * **POST** - search for podcasts only
+        * request body format:
+          ```
+          {
+            "query": "<insert search term(s) here>"
+          }
+          ```
+    * **GET** - returns all podcasts and all episodes
+
+ * **/search/episodes**
+    * **POST** - search for episodes only
+        * request body format:
+          ```
+          {
+            "query": "<insert search term(s) here>"
+          }
+          ```
+    * **GET** - returns all podcasts and all episodes
