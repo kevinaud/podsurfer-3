@@ -16,7 +16,8 @@ public class PodsurferAPI {
 	public PodsurferAPI(){
 		
 	}
-	
+
+	public Response loginUser(User user) { return apiPostRequest("/login", user); }
 	public Response signUpUser(User newUser) {
 		return apiPostRequest("/user", newUser);
 	}
