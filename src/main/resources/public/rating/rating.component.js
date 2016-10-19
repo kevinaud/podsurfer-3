@@ -12,18 +12,12 @@
         $scope.starClick = function() {
           $scope.favorite = !$scope.favorite;
           $scope.favoriteIcon = ($scope.favorite ? "star" : "star_border");
-          console.log("click");
-          console.log($scope.favorite);
-          console.log($scope.favoriteIcon);
         }
-      },
-      bindings:{
-        /*
-        rate: '=',
-        favorite: '=',
-        favoriteIcon: '@',
-        starClick: '&'
-        */
+
+        $scope.setFavorite = function(fav){ $scope.favorite = fav; }
+        $scope.getFavorite = function(){ return $scope.favorite; }
+        $scope.setRate = function(r){ $scope.rate = r; }
+        $scope.getRate = function() { return $scope.rate; }
       }
     });
 })();
