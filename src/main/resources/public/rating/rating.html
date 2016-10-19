@@ -1,4 +1,5 @@
-<md-icon class="favorite-star" ng-class="favoriteStar" ng-click="starClick()">
+<md-icon class="favorite-star" ng-class="favoriteStar" ng-click="starClick()"
+         ng-show="favoriteLeft">
   {{ favoriteIcon }}
 </md-icon>
 <md-icon class="rating-fire" ng-click="rate = 1" ng-class="{rated: rate >= 1}">
@@ -16,4 +17,7 @@
 <md-icon class="rating-fire" ng-click="rate = 5" ng-class="{rated: rate >= 5}">
   whatshot
 </md-icon>
-
+<md-icon class="favorite-star" ng-class="favoriteStar" ng-click="starClick()"
+         ng-hide="favoriteLeft">
+  {{ favoriteIcon }}
+</md-icon>

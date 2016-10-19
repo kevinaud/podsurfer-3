@@ -8,6 +8,7 @@
         $scope.rate = 0;
         $scope.favorite = false;
         $scope.favoriteIcon = "star_border";
+        $scope.favoriteLeft = false;
 
         $scope.starClick = function() {
           $scope.favorite = !$scope.favorite;
@@ -17,7 +18,9 @@
         $scope.setFavorite = function(fav){ $scope.favorite = fav; }
         $scope.getFavorite = function(){ return $scope.favorite; }
         $scope.setRate = function(r){ $scope.rate = r; }
-        $scope.getRate = function() { return $scope.rate; }
+        $scope.getRate = function(){ return $scope.rate; }
+        $scope.setFavoriteLeft = function(){ $scope.favoriteLeft= true; }
+        $scope.setFavoriteRight = function(){ $scope.favoriteRight = false; }
       }
     });
 })();
