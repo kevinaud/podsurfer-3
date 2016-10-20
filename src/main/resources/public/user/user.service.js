@@ -5,7 +5,7 @@
     .module('app')
     .service('$user', userService);
 
-  userService.$inject = ['$http'];
+  userService.$inject = ['$http']
 
   function userService($http) {
 
@@ -43,27 +43,47 @@
         password: user.password
       });
 
-      $http(makePostRequest(payload)).then(function(response){
+      return $http(makePostRequest(payload, '/sign-up')).then(function(response){
         console.log('SUCCESS', response);
 
-        let data = JSON.parse(response.data.message);
-        console.log(data.token);
+        let msg = JSON.parse(response.data.message);
+        console.log(msg.token);
+        console.log('MESSAGE', msg);
+        if(msg.hasOwnProperty('token'))
+          return "success";
+        else
+          return msg.message;
 
       }, function(response){
         console.log('ERROR', response);
+        return "An unexpected error occurred";
       });
-
     }
 
-    function makePostRequest(payload) {
+    function makePostRequest(payload, endpoint) {
       var req = {
         method: 'POST',
-        url: 'https://podsurfer3.herokuapp.com/sign-up',
+        url: 'http://localhost:8080' + endpoint, //https://podsurfer3.herokuapp.com/sign-up',
         headers: { 'Content-Type': 'application/json' },
         data: payload
       }
 
       return req;
+    }
+
+    function makeAuthorizedPostRequest(payload, endpoint, token) {
+      var req = {
+        method: 'POST',
+        url: 'http://localhost:8080' + endpoint, //https://podsurfer3.herokuapp.com/sign-up',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+        data: payload
+      }
+
+      return req;
+
     }
 
   }

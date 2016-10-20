@@ -21,7 +21,7 @@ public class PodsurferAPI {
 	public Response signUpUser(User newUser) {
 		return apiPostRequest("/user", newUser);
 	}
-	
+
 	public Response apiPostRequest(String endpoint, Object payload) {
 		
 		Response response = new Response();

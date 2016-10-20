@@ -2,7 +2,8 @@
   'use strict';
 
     angular.module('app')
-      .controller('signUpController', ['$scope', '$user', function($scope, $user) {
+      .controller('signUpController', ['$scope', '$user', '$state',
+        function($scope, $user, $state) {
       
       $scope.user = {
         email: '',
@@ -11,12 +12,31 @@
         password_verify: ''
       };
 
-      $scope.responseError = false;
+      $scope.error = false;
+      $scope.errorMessage = "";
 
       $scope.submitForm = function() {
-        $scope.responseError = true;
-        $user.signUp(this.user);
 
+        var response = $user.signUp(this.user);
+        response.then(function(msg) {
+          $scope.errorMessage = msg.message;
+          $scope.error = !($scope.errorMessage === 'success');
+          console.log('Errormsg: ', $scope.errorMessage);
+          console.log('error', $scope.error);
+          if ($state.error === false) {
+            console.log("redirecting to profile");
+            //TODO: change redirect to profile
+            $state.go('home');
+          }
+        }, function(msg) {
+          $scope.error = true;
+          $scope.errorMessage = "An unexpected error occurred";
+        });
+/*
+        console.log(response);
+        console.log($scope.errorMessage);
+        console.log($scope.error);
+*/
       };
 
     }]);
