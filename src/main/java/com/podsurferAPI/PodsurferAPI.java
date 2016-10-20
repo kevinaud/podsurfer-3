@@ -14,13 +14,11 @@ public class PodsurferAPI {
 	private String apiUrl = "https://podsurfer-3.herokuapp.com/api";
 	
 	public PodsurferAPI(){
-		
+
 	}
 
 	public Response loginUser(User user) { return apiPostRequest("/login", user); }
-	public Response signUpUser(User newUser) {
-		return apiPostRequest("/user", newUser);
-	}
+	public Response signUpUser(User newUser) { return apiPostRequest("/sign-up", newUser); }
 	
 	public Response apiPostRequest(String endpoint, Object payload) {
 		
