@@ -27,6 +27,12 @@
           templateUrl: 'sign-up/sign-up.html',
           controller: 'signUpController',
           controllerAs: 'sign-up'
+        })
+        .state('sign-up', {
+          url: '/sign-up',
+          templateUrl: 'sign-up/sign-up.html',
+          controller: 'signUpController',
+          controllerAs: 'sign-up'
         });
     };
 
