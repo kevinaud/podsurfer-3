@@ -11,6 +11,7 @@ public class SpringTemplateApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }

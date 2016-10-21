@@ -4,11 +4,15 @@
 
 <head>
   <!-- Include External Libraries -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+
+  <!-- Include External Styles -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- Angular Aria Library -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
@@ -22,13 +26,16 @@
   <!-- Include all your javascript here. Also include the module before the controller -->
   <script src="app.module.js"></script>
   <script src="app.route.js"></script>
-  <script src="about/about.controller.js"></script>
-  <script src="contact/contact.controller.js"></script>
-  <script src="contact/contact.service.js"></script>
+
+  <!-- Components -->
+  <script src="toolbar/toolbar.component.js"></script>
+
+  <!-- Controllers -->
   <script src="home/home.controller.js"></script>
-  <script src="home/home.service.js"></script>
   <script src="login/login.controller.js"></script>
   <script src="sign-up/sign-up.controller.js"></script>
+
+  <!-- Services -->
   <script src="user/user.service.js"></script>
 
   <!-- Form Validation Directives -->
@@ -37,43 +44,14 @@
   <script src="validators/contain-special-char.js"></script>
   <script src="validators/compare-to.js"></script>
 
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+  <!-- Custom Styles -->
   <link rel="stylesheet" type="text/css" href="app.css">
+  
 </head>
 
 <body>
 
-  <md-toolbar layout="row" class="md-toolbar-tools">
-  
-    <md-icon>headset</md-icon>
-    <h1><a ui-sref="home">PodSurfer</a></h1>
-    
-    <!-- fill up the space between left and right area -->
-    <span flex></span>
-
-    <md-button ui-sref="home">
-      <md-icon>home</md-icon> Home
-    </md-button>
-
-    <md-button ui-sref="about">
-      <md-icon>help</md-icon> About
-    </md-button>
-
-    <md-button ui-sref="contact">
-      <md-icon>phone</md-icon> Contact
-    </md-button>
-
-    <!--<md-button ui-sref="login">
-      Login
-    </md-button>
-
-    <md-button ui-sref="sign-up">
-      Sign Up
-    </md-button>-->
-  
-  </md-toolbar>
+  <toolbar></toolbar>
 
   <div id="main">
     <div ui-view></div>

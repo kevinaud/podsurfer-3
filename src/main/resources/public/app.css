@@ -19,15 +19,6 @@
   font-weight: normal;
 }
 
-.zen-card {
-  margin-top: 30px;
-  padding: 20px;
-}
-
-.zen-text {
-  font-weight: normal;
-}
-
 .text-center {
   text-align: center;
 }
@@ -42,14 +33,14 @@ md-input-container {
 }
 
 .login-card {
-  padding-top: 25px;
-  padding-bottom: 25px;
-  margin-top: 10px;
+  margin-top: 20px;
+  padding: 20px;
 }
 
 .login-field {
   margin-left: 15px !important;
   margin-right: 15px !important;
+  width: calc(100% - 30px);
 }
 
 .login-submit {
@@ -82,4 +73,70 @@ md-input-container {
 
 .form-error-message {
   color: white !important;
+}
+
+.search-bar {
+  margin-left: 40px;
+}
+
+.md-input-focused md-icon {
+  color:white !important;
+}
+
+.search-bar md-input-container.md-default-theme label,   
+.search-bar md-input-container.md-default-theme .md-placeholder {  
+    color:white !important; 
+}
+
+.search-bar md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: white !important;
+}
+
+.search-bar md-input-container .md-input {
+  color: white !important;
+  border-color: white !important;
+}
+
+.search-bar md-icon.material-icons {
+  top: 0px;
+  bottom: 0px;
+}
+
+.search-bar md-input-container .md-errors-spacer {
+  min-height: 0px;
+  min-width: 0px;
+  height: 0px;
+  color: white;
+}
+
+.search-bar md-input-container .md-input::-webkit-input-placeholder {
+  color: white !important;
+}
+
+.search-bar md-input-container:not(.md-input-has-value) input::-webkit-input-placeholder {
+  color: white !important;
+}
+
+.search-bar .md-input-container {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.search-bar .md-input-container {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.search-bar {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.search-bar input {
+  margin-bottom: 5px;
+}
+
+.md-toolbar-tools {
+  max-height: 70px;
+  height: 68px;
 }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.credera.Response;
 import com.credera.Podcast;
 import com.credera.Episode;
+import com.credera.SearchQuery;
+
 /**
  * Created by kevinaud on 10/4/16.
  */
@@ -76,6 +78,63 @@ public class Elasticsearch {
         System.out.print(query);
 
 
+<<<<<<< HEAD
+=======
+        return esPostString("/podcasts/episode/_search", query);
+
+    }
+
+    public String searchAll() {
+        return esGetRequest("/podcasts/_search");
+    }
+
+    public String searchAll(SearchQuery searchQuery) {
+
+        String query =  "{\n" +
+                        "   \"query\" : {\n" +
+                        "       \"term\": {\n" +
+                        "           \"_all\" : \"" + searchQuery.getQuery() + "\"\n" +
+                        "       }\n" +
+                        "   }\n" +
+                        "}";
+
+        return esPostString("/podcasts/_search", query);
+        
+    }
+
+    public String searchPodcast() {
+        return esGetRequest("/podcasts/podcast/_search");
+    }
+
+    public String searchPodcast(SearchQuery searchQuery) {
+
+        String query =  "{\n" +
+                "   \"query\" : {\n" +
+                "       \"term\": {\n" +
+                "           \"_all\" : \"" + searchQuery.getQuery() + "\"\n" +
+                "       }\n" +
+                "   }\n" +
+                "}";
+
+        return esPostString("/podcasts/podcast/_search", query);
+
+    }
+
+    public String searchEpisode() {
+        return esGetRequest("/podcasts/episode/_search");
+    }
+
+    public String searchEpisode(SearchQuery searchQuery) {
+
+        String query =  "{\n" +
+                "   \"query\" : {\n" +
+                "       \"term\": {\n" +
+                "           \"_all\" : \"" + searchQuery.getQuery() + "\"\n" +
+                "       }\n" +
+                "   }\n" +
+                "}";
+
+>>>>>>> master
         return esPostString("/podcasts/episode/_search", query);
 
     }
@@ -166,7 +225,6 @@ public class Elasticsearch {
 
         //return response;
     };
-
 
 }
 
