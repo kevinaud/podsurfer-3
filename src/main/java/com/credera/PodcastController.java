@@ -29,8 +29,8 @@ public class PodcastController {
 
     @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}/episodes", method=RequestMethod.POST)
-    public String saveEpisode(@RequestBody Episode episode){
-        return es.saveEpisode(episode);
+    public String saveEpisode(@PathVariable String podcastId, @RequestBody Episode episode){
+        return es.saveEpisode(podcastId, episode);
     }
 
     @ResponseBody

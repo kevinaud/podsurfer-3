@@ -50,7 +50,7 @@
         console.log(data.token);
 
       }, function(response){
-        console.log('ERROR', response); ActiveXObject             
+        console.log('ERROR', response);
       });
 
     }
@@ -58,7 +58,7 @@
     function makePostRequest(payload) {
       var req = {
         method: 'POST',
-        url: 'https://podsurfer3.herokuapp.com/sign-up',
+        url: 'http://localhost:8080/sign-up',
         headers: { 'Content-Type': 'application/json' },
         data: payload
       }

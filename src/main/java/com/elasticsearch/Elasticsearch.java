@@ -32,8 +32,8 @@ public class Elasticsearch {
     }
 
 
-    public String saveEpisode(Episode episode) {
-        return esPostObject("/podcasts/episode/?parent", episode);
+    public String saveEpisode(String podcastId, Episode episode) {
+        return esPostObject("/podcasts/episode/?parent=" + podcastId, episode);
     }
 
     public String getPodcastEpisodeByNumber(String podcastId, String episodeId) {
@@ -93,8 +93,16 @@ public class Elasticsearch {
                         "       \"term\": {\n" +
                         "           \"_all\" : \"" + searchQuery.getQuery() + "\"\n" +
                         "       }\n" +
+                        "   },\n" +
+                        "   \"highlight\": {\n" +
+                        "       \"fields\": {\n" +
+                        "           \"name\": {},\n" +
+                        "           \"description\": {}\n" +
+                        "       }\n" +
                         "   }\n" +
                         "}";
+
+        System.out.println(query);
 
         return esPostString("/podcasts/_search", query);
         
