@@ -27,7 +27,14 @@
           templateUrl: 'sign-up/sign-up.html',
           controller: 'signUpController',
           controllerAs: 'sign-up'
+        })
+        .state('search', {
+          url: '/search?query',
+          templateUrl: 'search/search.html',
+          controller: 'searchController',
+          controllerAs: 'search'
         });
+
     };
 
 })();

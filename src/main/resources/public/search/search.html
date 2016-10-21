@@ -1,0 +1,87 @@
+<h1 class="text-center">Results for "{{ query }}"</h1>
+
+<md-content layout="row" ng-show="responseReceived">
+  <md-tabs md-dynamic-height md-border-bottom flex-offset="5" flex="90">
+    <md-tab ng-attr-label="{{ 'Podcasts (' + numPodcastHits + ')' }}">
+      <md-content class="md-padding">
+
+        <div layout="row" ng-repeat="podcast in podcastHits">
+          <md-card class="search-result-card">
+
+              <md-card-title>
+
+                <md-card-title-text>
+                  <span class="md-headline" ng-bind-html="podcast._source.name"></span>
+                </md-card-title-text>
+
+              </md-card-title>
+
+              <md-card-content ng-bind-html="podcast._source.description">
+              </md-card-content>
+
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary">View</md-button>
+              </md-card-actions>
+
+          </md-card>
+        </div>
+
+      </md-content>
+    </md-tab>
+    <md-tab ng-attr-label="{{ 'Episodes (' + numEpisodeHits + ')' }}">
+      <md-content class="md-padding">
+
+        <div layout="row" ng-repeat="episode in episodeHits">
+          <md-card class="search-result-card">
+
+              <md-card-title>
+
+                <md-card-title-text>
+                  <span class="md-headline" ng-bind-html="episode._source.name"></span>
+                </md-card-title-text>
+                
+              </md-card-title>
+
+              <md-card-content ng-bind-html="episode._source.description">
+              </md-card-content>
+
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary">View</md-button>
+              </md-card-actions>
+
+          </md-card>
+        </div>
+
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>
+
+<!--results
+<div layout="row" ng-repeat="result in results">
+
+    <md-card class="sign-up-card" flex-offset="5" flex="90">
+
+        <md-card-title>
+
+          <md-card-title-text>
+            <span class="md-headline">{{ result._source.name }} <span style="text-transform: capitalize">({{ result._type }})</span></span>
+          </md-card-title-text>
+
+        </md-card-title>
+
+        <md-card-content>
+          
+          <p>{{ result._source.description }}</p>
+
+        </md-card-content>
+
+        <md-card-actions layout="row" layout-align="end center">
+
+          <md-button class="md-raised md-primary">View</md-button>
+
+        </md-card-actions>
+
+    </md-card>
+
+</div>-->

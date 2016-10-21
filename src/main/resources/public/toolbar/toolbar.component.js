@@ -1,4 +1,4 @@
-function ToolbarController($scope, $element, $attrs) {
+function ToolbarController($scope, $element, $attrs, $state) {
   var ctrl = this;
 
   $scope.searchQuery = "";
@@ -7,6 +7,8 @@ function ToolbarController($scope, $element, $attrs) {
     
     if(event.key === "Enter"){
       console.log("Enter Pressed")
+
+      $state.go('search', { query: $scope.searchQuery });
     }
     
   }
