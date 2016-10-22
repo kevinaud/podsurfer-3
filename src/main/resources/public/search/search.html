@@ -20,7 +20,7 @@
               </md-card-content>
 
               <md-card-actions layout="row" layout-align="end center">
-                <md-button class="md-raised md-primary">View</md-button>
+                <md-button class="md-raised md-primary"  ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
               </md-card-actions>
 
           </md-card>
@@ -46,7 +46,7 @@
               </md-card-content>
 
               <md-card-actions layout="row" layout-align="end center">
-                <md-button class="md-raised md-primary">View</md-button>
+                <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
               </md-card-actions>
 
           </md-card>
@@ -56,32 +56,3 @@
     </md-tab>
   </md-tabs>
 </md-content>
-
-<!--results
-<div layout="row" ng-repeat="result in results">
-
-    <md-card class="sign-up-card" flex-offset="5" flex="90">
-
-        <md-card-title>
-
-          <md-card-title-text>
-            <span class="md-headline">{{ result._source.name }} <span style="text-transform: capitalize">({{ result._type }})</span></span>
-          </md-card-title-text>
-
-        </md-card-title>
-
-        <md-card-content>
-          
-          <p>{{ result._source.description }}</p>
-
-        </md-card-content>
-
-        <md-card-actions layout="row" layout-align="end center">
-
-          <md-button class="md-raised md-primary">View</md-button>
-
-        </md-card-actions>
-
-    </md-card>
-
-</div>-->

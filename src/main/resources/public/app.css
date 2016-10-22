@@ -156,3 +156,60 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
     color: #3F51B5 !important;
     background-color:#3F51B5 !important;
 }
+
+.add-podcast-card {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.add-podcast-field {
+  margin-left: 15px !important;
+  margin-right: 15px !important;
+  width: calc(100% - 30px);
+}
+
+.add-podcast-submit {
+  margin-right: 15px !important;
+}
+
+.tag-list {
+  margin-left: 15px;
+}
+
+.add-podcast-tag-field {
+  margin-left: 15px !important;
+}
+
+.add-podcast-tag-field .md-input-focused md-icon {
+  color: black !important;
+}
+
+.add-podcast-tag {
+  display: inline-block;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.add-podcast-tag md-card-content {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.add-tag-icon:hover {
+  cursor: pointer;
+}
+
+.add-tag-icon:focus {
+    outline:none;
+}
+
+.delete-tag-icon:hover {
+  cursor: pointer;
+}
+
+.podcast-detail-card {
+  margin-top: 50px;
+  padding: 20px;
+}

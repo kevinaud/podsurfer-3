@@ -77,9 +77,6 @@ public class Elasticsearch {
 
         System.out.print(query);
 
-
-<<<<<<< HEAD
-=======
         return esPostString("/podcasts/episode/_search", query);
 
     }
@@ -142,7 +139,6 @@ public class Elasticsearch {
                 "   }\n" +
                 "}";
 
->>>>>>> master
         return esPostString("/podcasts/episode/_search", query);
 
     }
