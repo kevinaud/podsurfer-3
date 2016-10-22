@@ -20,7 +20,7 @@
 
       var req = {
         method: 'POST',
-        url: 'http://localhost:8080/podcast',
+        url: 'https://podsurfer3.herokuapp.com/podcast',
         headers: { 'Content-Type': 'application/json' },
         data: podcast
       }
@@ -42,7 +42,7 @@
 
       var req = {
         method: 'GET',
-        url: 'http://localhost:8080/podcast/' + id,
+        url: 'https://podsurfer3.herokuapp.com/podcast/' + id,
         headers: { 'Content-Type': 'application/json' },
       };
 
