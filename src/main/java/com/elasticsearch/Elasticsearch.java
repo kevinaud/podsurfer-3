@@ -10,6 +10,7 @@ import com.credera.Response;
 import com.credera.Podcast;
 import com.credera.Episode;
 import com.credera.SearchQuery;
+import com.credera.Review;
 
 /**
  * Created by kevinaud on 10/4/16.
@@ -78,6 +79,37 @@ public class Elasticsearch {
         System.out.print(query);
 
         return esPostString("/podcasts/episode/_search", query);
+
+    }
+
+    public String saveReview(String podcastId, Review review) {
+        return esPostObject("/podcasts/review/?parent=" + podcastId, review);
+    }
+
+    public String getPodcastReviewById(String podcastId, String reviewId) {
+
+        return esGetRequest("/podcasts/review/" + reviewId + "?parent=" + podcastId);
+
+    }
+
+    public String getAllReviewsForPodcast(String podcastId) {
+
+        String query =  "{\n" +
+                "    \"query\": {\n" +
+                "        \"has_parent\": {\n" +
+                "            \"type\": \"podcast\",\n" +
+                "            \"query\": {\n" +
+                "                \"terms\": {\n" +
+                "                    \"_uid\": [ \"podcast#" + podcastId + "\" ]  \n" +
+                "                }\n" +
+                "            }\n" +
+                "        }\n" +
+                "    }\n" +
+                "}";
+
+        System.out.print(query);
+
+        return esPostString("/podcasts/review/_search", query);
 
     }
 

@@ -5,7 +5,7 @@
     .module('app')
     .service('$search', searchService);
 
-  searchService.$inject = ['$http', '$state'];
+  searchService.$inject = ['$http', '$state', '$api'];
 
   function searchService($http, $state) {
 
@@ -23,7 +23,7 @@
       
       var req = {
         method: 'POST',
-        url: 'http://localhost:8080/search',
+        url: $api.getUrl() + '/search',
         headers: { 'Content-Type': 'application/json' },
         data: payload
       }

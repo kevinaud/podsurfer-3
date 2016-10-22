@@ -45,4 +45,22 @@ public class PodcastController {
         return es.getAllEpisodesForPodcast(podcastId);
     }
 
+    @ResponseBody
+    @RequestMapping(value="/podcast/{podcastId}/reviews", method=RequestMethod.POST)
+    public String saveReview(@PathVariable String podcastId, @RequestBody Review review){
+        return es.saveReview(podcastId, review);
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/podcast/{podcastId}/reviews/{reviewId}", method=RequestMethod.GET)
+    public String getPodcastReviewById(@PathVariable String podcastId, @PathVariable String reviewId){
+        return es.getPodcastReviewById(podcastId, reviewId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/podcast/{podcastId}/reviews", method=RequestMethod.GET)
+    public String getAllReviewsForPodcast(@PathVariable String podcastId){
+        return es.getAllReviewsForPodcast(podcastId);
+    }
+
 }

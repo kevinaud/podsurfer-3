@@ -25,7 +25,7 @@
             <md-content class="md-padding">
 
              <div layout="row" ng-repeat="episode in episodes">
-                <md-card class="search-result-card">
+                <md-card class="podcast-episode-card">
 
                     <md-card-title>
 
@@ -50,26 +50,27 @@
           <md-tab label="Reviews">
             <md-content class="md-padding">
 
-             <!--<div layout="row" ng-repeat="episode in episodes">
-                <md-card class="search-result-card">
+             <div layout="row" ng-repeat="review in reviews">
+                <md-card class="podcast-review-card">
 
                     <md-card-title>
 
                       <md-card-title-text>
-                        <span class="md-headline">Episode {{ episode._source.number}} - {{ episode._source.name }}</span>
+                        <span class="md-headline">{{ review._source.rating }}</span>
+                        <span class="md-subhead">{{ review._source.userName }}</span>
                       </md-card-title-text>
                       
                     </md-card-title>
 
-                    <md-card-content ng-bind-html="episode._source.description">
+                    <md-card-content ng-bind-html="review._source.content">
                     </md-card-content>
 
-                    <md-card-actions layout="row" layout-align="end center">
+                    <!--<md-card-actions layout="row" layout-align="end center">
                       <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
-                    </md-card-actions>
+                    </md-card-actions>-->
 
                 </md-card>
-              </div>-->
+              </div>
 
             </md-content>
           </md-tab>

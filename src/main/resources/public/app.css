@@ -217,3 +217,9 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
 md-content {
   background: white !important;
 }
+
+.podcast-review-card, .podcast-episode-card {
+  margin-top: 20px;
+  padding: 20px;
+  width: 100%;
+}

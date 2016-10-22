@@ -5,14 +5,15 @@
     .module('app')
     .service('$podcast', podcastService);
 
-  podcastService.$inject = ['$http'];
+  podcastService.$inject = ['$http', '$api'];
 
-  function podcastService($http) {
+  function podcastService($http, $api) {
 
     var exports = {
       addPodcast: addPodcast,
       getPodcast: getPodcast,
-      getEpisodesOfAPodcast: getEpisodesOfAPodcast
+      getEpisodesOfAPodcast: getEpisodesOfAPodcast,
+      getReviewsOfAPodcast: getReviewsOfAPodcast
     };
 
     return exports;
@@ -21,7 +22,7 @@
 
       var req = {
         method: 'POST',
-        url: 'http://localhost:8080/podcast',
+        url: $api.getUrl(),
         headers: { 'Content-Type': 'application/json' },
         data: podcast
       }
@@ -43,7 +44,7 @@
 
       var req = {
         method: 'GET',
-        url: 'http://localhost:8080/podcast/' + id,
+        url: $api.getUrl() + '/podcast/' + id,
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -64,7 +65,28 @@
 
       var req = {
         method: 'GET',
-        url: 'http://localhost:8080/podcast/' + podcastId + '/episodes',
+        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes',
+        headers: { 'Content-Type': 'application/json' },
+      };
+
+      return $http(req).then(
+        function(response) {
+          console.log(response);
+
+          return response.data.hits.hits;
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
+
+    }
+
+    function getReviewsOfAPodcast(podcastId) {
+
+      var req = {
+        method: 'GET',
+        url: $api.getUrl() + '/podcast/' + podcastId + '/reviews',
         headers: { 'Content-Type': 'application/json' },
       };
 
