@@ -44,7 +44,11 @@
 
       var req = {
         method: 'GET',
+<<<<<<< HEAD
         url: $api.getUrl() + '/podcast/' + id,
+=======
+        url: 'https://podsurfer3.herokuapp.com/podcast/' + id,
+>>>>>>> master
         headers: { 'Content-Type': 'application/json' },
       };
 
