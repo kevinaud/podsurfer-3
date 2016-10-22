@@ -23,7 +23,7 @@
       
       var req = {
         method: 'POST',
-        url: 'https://podsurfer3.herokuapp.com/search',
+        url: 'http://localhost:8080/search',
         headers: { 'Content-Type': 'application/json' },
         data: payload
       }

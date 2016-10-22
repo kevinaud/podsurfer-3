@@ -1,7 +1,8 @@
+<md-content>
+
 <!--Sign-up card-->
 <div layout="row" ng-show="responseReceived">
-
-    <md-card class="podcast-detail-card" flex-offset="5" flex="90">
+    <md-card class="podcast-detail-card" flex-offset="5" flex="90"><md-content>
 
       <md-card-title>
 
@@ -23,13 +24,39 @@
           <md-tab label="Episodes">
             <md-content class="md-padding">
 
-              <!--<div layout="row" ng-repeat="episode in episodeHits">
+             <div layout="row" ng-repeat="episode in episodes">
                 <md-card class="search-result-card">
 
                     <md-card-title>
 
                       <md-card-title-text>
-                        <span class="md-headline" ng-bind-html="episode._source.name"></span>
+                        <span class="md-headline">Episode {{ episode._source.number}} - {{ episode._source.name }}</span>
+                      </md-card-title-text>
+                      
+                    </md-card-title>
+
+                    <md-card-content ng-bind-html="episode._source.description">
+                    </md-card-content>
+
+                    <!--<md-card-actions layout="row" layout-align="end center">
+                      <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
+                    </md-card-actions>-->
+
+                </md-card>
+              </div>
+
+            </md-content>
+          </md-tab>
+          <md-tab label="Reviews">
+            <md-content class="md-padding">
+
+             <!--<div layout="row" ng-repeat="episode in episodes">
+                <md-card class="search-result-card">
+
+                    <md-card-title>
+
+                      <md-card-title-text>
+                        <span class="md-headline">Episode {{ episode._source.number}} - {{ episode._source.name }}</span>
                       </md-card-title-text>
                       
                     </md-card-title>
@@ -50,5 +77,6 @@
       </md-content>
 
   </md-card>
-
 </div>
+
+</md-content>

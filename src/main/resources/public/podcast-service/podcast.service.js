@@ -11,7 +11,8 @@
 
     var exports = {
       addPodcast: addPodcast,
-      getPodcast: getPodcast
+      getPodcast: getPodcast,
+      getEpisodesOfAPodcast: getEpisodesOfAPodcast
     };
 
     return exports;
@@ -20,7 +21,7 @@
 
       var req = {
         method: 'POST',
-        url: 'https://podsurfer3.herokuapp.com/podcast',
+        url: 'http://localhost:8080/podcast',
         headers: { 'Content-Type': 'application/json' },
         data: podcast
       }
@@ -42,7 +43,7 @@
 
       var req = {
         method: 'GET',
-        url: 'https://podsurfer3.herokuapp.com/podcast/' + id,
+        url: 'http://localhost:8080/podcast/' + id,
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -51,6 +52,27 @@
           console.log(response);
 
           return response.data._source;
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
+
+    }
+
+    function getEpisodesOfAPodcast(podcastId) {
+
+      var req = {
+        method: 'GET',
+        url: 'http://localhost:8080/podcast/' + podcastId + '/episodes',
+        headers: { 'Content-Type': 'application/json' },
+      };
+
+      return $http(req).then(
+        function(response) {
+          console.log(response);
+
+          return response.data.hits.hits;
         },
         function(error) {
           console.log(error);
