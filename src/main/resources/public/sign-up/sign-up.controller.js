@@ -17,13 +17,14 @@
 
       $scope.submitForm = function() {
 
-        var response = $user.signUp(this.user);
-        response.then(function(msg) {
+        $user.signUp($scope.user).then(function(msg) {
+
           $scope.errorMessage = msg.message;
           $scope.error = !($scope.errorMessage === 'success');
           console.log('Errormsg: ', $scope.errorMessage);
           console.log('error', $scope.error);
-          if ($state.error === false) {
+
+          if (!$scope.error) {
             console.log("redirecting to profile");
             //TODO: change redirect to profile
             $state.go('home');
@@ -32,11 +33,6 @@
           $scope.error = true;
           $scope.errorMessage = "An unexpected error occurred";
         });
-/*
-        console.log(response);
-        console.log($scope.errorMessage);
-        console.log($scope.error);
-*/
       };
 
     }]);
