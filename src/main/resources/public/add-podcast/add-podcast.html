@@ -1,0 +1,122 @@
+<div layout="row">
+  <div flex>
+
+    <h1 class="text-center">Add Podcast</h1>
+
+  </div>
+</div>
+<div layout="row">
+  <div flex="60" flex-offset="20">
+
+    <md-card class="add-podcast-card" layout="column">
+
+      <form name="form" ng-submit="submit()" novalidate>
+
+        <md-input-container class="add-podcast-field">
+          <label>Name</label>
+
+          <input
+            type="text"
+            name="name"
+            id="name"
+            ng-model="podcast.name"
+            required>
+        </md-input-container>
+
+        <div class="form-error-box" ng-show="form.name.$invalid && form.name.$dirty">
+
+          <div class="form-error-message" ng-show="form.name.$error.required">
+            This field is required
+          </div>
+
+        </div>
+
+       <md-input-container class="add-podcast-field">
+          <label>Description</label>
+          <textarea 
+            name="description"
+            id="description"
+            ng-model="podcast.description" 
+            md-maxlength="500" 
+            rows="5" 
+            md-select-on-focus
+            required></textarea>
+
+        </md-input-container>
+
+        <div class="form-error-box" ng-show="form.description.$invalid && form.description.$dirty">
+
+          <div class="form-error-message" ng-show="form.description.$error.required">
+            This field is required
+          </div>
+
+        </div>
+
+        <md-input-container class="add-podcast-field">
+          <label>Producer</label>
+
+          <input
+            type="text"
+            name="producer"
+            id="producer"
+            ng-model="podcast.producer">
+        </md-input-container>
+
+        <md-input-container class="add-podcast-field">
+          <label>Link</label>
+
+          <input
+            type="text"
+            name="link"
+            id="link"
+            ng-model="podcast.link">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-icon-right md-block add-podcast-tag-field">
+          <label>Add Tag</label>
+
+          <input
+            type="text"
+            name="add-tag"
+            id="add-tag"
+            ng-model="tag">
+
+          <md-icon class="add-tag-icon" 
+                   ng-click="addTag()" 
+                   style="margin-right: 5px !important; color: #3F51B5 !important;">add</md-icon>
+
+        </md-input-container>
+
+        <div class="tag-list">
+          <md-card ng-repeat="tag in tags" class="add-podcast-tag">
+            <md-card-content>
+              {{ tag.name }} <md-icon class="delete-tag-icon" ng-click="removeTag(tag.name)">clear</md-icon>
+            </md-card-content>
+          </md-card>
+        </div>
+
+        <div class="form-error-box" ng-show="responseError">
+          <div class="form-error-message" ng-show="responseError">
+            {{ responseError }}
+          </div>
+        </div>
+
+        <div flex>
+          <div layout="row" layout-align="end center">
+
+            <md-button
+              class="md-raised md-primary add-podcast-submit"
+              type="submit"
+              ng-disabled="form.$invalid">
+              Submit
+            </md-button>
+
+          </div>
+        </div>
+
+      </form>
+      
+    </md-card>
+      
+  </div>
+</div>

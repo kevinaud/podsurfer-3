@@ -16,32 +16,6 @@
           controller: 'homeController',
           controllerAs: 'home'
         })
-        .state('about', {
-          url: '/about',
-          views: {
-            '': {
-              templateUrl: 'about/about.html',
-              controller: 'aboutController',
-              controllerAs: 'about'
-            },
-            'view1@about': {
-              templateUrl: 'about/views/about-view1.html',
-            },
-            'view2@about': {
-              templateUrl: 'about/views/about-view2.html',
-            },
-            'view3@about': {
-              templateUrl: 'about/views/about-view3.html',
-            },
-          }
-        })
-        .state('contact', {
-          url: '/contact',
-          templateUrl: 'contact/contact.html',
-          controller: 'contactController',
-          controllerAs: 'contact'
-
-        })
         .state('login', {
           url: '/login',
           templateUrl: 'login/login.html',
@@ -53,6 +27,24 @@
           templateUrl: 'sign-up/sign-up.html',
           controller: 'signUpController',
           controllerAs: 'sign-up'
+        })
+        .state('podcasts', {
+          url: '/podcasts/:podcastId',
+          templateUrl: 'podcast-detail/podcast-detail.html',
+          controller: 'podcastDetailController',
+          controllerAs: 'podcast-detail'
+        })
+        .state('add-podcast', {
+          url: '/add-podcast',
+          templateUrl: 'add-podcast/add-podcast.html',
+          controller: 'addPodcastController',
+          controllerAs: 'add-podcast'
+        })
+        .state('search', {
+          url: '/search?query',
+          templateUrl: 'search/search.html',
+          controller: 'searchController',
+          controllerAs: 'search'
         });
 
     };
