@@ -53,13 +53,8 @@
           templateUrl: 'sign-up/sign-up.html',
           controller: 'signUpController',
           controllerAs: 'sign-up'
-        })
-        .state('rating', {
-          url: '/rating',
-          templateUrl: 'rating/rating.html',
-          controller: 'ratingController',
-          controllerAs: 'rating'
         });
+
     };
 
 })();

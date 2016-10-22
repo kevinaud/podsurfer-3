@@ -1,4 +1,4 @@
-* {
+*, {
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
 }
@@ -84,6 +84,18 @@ md-input-container {
   color: white !important;
 }
 
+.favorite-star{
+  color: gold;
+}
+
+.rating-star:hover {
+  cursor: pointer;
+}
+
+.rating-star:focus {
+  outline:0;
+}
+
 .rated {
   color: #F44336;
 }
@@ -96,6 +108,9 @@ md-input-container {
   cursor: pointer;
 }
 
+.rating-star:focus{
+  outline: 0;
+}
 
 
 
