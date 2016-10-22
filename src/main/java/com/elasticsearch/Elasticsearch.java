@@ -77,7 +77,6 @@ public class Elasticsearch {
 
         System.out.print(query);
 
-
         return esPostString("/podcasts/episode/_search", query);
 
     }

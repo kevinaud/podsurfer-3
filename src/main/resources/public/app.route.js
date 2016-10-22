@@ -28,6 +28,18 @@
           controller: 'signUpController',
           controllerAs: 'sign-up'
         })
+        .state('podcasts', {
+          url: '/podcasts/:podcastId',
+          templateUrl: 'podcast-detail/podcast-detail.html',
+          controller: 'podcastDetailController',
+          controllerAs: 'podcast-detail'
+        })
+        .state('add-podcast', {
+          url: '/add-podcast',
+          templateUrl: 'add-podcast/add-podcast.html',
+          controller: 'addPodcastController',
+          controllerAs: 'add-podcast'
+        })
         .state('search', {
           url: '/search?query',
           templateUrl: 'search/search.html',

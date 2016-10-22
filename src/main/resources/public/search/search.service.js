@@ -18,7 +18,7 @@
     function search(query){
 
       var payload = {
-        query: query
+        query: query.toLowerCase()
       }
       
       var req = {
