@@ -32,7 +32,6 @@ public class Elasticsearch {
         return esGetRequest("/podcasts/podcast/" + podcastId);
     }
 
-
     public String saveEpisode(String podcastId, Episode episode) {
         return esPostObject("/podcasts/episode/?parent=" + podcastId, episode);
     }
