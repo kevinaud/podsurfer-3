@@ -25,11 +25,11 @@
               hits.map(function(hit){
                 let highlights = {};
 
-                if (hit.highlight.hasOwnProperty('name')) {
+                if (hit.hasOwnProperty('highlight') && hit.highlight.hasOwnProperty('name')) {
                   highlights.name = hit.highlight.name[0];
                 }
 
-                if (hit.highlight.hasOwnProperty('description')) {
+                if (hit.hasOwnProperty('highlight') && hit.highlight.hasOwnProperty('description')) {
                   highlights.description = hit.highlight.description[0];
                 }
 

@@ -60,6 +60,30 @@ public class Elasticsearch {
 
     }
 
+    public String getPodcastByEpisodeId(String episodeId) {
+        String query =  "{\n" +
+                        "    \"query\": {\n" +
+                        "        \"has_child\": {\n" +
+                        "           \"type\": \"episode\",\n" +
+                        "           \"query\": {\n" +
+                        "               \"match\": {\n" +
+                        "                   \"_id\": \"" + episodeId + "\"\n" +
+                        "               }\n" +
+                        "           }\n" +
+                        "       }\n" +
+                        "     }\n" +
+                        "}\n";
+
+        System.out.println(query);
+
+        return esPostString("/podcasts/podcast/_search", query);
+
+    }
+
+    public String getEpisodeById(String podcastId, String episodeId) {
+        return esGetRequest("/podcasts/episode/" + episodeId + "?parent=" + podcastId);
+    }
+
     public String getAllEpisodesForPodcast(String podcastId) {
 
         String query =  "{\n" +
