@@ -5,29 +5,45 @@
       .controller('episodeDetailController', [ '$scope', '$stateParams', '$podcast',
         function($scope, $stateParams, $podcast) {
 
-        let podcastId = $stateParams.podcastId;
-        let episodeNumber = $stateParams.episodeNumber;
+        let episodeId = $stateParams.episodeId;
 
-        $scope.podcastId = podcastId;
-        $scope.episodeNumber = episodeNumber;
+        $scope.episodeId = episodeId;
 
         $scope.responseReceived;
         $scope.ratingReceived = false;
 
         $scope.podcast;
         $scope.episodes;
-        $scope.reviews;
-
-        $scope.numEpisodes;
-        $scope.numReviews;
 
         this.$onInit = function () {
 
-          $scope.responseReceived = false;
+          $podcast.getPodcastByEpisodeId($stateParams.episodeId)
+            .then(function(response){
+              
+            console.log('PODCAST', response);
+            $scope.podcast = response._source;
+
+            return response;
+
+          }).then(function(podcast) {
+
+            $podcast.getEpisodeById(podcast._Id, $scope.episodeId)
+              .then(function(response) {
+
+                console.log('EPISODE', response);
+                $scope.episode = response._source;
+                $scope.responseReceived = true;
+
+            });
+
+          });
+
+          /*$scope.responseReceived = false;
 
           $podcast.getPodcast($stateParams.podcastId).then(
             function(podcast) {
-              $scope.podcast = podcast;
+              $scope.podcast = podcast._source;
+              console.log(podcast)
               $scope.responseReceived = true;
             },
             function(error) {
@@ -35,31 +51,15 @@
             }
           );
 
-          $podcast.getEpisodesOfAPodcast($stateParams.podcastId).then(
-            function(episodes) {
-              $scope.episodes = episodes;
-              $scope.numEpisodes = episodes.length;
+          $podcast.getPodcastEpisodeByNumber($stateParams.podcastId, $stateParams.episodeNumber).then(
+            function(episode) {
+              $scope.episode = episode._source;
+              console.log(episode);
             },
             function(error) {
               console.log(error);
             }
-          );
-
-          $podcast.getReviewsOfAPodcast($stateParams.podcastId).then(
-            function(reviews) {
-              $scope.reviews = reviews.reviews;
-              $scope.avgRating = reviews.avgRating;
-              $scope.numReviews = reviews.reviews.length;
-
-              console.log("numReviews", $scope.numReviews);
-
-              $scope.ratingReceived = true;
-              console.log($scope.avgRating);
-            },
-            function(error) {
-              console.log(error);
-            }
-          );
+          );*/
       
         };
 

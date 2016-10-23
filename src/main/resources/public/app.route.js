@@ -41,10 +41,16 @@
           controllerAs: 'add-podcast'
         })
         .state('episodes', {
-          url: '/episodes/:podcastId/:episodeNumber',
+          url: '/episodes/:episodeId',
           templateUrl: 'episode-detail/episode-detail.html',
           controller: 'episodeDetailController',
           controllerAs: 'episode-detail'
+        })
+        .state('add-episode', {
+          url: '/add-episode',
+          templateUrl: 'add-episode/add-episode.html',
+          controller: 'addEpisodeController',
+          controllerAs: 'add-episode'
         })
         .state('search', {
           url: '/search?query',

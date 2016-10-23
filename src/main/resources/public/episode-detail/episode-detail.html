@@ -1,9 +1,4 @@
-Podcast Id: {{ podcastId }}
-Episode Number: {{ episodeNumber }}
-
-
-
-<!--<md-content>
+<md-content>
 
 <div layout="row" ng-show="responseReceived">
     <md-card class="podcast-detail-card" flex-offset="5" flex="90"><md-content>
@@ -12,7 +7,7 @@ Episode Number: {{ episodeNumber }}
 
         <md-card-title-text>
           <span class="md-headline">
-            {{ podcast.name }}
+            {{ podcast.name }}, Episode {{ episode.number }}
             <rating rate="avgRating" interactive="false" ng-show="ratingReceived"></rating>
           </span>
         </md-card-title-text>
@@ -24,11 +19,11 @@ Episode Number: {{ episodeNumber }}
           <md-tab label="Description">
             <md-content class="md-padding">
 
-              {{ podcast.description }}
+              {{ episode.description }}
 
             </md-content>
           </md-tab>
-          <md-tab ng-attr-label="{{ 'Episodes (' + numEpisodes + ')' }}">
+          <!--<md-tab ng-attr-label="{{ 'Episodes (' + numEpisodes + ')' }}">
             <md-content class="md-padding">
 
              <div layout="row" ng-repeat="episode in episodes">
@@ -47,7 +42,7 @@ Episode Number: {{ episodeNumber }}
 
                     <!--<md-card-actions layout="row" layout-align="end center">
                       <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
-                    </md-card-actions>
+                    </md-card-actions> 
 
                 </md-card>
               </div>
@@ -77,13 +72,13 @@ Episode Number: {{ episodeNumber }}
 
                     <!--<md-card-actions layout="row" layout-align="end center">
                       <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
-                    </md-card-actions>
+                    </md-card-actions> 
 
                 </md-card>
               </div>
 
             </md-content>
-          </md-tab>
+          </md-tab>-->
         </md-tabs>
       </md-content>
 
@@ -91,5 +86,3 @@ Episode Number: {{ episodeNumber }}
 </div>
 
 </md-content>
-
--->

@@ -1,19 +1,31 @@
 <md-content>
 
-<!--Sign-up card-->
 <div layout="row" ng-show="responseReceived">
     <md-card class="podcast-detail-card" flex-offset="5" flex="90"><md-content>
 
-      <md-card-title>
+      <span layout="row">
 
-        <md-card-title-text>
-          <span class="md-headline">
-            {{ podcast.name }}
-            <rating rate="avgRating" interactive="false" ng-show="ratingReceived"></rating>
+        <md-card-title flex="50">
+
+          <md-card-title-text>
+            <span class="md-headline">
+              {{ podcast.name }}
+              <rating rate="avgRating" interactive="false" ng-show="ratingReceived"></rating>
+            </span>
+          </md-card-title-text>
+
+        </md-card-title>
+
+        <md-card-actions flex="50">
+
+          <span layout="row" layout-align="end start">
+            <md-button class="md-raised md-primary" 
+              ui-sref="add-episode">Add Episode</md-button>
           </span>
-        </md-card-title-text>
 
-      </md-card-title>
+        </md-card-actions>
+
+      </span>
 
       <md-content layout="row" ng-show="responseReceived">
         <md-tabs md-dynamic-height md-border-bottom flex="100">
@@ -43,7 +55,7 @@
 
                     <md-card-actions layout="row" layout-align="end center">
                       <md-button class="md-raised md-primary" 
-                        ui-sref="episodes({ podcastId: podcast._id, episodeNumber: episode._source.number })">View</md-button>
+                        ui-sref="episodes({ episodeId: episode._id })">View</md-button>
                     </md-card-actions>
 
                 </md-card>
