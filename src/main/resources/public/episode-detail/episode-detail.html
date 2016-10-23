@@ -1,6 +1,10 @@
-<md-content>
+Podcast Id: {{ podcastId }}
+Episode Number: {{ episodeNumber }}
 
-<!--Sign-up card-->
+
+
+<!--<md-content>
+
 <div layout="row" ng-show="responseReceived">
     <md-card class="podcast-detail-card" flex-offset="5" flex="90"><md-content>
 
@@ -41,9 +45,8 @@
                     <md-card-content ng-bind-html="episode._source.description">
                     </md-card-content>
 
-                    <md-card-actions layout="row" layout-align="end center">
-                      <md-button class="md-raised md-primary" 
-                        ui-sref="episodes({ podcastId: podcast._id, episodeNumber: episode._source.number })">View</md-button>
+                    <!--<md-card-actions layout="row" layout-align="end center">
+                      <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
                     </md-card-actions>
 
                 </md-card>
@@ -72,6 +75,10 @@
                     <md-card-content ng-bind-html="review._source.content">
                     </md-card-content>
 
+                    <!--<md-card-actions layout="row" layout-align="end center">
+                      <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
+                    </md-card-actions>
+
                 </md-card>
               </div>
 
@@ -84,3 +91,5 @@
 </div>
 
 </md-content>
+
+-->

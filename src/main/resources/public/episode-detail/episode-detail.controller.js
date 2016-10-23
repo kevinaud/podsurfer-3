@@ -2,12 +2,15 @@
   'use strict';
 
     angular.module('app')
-      .controller('podcastDetailController', [ '$scope', '$stateParams', '$podcast',
+      .controller('episodeDetailController', [ '$scope', '$stateParams', '$podcast',
         function($scope, $stateParams, $podcast) {
 
         let podcastId = $stateParams.podcastId;
+        let episodeNumber = $stateParams.episodeNumber;
 
         $scope.podcastId = podcastId;
+        $scope.episodeNumber = episodeNumber;
+
         $scope.responseReceived;
         $scope.ratingReceived = false;
 
@@ -24,8 +27,7 @@
 
           $podcast.getPodcast($stateParams.podcastId).then(
             function(podcast) {
-              $scope.podcast = podcast._source;
-              $scope.podcast._id = podcast._id;
+              $scope.podcast = podcast;
               $scope.responseReceived = true;
             },
             function(error) {

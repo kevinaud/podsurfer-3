@@ -103,6 +103,11 @@ public class Elasticsearch {
                 "                }\n" +
                 "            }\n" +
                 "        }\n" +
+                "    },\n" +
+                "    \"aggs\": {\n" +
+                "       \"avg_rating\": {\n" +
+                "           \"avg\": { \"field\": \"rating\"}\n" +
+                "       }\n" +
                 "    }\n" +
                 "}";
 
@@ -120,8 +125,10 @@ public class Elasticsearch {
 
         String query =  "{\n" +
                         "   \"query\" : {\n" +
-                        "       \"term\": {\n" +
-                        "           \"_all\" : \"" + searchQuery.getQuery() + "\"\n" +
+                        "       \"match\": {\n" +
+                        "           \"_all\" : {\n" +
+                        "               \"query\": \"" + searchQuery.getQuery() + "\"\n" +
+                        "            }\n" +
                         "       }\n" +
                         "   },\n" +
                         "   \"highlight\": {\n" +

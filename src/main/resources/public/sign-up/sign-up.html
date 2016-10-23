@@ -10,23 +10,23 @@
 
     <md-card class="sign-up-card" layout="column">
 
-      <form userName="form" ng-submit="submitForm()" novalidate>
+      <form name="form" ng-submit="submitForm()" novalidate>
 
         <md-input-container class="sign-up-field">
           <label>Name</label>
           
           <input 
             type="text" 
-            userName="userName"
-            id="userName"
-            ng-model="user.userName"
+            name="name"
+            id="name"
+            ng-model="user.name"
             required>
 
         </md-input-container>
 
-        <div class="form-error-box" ng-show="form.userName.$invalid && form.userName.$dirty">
+        <div class="form-error-box" ng-show="form.name.$invalid && form.name.$dirty">
 
-          <div class="form-error-message" ng-show="form.userName.$error.required">
+          <div class="form-error-message" ng-show="form.name.$error.required">
             This field is required
           </div>
 
@@ -37,7 +37,7 @@
           
           <input 
             type="email"
-            userName="email"
+            name="email"
             id="email" 
             ng-model="user.email" 
             required>
@@ -62,7 +62,7 @@
           <input 
             data-ng-model='user.password' 
             type="password" 
-            userName='password'
+            name='password'
             ng-minlength="8"
             contain-uppercase
             contain-lowercase
@@ -101,7 +101,7 @@
           <input 
             ng-model='user.password_verify' 
             type="password" 
-            userName='confirm_password'
+            name='confirm_password'
             ng-minlength="8"
             contain-uppercase
             contain-lowercase

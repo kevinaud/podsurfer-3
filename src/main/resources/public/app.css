@@ -3,6 +3,10 @@
   font-weight: normal;
 }
 
+html, body {
+  background: white;
+}
+
 .title {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -95,8 +99,12 @@ md-input-container {
   outline:0;
 }
 
-.rating-fire:hover {
-  cursor: pointer;
+.rating-selector {
+  cursor: default;
+}
+
+.interactive-rating:hover {
+  cursor: pointer !important;
 }
 
 .rating-star:focus{
@@ -128,6 +136,10 @@ md-input-container {
 .search-bar md-icon.material-icons {
   top: 0px;
   bottom: 0px;
+}
+
+.search-header {
+  font-weight: normal;
 }
 
 .search-bar md-input-container .md-errors-spacer {

@@ -1,4 +1,4 @@
-<h1 class="text-center">Results for "{{ query }}"</h1>
+<h1 class="text-center search-header">Results for "{{ query }}"</h1>
 
 <md-content layout="row" ng-show="responseReceived">
   <md-tabs md-dynamic-height md-border-bottom flex-offset="5" flex="90">
@@ -11,7 +11,7 @@
               <md-card-title>
 
                 <md-card-title-text>
-                  <span class="md-headline" ng-bind-html="podcast._source.userName"></span>
+                  <span class="md-headline" ng-bind-html="podcast._source.name"></span>
                 </md-card-title-text>
 
               </md-card-title>
@@ -37,7 +37,7 @@
               <md-card-title>
 
                 <md-card-title-text>
-                  <span class="md-headline" ng-bind-html="episode._source.userName"></span>
+                  <span class="md-headline" ng-bind-html="episode._source.name"></span>
                 </md-card-title-text>
                 
               </md-card-title>

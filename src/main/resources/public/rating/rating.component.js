@@ -5,8 +5,36 @@
     .component('rating', {
       templateUrl: 'rating/rating.html',
       controller: function($scope) {
-        $scope.rate = 0;
-        $scope.favorite = false;
+        
+        this.rate;
+        this.interactive;
+
+        $scope.rate = this.rate;
+        $scope.interactive = this.interactive;
+
+        $scope.setRate = function(r){ 
+
+          if(this.interactive === true) {
+            this.rate = r;
+            $scope.rate = this.rate;
+          }
+
+        }
+
+        $scope.getRate = function(){ 
+          return this.rate; 
+        }
+
+        this.$onChanges = function (changesObj) {
+
+          if (changesObj.rate) {
+            this.rate = changesObj.rate.currentValue;
+            $scope.rate = changesObj.rate.currentValue;
+          }
+          
+        };
+
+        /*$scope.favorite = false;
         $scope.favoriteIcon = "star_border";
         $scope.favoriteLeft = false;
 
@@ -17,10 +45,12 @@
 
         $scope.setFavorite = function(fav){ $scope.favorite = fav; }
         $scope.getFavorite = function(){ return $scope.favorite; }
-        $scope.setRate = function(r){ $scope.rate = r; }
-        $scope.getRate = function(){ return $scope.rate; }
         $scope.setFavoriteLeft = function(){ $scope.favoriteLeft= true; }
-        $scope.setFavoriteRight = function(){ $scope.favoriteRight = false; }
+        $scope.setFavoriteRight = function(){ $scope.favoriteRight = false; }*/
+      },
+      bindings: {
+        rate: '<',
+        interactive: '<'
       }
     });
 })();

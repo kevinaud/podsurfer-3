@@ -52,7 +52,7 @@
         function(response) {
           console.log(response);
 
-          return response.data._source;
+          return response.data;
         },
         function(error) {
           console.log(error);
@@ -94,7 +94,12 @@
         function(response) {
           console.log(response);
 
-          return response.data.hits.hits;
+          var data = {
+            reviews: response.data.hits.hits,
+            avgRating: response.data.aggregations.avg_rating.value
+          }
+
+          return data;
         },
         function(error) {
           console.log(error);

@@ -40,6 +40,12 @@
           controller: 'addPodcastController',
           controllerAs: 'add-podcast'
         })
+        .state('episodes', {
+          url: '/episodes/:podcastId/:episodeNumber',
+          templateUrl: 'episode-detail/episode-detail.html',
+          controller: 'episodeDetailController',
+          controllerAs: 'episode-detail'
+        })
         .state('search', {
           url: '/search?query',
           templateUrl: 'search/search.html',

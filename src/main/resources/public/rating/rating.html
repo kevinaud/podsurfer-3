@@ -2,21 +2,33 @@
          ng-show="favoriteLeft">
   {{ favoriteIcon }}
 </md-icon>-->
-<md-icon class="rating-fire" ng-click="rate = 1" ng-class="{rated: rate >= 1}">
-  whatshot
-</md-icon>
-<md-icon class="rating-fire" ng-click="rate = 2" ng-class="{rated: rate >= 2}">
-  whatshot
-</md-icon>
-<md-icon class="rating-fire" ng-click="rate = 3" ng-class="{rated: rate >= 3}">
-  whatshot
-</md-icon>
-<md-icon class="rating-fire" ng-click="rate = 4" ng-class="{rated: rate >= 4}">
-  whatshot
-</md-icon>
-<md-icon class="rating-fire" ng-click="rate = 5" ng-class="{rated: rate >= 5}">
-  whatshot
-</md-icon>
+<div class="rating-selector">
+  <md-icon class="rating-fire" 
+    ng-click="setRate(1)" 
+    ng-class="{ rated: rate >= 1, 'interactive-rating': interactive }">
+    whatshot
+  </md-icon>
+  <md-icon class="rating-fire" 
+    ng-click="setRate(2)" 
+    ng-class="{ rated: rate >= 2, 'interactive-rating': interactive }">
+    whatshot
+  </md-icon>
+  <md-icon class="rating-fire" 
+    ng-click="setRate(3)" 
+    ng-class="{ rated: rate >= 3, 'interactive-rating': interactive }">
+    whatshot
+  </md-icon>
+  <md-icon class="rating-fire" 
+    ng-click="setRate(4)" 
+    ng-class="{ rated: rate >= 4, 'interactive-rating': interactive }">
+    whatshot
+  </md-icon>
+  <md-icon class="rating-fire" 
+    ng-click="setRate(5)" 
+    ng-class="{ rated: rate >= 5, 'interactive-rating': interactive }">
+    whatshot
+  </md-icon>
+</div>
 <!--<md-icon class="favorite-star" ng-class="favoriteStar" ng-click="starClick()"
          ng-hide="favoriteLeft">
   {{ favoriteIcon }}
