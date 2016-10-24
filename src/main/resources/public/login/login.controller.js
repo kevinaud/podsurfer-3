@@ -4,6 +4,11 @@
   angular.module('app')
     .controller('loginController', ['$scope','$user','$state', function($scope, $user, $state) {
 
+      this.$onInit = function(){
+        if($user.auth)
+          $state.go('home');
+      }
+
       $scope.user = {
         email: '',
         password: ''
@@ -18,8 +23,6 @@
 
           $scope.errorMessage = message;
           $scope.error = !($scope.errorMessage === 'success');
-          console.log('Errormsg: ', $scope.errorMessage);
-          console.log('error', $scope.error);
 
           if(!$scope.error) {
             console.log("redirecting to home");

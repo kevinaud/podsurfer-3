@@ -4,7 +4,12 @@
     angular.module('app')
       .controller('signUpController', ['$scope', '$user', '$state',
         function($scope, $user, $state) {
-      
+
+      this.$onInit = function(){
+        if($user.auth)
+          $state.go('home');
+      }
+
       $scope.user = {
         email: '',
         name: '',
@@ -17,14 +22,10 @@
 
       $scope.submitForm = function() {
 
-        var response = $user.signUp($scope.user);
-        console.log('LOGINRESPONSE', response);
-        response.then(function(message) {
+        $user.signUp($scope.user).then(function(message) {
 
           $scope.errorMessage = message;
           $scope.error = !($scope.errorMessage === 'success');
-          console.log('Errormsg: ', $scope.errorMessage);
-          console.log('error', $scope.error);
 
           if (!$scope.error) {
             console.log("redirecting to profile");
