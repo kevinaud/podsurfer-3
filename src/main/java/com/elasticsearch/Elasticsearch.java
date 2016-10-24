@@ -60,6 +60,30 @@ public class Elasticsearch {
 
     }
 
+    public String getPodcastByEpisodeId(String episodeId) {
+        String query =  "{\n" +
+                        "    \"query\": {\n" +
+                        "        \"has_child\": {\n" +
+                        "           \"type\": \"episode\",\n" +
+                        "           \"query\": {\n" +
+                        "               \"match\": {\n" +
+                        "                   \"_id\": \"" + episodeId + "\"\n" +
+                        "               }\n" +
+                        "           }\n" +
+                        "       }\n" +
+                        "     }\n" +
+                        "}\n";
+
+        System.out.println(query);
+
+        return esPostString("/podcasts/podcast/_search", query);
+
+    }
+
+    public String getEpisodeById(String podcastId, String episodeId) {
+        return esGetRequest("/podcasts/episode/" + episodeId + "?parent=" + podcastId);
+    }
+
     public String getAllEpisodesForPodcast(String podcastId) {
 
         String query =  "{\n" +
@@ -103,6 +127,11 @@ public class Elasticsearch {
                 "                }\n" +
                 "            }\n" +
                 "        }\n" +
+                "    },\n" +
+                "    \"aggs\": {\n" +
+                "       \"avg_rating\": {\n" +
+                "           \"avg\": { \"field\": \"rating\"}\n" +
+                "       }\n" +
                 "    }\n" +
                 "}";
 
@@ -120,8 +149,10 @@ public class Elasticsearch {
 
         String query =  "{\n" +
                         "   \"query\" : {\n" +
-                        "       \"term\": {\n" +
-                        "           \"_all\" : \"" + searchQuery.getQuery() + "\"\n" +
+                        "       \"match\": {\n" +
+                        "           \"_all\" : {\n" +
+                        "               \"query\": \"" + searchQuery.getQuery() + "\"\n" +
+                        "            }\n" +
                         "       }\n" +
                         "   },\n" +
                         "   \"highlight\": {\n" +

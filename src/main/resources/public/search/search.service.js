@@ -7,7 +7,7 @@
 
   searchService.$inject = ['$http', '$state', '$api'];
 
-  function searchService($http, $state) {
+  function searchService($http, $state, $api) {
 
     var exports = {
       search: search

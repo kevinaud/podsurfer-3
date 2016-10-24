@@ -3,40 +3,27 @@
 <div layout="row" ng-show="responseReceived">
     <md-card class="podcast-detail-card" flex-offset="5" flex="90"><md-content>
 
-      <span layout="row">
+      <md-card-title>
 
-        <md-card-title flex="50">
-
-          <md-card-title-text>
-            <span class="md-headline">
-              {{ podcast.name }}
-              <rating rate="avgRating" interactive="false" ng-show="ratingReceived"></rating>
-            </span>
-          </md-card-title-text>
-
-        </md-card-title>
-
-        <md-card-actions flex="50">
-
-          <span layout="row" layout-align="end start">
-            <md-button class="md-raised md-primary"
-              ui-sref="add-episode({ podcastId: podcastId })">Add Episode</md-button>
+        <md-card-title-text>
+          <span class="md-headline">
+            {{ podcast.name }}, Episode {{ episode.number }}
+            <rating rate="avgRating" interactive="false" ng-show="ratingReceived"></rating>
           </span>
+        </md-card-title-text>
 
-        </md-card-actions>
-
-      </span>
+      </md-card-title>
 
       <md-content layout="row" ng-show="responseReceived">
         <md-tabs md-dynamic-height md-border-bottom flex="100">
           <md-tab label="Description">
             <md-content class="md-padding">
 
-              {{ podcast.description }}
+              {{ episode.description }}
 
             </md-content>
           </md-tab>
-          <md-tab ng-attr-label="{{ 'Episodes (' + numEpisodes + ')' }}">
+          <!--<md-tab ng-attr-label="{{ 'Episodes (' + numEpisodes + ')' }}">
             <md-content class="md-padding">
 
              <div layout="row" ng-repeat="episode in episodes">
@@ -53,10 +40,9 @@
                     <md-card-content ng-bind-html="episode._source.description">
                     </md-card-content>
 
-                    <md-card-actions layout="row" layout-align="end center">
-                      <md-button class="md-raised md-primary" 
-                        ui-sref="episodes({ episodeId: episode._id })">View</md-button>
-                    </md-card-actions>
+                    <!--<md-card-actions layout="row" layout-align="end center">
+                      <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
+                    </md-card-actions> 
 
                 </md-card>
               </div>
@@ -81,16 +67,18 @@
                       
                     </md-card-title>
 
-                    <rating></rating>
-
                     <md-card-content ng-bind-html="review._source.content">
                     </md-card-content>
+
+                    <!--<md-card-actions layout="row" layout-align="end center">
+                      <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
+                    </md-card-actions> 
 
                 </md-card>
               </div>
 
             </md-content>
-          </md-tab>
+          </md-tab>-->
         </md-tabs>
       </md-content>
 

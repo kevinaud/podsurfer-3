@@ -9,10 +9,14 @@
 
         $scope.podcastId = podcastId;
         $scope.responseReceived;
+        $scope.ratingReceived = false;
 
         $scope.podcast;
         $scope.episodes;
         $scope.reviews;
+
+        $scope.numEpisodes;
+        $scope.numReviews;
 
         this.$onInit = function () {
 
@@ -20,8 +24,8 @@
 
           $podcast.getPodcast($stateParams.podcastId).then(
             function(podcast) {
-              console.log('PODCAST', podcast);
-              $scope.podcast = podcast;
+              $scope.podcast = podcast._source;
+              $scope.podcast._id = podcast._id;
               $scope.responseReceived = true;
             },
             function(error) {
@@ -31,8 +35,8 @@
 
           $podcast.getEpisodesOfAPodcast($stateParams.podcastId).then(
             function(episodes) {
-              console.log('EPISODES', episodes);
               $scope.episodes = episodes;
+              $scope.numEpisodes = episodes.length;
             },
             function(error) {
               console.log(error);
@@ -41,8 +45,14 @@
 
           $podcast.getReviewsOfAPodcast($stateParams.podcastId).then(
             function(reviews) {
-              console.log('REVIEWS', reviews);
-              $scope.reviews = reviews;
+              $scope.reviews = reviews.reviews;
+              $scope.avgRating = reviews.avgRating;
+              $scope.numReviews = reviews.reviews.length;
+
+              console.log("numReviews", $scope.numReviews);
+
+              $scope.ratingReceived = true;
+              console.log($scope.avgRating);
             },
             function(error) {
               console.log(error);

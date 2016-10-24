@@ -40,6 +40,18 @@ public class PodcastController {
     }
 
     @ResponseBody
+    @RequestMapping(value="/episodes/{podcastId}/{episodeId}", method=RequestMethod.GET)
+    public String getEpisodeById(@PathVariable String podcastId, @PathVariable String episodeId){
+        return es.getEpisodeById(podcastId, episodeId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/episodes/{episodeId}/podcast", method=RequestMethod.GET)
+    public String getPodcastByEpisodeId(@PathVariable String episodeId){
+        return es.getPodcastByEpisodeId(episodeId);
+    }
+
+    @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}/episodes", method=RequestMethod.GET)
     public String getAllEpisodesForPodcast(@PathVariable String podcastId){
         return es.getAllEpisodesForPodcast(podcastId);
