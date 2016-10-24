@@ -5,9 +5,9 @@
     .module('app')
     .service('$user', userService);
 
-  userService.$inject = ['$http']
+  userService.$inject = ['$http', '$api']
 
-  function userService($http) {
+  function userService($http, $api) {
 
     var exports = {
       signUp: signUp,
@@ -84,7 +84,7 @@
     function getUserInfo(token) {
       return $http({
         method: "GET",
-        url: 'http://localhost:8080/user',
+        url: $api.getUrl() + '/user',
         headers: {'Authorization': "Bearer " + token}
       })
       .then(
@@ -128,7 +128,7 @@
     function makePostRequest(payload, endpoint) {
       var req = {
         method: 'POST',
-        url: 'http://localhost:8080' + endpoint, //https://podsurfer3.herokuapp.com/sign-up',
+        url: $api.getUrl() + endpoint,
         headers: { 'Content-Type': 'application/json' },
         data: payload
       };
@@ -139,14 +139,13 @@
     function makeAuthorizedPostRequest(payload, endpoint, token) {
       var req = {
         method: 'POST',
-        url: 'http://localhost:8080' + endpoint, //https://podsurfer3.herokuapp.com/sign-up',
+        url: $api.getUrl() + endpoint,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token
         },
         data: payload
       };
-
       return req;
     }
 

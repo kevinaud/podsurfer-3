@@ -14,8 +14,8 @@
     return exports;
 
     function getUrl() {
-      //return "https://podsurfer3.herokuapp.com";
-      return "http://localhost:8080";
+      return "https://podsurfer3.herokuapp.com";
+      //return "http://localhost:8080";
     }
   }
 })();
