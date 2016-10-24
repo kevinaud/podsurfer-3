@@ -2,8 +2,8 @@
   'use strict';
 
     angular.module('app')
-      .controller('podcastDetailController', [ '$scope', '$stateParams', '$podcast',
-        function($scope, $stateParams, $podcast) {
+      .controller('podcastDetailController', [ '$scope', '$stateParams', '$podcast', '$user',
+        function($scope, $stateParams, $podcast, $user) {
 
         let podcastId = $stateParams.podcastId;
 
@@ -17,6 +17,8 @@
 
         $scope.numEpisodes;
         $scope.numReviews;
+
+        $scope.loggedIn = true;
 
         $scope.review = {
           rating: 1,

@@ -18,7 +18,7 @@
 
         <md-card-actions flex="50">
 
-          <span layout="row" layout-align="end start">
+          <span layout="row" layout-align="end start" ng-show="loggedIn">
             <md-button class="md-raised md-primary"
               ui-sref="add-episode({ podcastId: podcastId })">Add Episode</md-button>
           </span>
@@ -71,7 +71,6 @@
 
                     <md-card-title>
                       
-                      
                       <md-card-title-text>
                         <span class="md-headline">{{ review._source.userName }}</span>
                         <span class="md-headline">
@@ -89,7 +88,9 @@
 
             </md-content>
           </md-tab>
-          <md-tab label="Write a Review">
+
+          <md-tab label="Write a Review" ng-disabled="!loggedIn">
+
             <md-content class="md-padding">
 
              <div layout="row">
