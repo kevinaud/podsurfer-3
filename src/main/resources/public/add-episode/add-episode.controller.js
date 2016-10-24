@@ -69,6 +69,7 @@
       );
 
       /*$podcast.addPodcast(podcast).then(
+
         function(id) {
           console.log(id);
           $state.go('podcasts', { podcastId: id });
