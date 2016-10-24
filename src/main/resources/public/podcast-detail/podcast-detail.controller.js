@@ -18,6 +18,11 @@
         $scope.numEpisodes;
         $scope.numReviews;
 
+        $scope.review = {
+          rating: 1,
+          content: ""
+        }
+
         this.$onInit = function () {
 
           $scope.responseReceived = false;

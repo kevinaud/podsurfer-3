@@ -6,7 +6,7 @@
   </div>
 </div>
 <div layout="row">
-  <div flex="60" flex-offset="20">
+  <div flex="60" flex-offset="20" flex-gt-md="40" flex-offset-gt-md="30">
 
     <md-card class="add-episode-card" layout="column">
 
@@ -85,56 +85,6 @@
           </span>
 
         </md-card-content>
-
-
-        <!--<md-input-container class="add-episode-field">
-          <label>Length</label>
-
-          <input
-            type="text"
-            name="producer"
-            id="producer"
-            ng-model="podcast.producer">
-        </md-input-container>
-
-        <md-input-container class="add-episode-field">
-          <label>Link</label>
-
-          <input
-            type="text"
-            name="link"
-            id="link"
-            ng-model="podcast.link">
-        </md-input-container>
-
-        <md-input-container class="md-icon-float md-icon-right md-block add-podcast-tag-field">
-          <label>Add Tag</label>
-
-          <input
-            type="text"
-            name="add-tag"
-            id="add-tag"
-            ng-model="tag">
-
-          <md-icon class="add-tag-icon" 
-                   ng-click="addTag()" 
-                   style="margin-right: 5px !important; color: #3F51B5 !important;">add</md-icon>
-
-        </md-input-container>
-
-        <div class="tag-list">
-          <md-card ng-repeat="tag in tags" class="add-podcast-tag">
-            <md-card-content>
-              {{ tag.name }} <md-icon class="delete-tag-icon" ng-click="removeTag(tag.name)">clear</md-icon>
-            </md-card-content>
-          </md-card>
-        </div>
-
-        <div class="form-error-box" ng-show="responseError">
-          <div class="form-error-message" ng-show="responseError">
-            {{ responseError }}
-          </div>
-        </div>-->
 
         <div flex>
           <div layout="row" layout-align="end center">

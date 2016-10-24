@@ -1,7 +1,7 @@
 <md-content>
 
 <div layout="row" ng-show="responseReceived">
-    <md-card class="podcast-detail-card" flex-offset="5" flex="90"><md-content>
+    <md-card class="podcast-detail-card" flex-offset="5" flex="90" flex-gt-md="60" flex-offset-gt-md="20"><md-content>
 
       <span layout="row">
 
@@ -39,7 +39,7 @@
           <md-tab ng-attr-label="{{ 'Episodes (' + numEpisodes + ')' }}">
             <md-content class="md-padding">
 
-             <div layout="row" ng-repeat="episode in episodes">
+             <div layout="row" ng-repeat="episode in episodes | orderBy: '_source.number'">
                 <md-card class="podcast-episode-card">
 
                     <md-card-title>
@@ -83,6 +83,63 @@
 
                     <md-card-content ng-bind-html="review._source.content">
                     </md-card-content>
+
+                </md-card>
+              </div>
+
+            </md-content>
+          </md-tab>
+          <md-tab label="Write a Review">
+            <md-content class="md-padding">
+
+             <div layout="row">
+                <md-card class="podcast-review-card" layout="column">
+
+                    <md-card-title>
+                      
+                      <rating class="write-review-rating" rate="review.rating" interactive="true"></rating>
+                      
+                    </md-card-title>
+
+                    <form name="form" ng-submit="submit()" novalidate>
+                      
+                      <md-input-container class="write-review-field">
+
+                        <label>Review</label>
+                        <textarea 
+                          name="review"
+                          id="review"
+                          ng-model="review.content"
+                          md-maxlength="500"
+                          rows="5"
+                          md-select-on-focus
+                          required></textarea>
+
+                      </md-input-container>
+
+                      <div class="form-error-box" ng-show="form.description.$invalid && form.description.$dirty">
+
+                        <div class="form-error-message" ng-show="form.description.$error.required">
+                          This field is required
+                        </div>
+
+                      </div>
+
+                      <div flex>
+                        <div layout="row" layout-align="end center">
+
+                          <md-button
+                            class="md-raised md-primary add-podcast-submit"
+                            type="submit"
+                            ng-disabled="form.$invalid">
+                            Submit
+                          </md-button>
+
+                        </div>
+                      </div>
+
+                    </form>
+
 
                 </md-card>
               </div>

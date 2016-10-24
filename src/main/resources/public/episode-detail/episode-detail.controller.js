@@ -15,6 +15,8 @@
         $scope.podcast;
         $scope.episodes;
 
+        $scope.formattedLength;
+
         this.$onInit = function () {
 
           $podcast.getPodcastByEpisodeId($stateParams.episodeId)
@@ -31,35 +33,63 @@
               .then(function(response) {
 
                 console.log('EPISODE', response);
+
                 $scope.episode = response._source;
+                $scope.formattedLength = formatLength($scope.episode.length);
+
                 $scope.responseReceived = true;
 
             });
 
           });
 
-          /*$scope.responseReceived = false;
+          function formatLength(length) {
 
-          $podcast.getPodcast($stateParams.podcastId).then(
-            function(podcast) {
-              $scope.podcast = podcast._source;
-              console.log(podcast)
-              $scope.responseReceived = true;
-            },
-            function(error) {
-              console.log(error);
-            }
-          );
+            console.log('length', length);
+            let hours = Math.floor(length / 3600);
+            console.log('hours', hours);
+            length = length % 3600;
+            console.log('length', length);
 
-          $podcast.getPodcastEpisodeByNumber($stateParams.podcastId, $stateParams.episodeNumber).then(
-            function(episode) {
-              $scope.episode = episode._source;
-              console.log(episode);
-            },
-            function(error) {
-              console.log(error);
+            let minutes = Math.floor(length / 60);
+            console.log('minutes', minutes);
+            length = length % 60;
+            console.log('length', length);
+
+            let seconds = length;
+
+            let lengthString = "";
+            
+            lengthString += hours.toString();
+          
+            if(hours === 1){
+              lengthString += " hour, ";
             }
-          );*/
+            else {
+              lengthString += " hours, ";
+            }
+          
+            lengthString += minutes.toString();
+          
+            if(minutes === 1){
+              lengthString += " minute, ";
+            }
+            else {
+              lengthString += " minutes, ";
+            }
+            
+            lengthString += seconds.toString();
+          
+            if(seconds === 1){
+              lengthString += " second";
+            }
+            else {
+              lengthString += " seconds";
+            }
+
+            return lengthString;
+
+          }
       
         };
 

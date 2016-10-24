@@ -1,21 +1,23 @@
 <md-content>
 
 <div layout="row" ng-show="responseReceived">
-    <md-card class="podcast-detail-card" flex-offset="5" flex="90"><md-content>
+    <md-card class="podcast-detail-card" flex-offset="5" flex="90" flex-gt-md="60" flex-offset-gt-md="20">
+      <md-content>
 
       <md-card-title>
 
         <md-card-title-text>
           <span class="md-headline">
             {{ podcast.name }}, Episode {{ episode.number }}
-            <rating rate="avgRating" interactive="false" ng-show="ratingReceived"></rating>
           </span>
+          <span class="md-subhead">{{ formattedLength }}</span>
         </md-card-title-text>
 
       </md-card-title>
 
       <md-content layout="row" ng-show="responseReceived">
         <md-tabs md-dynamic-height md-border-bottom flex="100">
+
           <md-tab label="Description">
             <md-content class="md-padding">
 
@@ -23,62 +25,19 @@
 
             </md-content>
           </md-tab>
-          <!--<md-tab ng-attr-label="{{ 'Episodes (' + numEpisodes + ')' }}">
+
+          <md-tab label="Comments">
             <md-content class="md-padding">
-
-             <div layout="row" ng-repeat="episode in episodes">
-                <md-card class="podcast-episode-card">
-
-                    <md-card-title>
-
-                      <md-card-title-text>
-                        <span class="md-headline">Episode {{ episode._source.number}} - {{ episode._source.name }}</span>
-                      </md-card-title-text>
-                      
-                    </md-card-title>
-
-                    <md-card-content ng-bind-html="episode._source.description">
-                    </md-card-content>
-
-                    <!--<md-card-actions layout="row" layout-align="end center">
-                      <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
-                    </md-card-actions> 
-
-                </md-card>
-              </div>
 
             </md-content>
           </md-tab>
-          <md-tab ng-attr-label="{{ 'Reviews (' + numReviews + ')' }}">
+
+          <md-tab label="Post a Comment">
             <md-content class="md-padding">
 
-             <div layout="row" ng-repeat="review in reviews">
-                <md-card class="podcast-review-card">
-
-                    <md-card-title>
-                      
-                      
-                      <md-card-title-text>
-                        <span class="md-headline">{{ review._source.userName }}</span>
-                        <span class="md-headline">
-                          <rating rate="review._source.rating" interactive="false"></rating>
-                        </span>
-                      </md-card-title-text>
-                      
-                    </md-card-title>
-
-                    <md-card-content ng-bind-html="review._source.content">
-                    </md-card-content>
-
-                    <!--<md-card-actions layout="row" layout-align="end center">
-                      <md-button class="md-raised md-primary" ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
-                    </md-card-actions> 
-
-                </md-card>
-              </div>
-
             </md-content>
-          </md-tab>-->
+          </md-tab>
+        
         </md-tabs>
       </md-content>
 
