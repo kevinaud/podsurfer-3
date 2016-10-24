@@ -1,12 +1,12 @@
 <!--Sign-up card-->
 <div layout="row">
 
-    <md-card class="sign-up-card" flex-offset="5" flex="90">
+    <md-card class="sign-up-card" flex-offset="5" flex="90" ng-show="!user.auth">
 
         <div layout="row" layout-margin="10">
 
             <div layout="column" flex="100">
-                <h2 class="text-center home-title"> {{home.signupPrompt}}</h2>
+                <h2 class="text-center home-title"> {{ signupPrompt }}</h2>
             </div>
 
         </div>
