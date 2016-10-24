@@ -40,6 +40,12 @@
           controller: 'addPodcastController',
           controllerAs: 'add-podcast'
         })
+        .state('edit-podcast', {
+          url: '/edit-podcast/:podcastId',
+          templateUrl: 'edit-podcast/edit-podcast.html',
+          controller: 'editPodcastController',
+          controllerAs: 'edit-podcast'
+        })
         .state('episodes', {
           url: '/episodes/:episodeId',
           templateUrl: 'episode-detail/episode-detail.html',

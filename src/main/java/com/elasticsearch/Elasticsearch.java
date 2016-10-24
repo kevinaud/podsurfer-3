@@ -28,6 +28,10 @@ public class Elasticsearch {
         return esPostObject("/podcasts/podcast", podcast);
     }
 
+    public String updatePodcast(String podcastId, Podcast podcast) {
+        return esPostObject("podcasts/podcast/" + podcastId, podcast);
+    }
+
     public String getPodcast(String podcastId) {
         return esGetRequest("/podcasts/podcast/" + podcastId);
     }

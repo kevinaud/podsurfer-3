@@ -17,7 +17,7 @@
 
         $scope.formattedLength;
 
-        $scope.loggedIn = true;
+        $scope.$user = $user;
 
         this.$onInit = function () {
 

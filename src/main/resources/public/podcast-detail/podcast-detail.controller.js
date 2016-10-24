@@ -18,7 +18,7 @@
         $scope.numEpisodes;
         $scope.numReviews;
 
-        $scope.loggedIn = true;
+        $scope.$user = $user;
 
         $scope.review = {
           rating: 1,
