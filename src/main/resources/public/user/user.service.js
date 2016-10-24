@@ -11,10 +11,17 @@
 
     var exports = {
       signUp: signUp,
-      login: login
+      login: login,
+      user: user
     };
 
-    var auth = false;
+    var user = {
+      auth: false,
+      token: "",
+      name: "",
+      email: "",
+      _id: ""
+    };
 
     return exports;
 
@@ -24,20 +31,25 @@
         password: user.password
       });
 
-      $http(makePostRequest(payload)).then(function(response) {
+      return $http(makePostRequest(payload, '/login')).then(function(response) {
 
         console.log('SUCCESS', response);
         let msg = JSON.parse(response.data.message);
-        console.log(msg.token);
+        console.log('TOKEN', msg.token);
+        console.log('MESSAGE', msg);
 
+        var err = getError(msg);
+
+        return err;
       }, function(response){
         console.log('ERROR', response);
+        return "An unexpected error occurred";
       });
     }
 
     function signUp(user){
 
-      let payload = JSON.stringify({
+      var payload = JSON.stringify({
         email: user.email,
         name: user.name,
         password: user.password
@@ -46,18 +58,28 @@
       return $http(makePostRequest(payload, '/sign-up')).then(function(response){
         console.log('SUCCESS', response);
 
-        let msg = JSON.parse(response.data.message);
+        var msg = JSON.parse(response.data.message);
         console.log(msg.token);
         console.log('MESSAGE', msg);
-        if(msg.hasOwnProperty('token'))
-          return "success";
-        else
-          return msg.message;
+        console.log('ERROR', getError(msg));
+        var err = getError(msg);
 
       }, function(response){
         console.log('ERROR', response);
         return "An unexpected error occurred";
       });
+    }
+
+    function getError(message) {
+      if(message.hasOwnProperty('token'))
+        return "success";
+
+      if(message.hasOwnProperty('errors')) {
+        if(message.errors.hasOwnProperty('email'))
+          return message.errors.email.message;
+      }
+      else
+        return "An unexpected error occurred";
     }
 
     function makePostRequest(payload, endpoint) {

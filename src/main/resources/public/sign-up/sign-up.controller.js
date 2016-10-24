@@ -17,9 +17,11 @@
 
       $scope.submitForm = function() {
 
-        $user.signUp($scope.user).then(function(msg) {
+        var response = $user.signUp($scope.user);
+        console.log('LOGINRESPONSE', response);
+        response.then(function(message) {
 
-          $scope.errorMessage = msg.message;
+          $scope.errorMessage = message;
           $scope.error = !($scope.errorMessage === 'success');
           console.log('Errormsg: ', $scope.errorMessage);
           console.log('error', $scope.error);
