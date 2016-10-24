@@ -206,7 +206,7 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
   padding: 20px;
 }
 
-.add-podcast-field, .add-episode-field {
+.add-podcast-field, .add-episode-field, .write-review-field {
   margin-left: 15px !important;
   margin-right: 15px !important;
   width: calc(100% - 30px);
@@ -270,4 +270,8 @@ md-content {
 
 .episode-length-selection {
   margin-bottom: 30px;
+}
+
+.write-review-rating {
+  margin-bottom: 20px;
 }
