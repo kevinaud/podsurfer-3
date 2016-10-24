@@ -29,7 +29,7 @@ public class Elasticsearch {
     }
 
     public String updatePodcast(String podcastId, Podcast podcast) {
-        return esPostObject("podcasts/podcast/" + podcastId, podcast);
+        return esPostObject("/podcasts/podcast/" + podcastId, podcast);
     }
 
     public String getPodcast(String podcastId) {
