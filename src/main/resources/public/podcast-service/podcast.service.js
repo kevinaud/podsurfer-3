@@ -16,7 +16,9 @@
       getEpisodesOfAPodcast: getEpisodesOfAPodcast,
       getReviewsOfAPodcast: getReviewsOfAPodcast,
       getPodcastByEpisodeId: getPodcastByEpisodeId,
-      getEpisodeById: getEpisodeById
+      getEpisodeById: getEpisodeById,
+      getNumberOfEpisodes: getNumberOfEpisodes,
+      addEpisode: addEpisode
     };
 
     return exports;
@@ -169,6 +171,47 @@
           }
 
           return data;
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
+
+    }
+
+    function getNumberOfEpisodes(podcastId) {
+
+      var req = {
+        method: 'GET',
+        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes',
+        headers: { 'Content-Type': 'application/json' },
+      };
+
+      return $http(req).then(
+        function(response) {
+          console.log(response);
+
+          return response.data.hits.hits.length;
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
+
+    }
+
+    function addEpisode(podcastId, episode) {
+
+      var req = {
+        method: 'POST',
+        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes',
+        headers: { 'Content-Type': 'application/json' },
+        data: episode
+      };
+
+      return $http(req).then(
+        function(response) {
+          console.log(response);
         },
         function(error) {
           console.log(error);

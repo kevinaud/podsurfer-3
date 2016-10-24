@@ -47,7 +47,7 @@
           controllerAs: 'episode-detail'
         })
         .state('add-episode', {
-          url: '/add-episode',
+          url: '/add-episode/:podcastId',
           templateUrl: 'add-episode/add-episode.html',
           controller: 'addEpisodeController',
           controllerAs: 'add-episode'
