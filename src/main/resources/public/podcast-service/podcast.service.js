@@ -19,7 +19,7 @@
       getEpisodeById: getEpisodeById,
       getNumberOfEpisodes: getNumberOfEpisodes,
       addEpisode: addEpisode
-};
+    };
 
     return exports;
 

@@ -2,8 +2,8 @@
   'use strict';
 
     angular.module('app')
-      .controller('episodeDetailController', [ '$scope', '$stateParams', '$podcast',
-        function($scope, $stateParams, $podcast) {
+      .controller('episodeDetailController', [ '$scope', '$stateParams', '$podcast', '$user',
+        function($scope, $stateParams, $podcast, $user) {
 
         let episodeId = $stateParams.episodeId;
 
@@ -16,6 +16,8 @@
         $scope.episodes;
 
         $scope.formattedLength;
+
+        $scope.loggedIn = true;
 
         this.$onInit = function () {
 
