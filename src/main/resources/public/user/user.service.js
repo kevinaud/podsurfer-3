@@ -50,7 +50,7 @@
         console.log(data.token);
 
       }, function(response){
-        console.log('ERROR', response); ActiveXObject             
+        console.log('ERROR', response);
       });
 
     }

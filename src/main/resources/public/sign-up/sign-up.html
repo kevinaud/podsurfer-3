@@ -6,7 +6,7 @@
   </div>
 </div>
 <div layout="row">
-  <div flex="40" flex-offset="30">
+  <div  flex="90" flex-offset="5" flex-gt-xs="80" flex-offset-gt-xs="10" flex-gt-sm="60" flex-offset-gt-sm="20" flex-gt-md="40" flex-offset-gt-md="30">
 
     <md-card class="sign-up-card" layout="column">
 
@@ -17,9 +17,9 @@
           
           <input 
             type="text" 
-            name="name" 
-            id="name" 
-            ng-model="user.name" 
+            name="name"
+            id="name"
+            ng-model="user.name"
             required>
 
         </md-input-container>
@@ -37,7 +37,7 @@
           
           <input 
             type="email"
-            name="email" 
+            name="email"
             id="email" 
             ng-model="user.email" 
             required>
@@ -62,7 +62,7 @@
           <input 
             data-ng-model='user.password' 
             type="password" 
-            name='password' 
+            name='password'
             ng-minlength="8"
             contain-uppercase
             contain-lowercase

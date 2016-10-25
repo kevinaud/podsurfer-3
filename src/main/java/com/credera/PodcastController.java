@@ -29,8 +29,8 @@ public class PodcastController {
 
     @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}/episodes", method=RequestMethod.POST)
-    public String saveEpisode(@RequestBody Episode episode){
-        return es.saveEpisode(episode);
+    public String saveEpisode(@PathVariable String podcastId, @RequestBody Episode episode){
+        return es.saveEpisode(podcastId, episode);
     }
 
     @ResponseBody
@@ -40,9 +40,39 @@ public class PodcastController {
     }
 
     @ResponseBody
+    @RequestMapping(value="/episodes/{podcastId}/{episodeId}", method=RequestMethod.GET)
+    public String getEpisodeById(@PathVariable String podcastId, @PathVariable String episodeId){
+        return es.getEpisodeById(podcastId, episodeId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/episodes/{episodeId}/podcast", method=RequestMethod.GET)
+    public String getPodcastByEpisodeId(@PathVariable String episodeId){
+        return es.getPodcastByEpisodeId(episodeId);
+    }
+
+    @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}/episodes", method=RequestMethod.GET)
     public String getAllEpisodesForPodcast(@PathVariable String podcastId){
         return es.getAllEpisodesForPodcast(podcastId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/podcast/{podcastId}/reviews", method=RequestMethod.POST)
+    public String saveReview(@PathVariable String podcastId, @RequestBody Review review){
+        return es.saveReview(podcastId, review);
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/podcast/{podcastId}/reviews/{reviewId}", method=RequestMethod.GET)
+    public String getPodcastReviewById(@PathVariable String podcastId, @PathVariable String reviewId){
+        return es.getPodcastReviewById(podcastId, reviewId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/podcast/{podcastId}/reviews", method=RequestMethod.GET)
+    public String getAllReviewsForPodcast(@PathVariable String podcastId){
+        return es.getAllReviewsForPodcast(podcastId);
     }
 
 }

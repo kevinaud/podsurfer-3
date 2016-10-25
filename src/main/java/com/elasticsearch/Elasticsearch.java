@@ -10,6 +10,7 @@ import com.credera.Response;
 import com.credera.Podcast;
 import com.credera.Episode;
 import com.credera.SearchQuery;
+import com.credera.Review;
 
 /**
  * Created by kevinaud on 10/4/16.
@@ -31,9 +32,8 @@ public class Elasticsearch {
         return esGetRequest("/podcasts/podcast/" + podcastId);
     }
 
-
-    public String saveEpisode(Episode episode) {
-        return esPostObject("/podcasts/episode/?parent", episode);
+    public String saveEpisode(String podcastId, Episode episode) {
+        return esPostObject("/podcasts/episode/?parent=" + podcastId, episode);
     }
 
     public String getPodcastEpisodeByNumber(String podcastId, String episodeId) {
@@ -60,6 +60,30 @@ public class Elasticsearch {
 
     }
 
+    public String getPodcastByEpisodeId(String episodeId) {
+        String query =  "{\n" +
+                        "    \"query\": {\n" +
+                        "        \"has_child\": {\n" +
+                        "           \"type\": \"episode\",\n" +
+                        "           \"query\": {\n" +
+                        "               \"match\": {\n" +
+                        "                   \"_id\": \"" + episodeId + "\"\n" +
+                        "               }\n" +
+                        "           }\n" +
+                        "       }\n" +
+                        "     }\n" +
+                        "}\n";
+
+        System.out.println(query);
+
+        return esPostString("/podcasts/podcast/_search", query);
+
+    }
+
+    public String getEpisodeById(String podcastId, String episodeId) {
+        return esGetRequest("/podcasts/episode/" + episodeId + "?parent=" + podcastId);
+    }
+
     public String getAllEpisodesForPodcast(String podcastId) {
 
         String query =  "{\n" +
@@ -77,8 +101,43 @@ public class Elasticsearch {
 
         System.out.print(query);
 
-
         return esPostString("/podcasts/episode/_search", query);
+
+    }
+
+    public String saveReview(String podcastId, Review review) {
+        return esPostObject("/podcasts/review/?parent=" + podcastId, review);
+    }
+
+    public String getPodcastReviewById(String podcastId, String reviewId) {
+
+        return esGetRequest("/podcasts/review/" + reviewId + "?parent=" + podcastId);
+
+    }
+
+    public String getAllReviewsForPodcast(String podcastId) {
+
+        String query =  "{\n" +
+                "    \"query\": {\n" +
+                "        \"has_parent\": {\n" +
+                "            \"type\": \"podcast\",\n" +
+                "            \"query\": {\n" +
+                "                \"terms\": {\n" +
+                "                    \"_uid\": [ \"podcast#" + podcastId + "\" ]  \n" +
+                "                }\n" +
+                "            }\n" +
+                "        }\n" +
+                "    },\n" +
+                "    \"aggs\": {\n" +
+                "       \"avg_rating\": {\n" +
+                "           \"avg\": { \"field\": \"rating\"}\n" +
+                "       }\n" +
+                "    }\n" +
+                "}";
+
+        System.out.print(query);
+
+        return esPostString("/podcasts/review/_search", query);
 
     }
 
@@ -90,11 +149,21 @@ public class Elasticsearch {
 
         String query =  "{\n" +
                         "   \"query\" : {\n" +
-                        "       \"term\": {\n" +
-                        "           \"_all\" : \"" + searchQuery.getQuery() + "\"\n" +
+                        "       \"match\": {\n" +
+                        "           \"_all\" : {\n" +
+                        "               \"query\": \"" + searchQuery.getQuery() + "\"\n" +
+                        "            }\n" +
+                        "       }\n" +
+                        "   },\n" +
+                        "   \"highlight\": {\n" +
+                        "       \"fields\": {\n" +
+                        "           \"name\": {},\n" +
+                        "           \"description\": {}\n" +
                         "       }\n" +
                         "   }\n" +
                         "}";
+
+        System.out.println(query);
 
         return esPostString("/podcasts/_search", query);
         
