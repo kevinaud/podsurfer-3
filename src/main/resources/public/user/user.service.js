@@ -13,6 +13,7 @@
       signUp: signUp,
       login: login,
       signOut: signOut,
+      forgotPassword: forgotPassword,
       auth: false,
       token: "",
       name: "",
@@ -21,6 +22,17 @@
     };
 
     return exports;
+
+    function forgotPassword(email){
+      return $http(makePostRequest(email, '/forgot-password')).then(function(respons) {
+        console.log('SUCCESS', response);
+        return response.message;
+
+      }, function(response){
+        console.log('ERROR', response);
+        return "An unexpected error occurred";
+      });
+    }
 
     function login(creds){
 

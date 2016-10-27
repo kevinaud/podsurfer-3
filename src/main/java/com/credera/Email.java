@@ -11,6 +11,19 @@ import javax.mail.*;
  */
 public class Email {
 
+  private String address;
+  private String subject;
+  private String body;
+  private Session session;
+  private Properties props;
+  private Message msg;
+  private Transport transport;
+  private static String email = "podsurfer3@gmail.com";
+  private static String password  = "podgroup3";
+  private static String host = "smtp.gmail.com";
+  private static String tlsport = "587";
+  private static String sslport = "465";
+
   public Email(){ this(""); }
 
   public Email(String address){ this(address,""); }
@@ -23,19 +36,13 @@ public class Email {
     this.body = body;
     this.props = new Properties();
     props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.host", "smtp.gmail.com");
-    props.put("mail.smtp.port", "465");
-    props.put("mail.smtp.secketfactory.port", "465");
+    //props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.host", host);
+    props.put("mail.smtp.port", sslport);
+    props.put("mail.smtp.socketFactory.port", sslport);
     props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-    auth = new Authenticator(){
-      protected PasswordAuthentication getPassAuth(){
-        return new PasswordAuthentication("podsurfer3", "podgroup3");
-      }
-    };
-
-    this.session = Session.getInstance(props, auth);
+    props.put("mail.smtp.user", email);
+    props.put("mail.smtp.password", password);
   };
 
   public boolean send(String address, String subject, String body) {
@@ -55,22 +62,25 @@ public class Email {
 
   public boolean send(){
 
-    Message msg = new MimeMessage(session);
+    session = Session.getDefaultInstance(props);
+    msg = new MimeMessage(session);
 
     try{
       System.out.println("Creating message...");
-      msg.setFrom(new InternetAddress("podsurfer3@gmail.com"));
+      msg.setFrom(new InternetAddress(email));
 
       if(address != "")
-        msg.addRecipient(Message.RecipientType.TO,
-          new InternetAddress(address));
-      if(subject != "");
+        msg.addRecipient(Message.RecipientType.TO, new InternetAddress(address));
+      if(subject != "")
         msg.setSubject(subject);
       if(body != "")
         msg.setText(body);
 
       System.out.println("attempting to send...");
-      Transport.send(msg);
+      transport = session.getTransport("smtp");
+      transport.connect(host, email, password);
+      transport.sendMessage(msg, msg.getAllRecipients());
+      transport.close();
       System.out.println("Email to " + address + " sent successfully");
 
       return true;
@@ -89,12 +99,4 @@ public class Email {
 
   public void setAddress(String address){ this.address = address;}
   public String getAddress(){ return address; }
-
-  private String address;
-  private String subject;
-  private String body;
-  private Session session;
-  private Properties props;
-  private Authenticator auth;
 }
-
