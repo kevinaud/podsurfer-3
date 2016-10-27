@@ -63,6 +63,12 @@
           templateUrl: 'search/search.html',
           controller: 'searchController',
           controllerAs: 'search'
+        })
+        .state('password-recovery',{
+          url: '/password-recovery',
+          templateUrl: 'password-recovery/password-recovery.html',
+          controller: 'passwordRecoveryController',
+          controllerAs: 'password-recovery'
         });
 
     };

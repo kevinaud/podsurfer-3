@@ -5,15 +5,15 @@
     .module('app')
     .service('$user', userService);
 
-  userService.$inject = ['$http', '$api']
+  userService.$inject = ['$http', '$api', '$requestFactory'];
 
-  function userService($http, $api) {
+  function userService($http, $api, $requestFactory) {
 
     var exports = {
       signUp: signUp,
       login: login,
       signOut: signOut,
-      forgotPassword: forgotPassword,
+      passwordRecovery: passwordRecovery,
       auth: false,
       token: "",
       name: "",
@@ -23,8 +23,8 @@
 
     return exports;
 
-    function forgotPassword(email){
-      return $http(makePostRequest(email, '/forgot-password')).then(function(respons) {
+    function passwordRecovery(email){
+      return $http($requestFactory.makePostRequest(email, '/forgot-password')).then(function(respons) {
         console.log('SUCCESS', response);
         return response.message;
 
@@ -36,7 +36,7 @@
 
     function login(creds){
 
-      return $http(makePostRequest(creds, '/login')).then(function(response) {
+      return $http($requestFactory.makePostRequest(creds, '/login')).then(function(response) {
 
         console.log('SUCCESS', response);
         if(response.data.success) {
@@ -61,7 +61,7 @@
 
     function signUp(creds){
 
-      return $http(makePostRequest(creds, '/sign-up')).then(function(response){
+      return $http($requestFactory.makePostRequest(creds, '/sign-up')).then(function(response){
         console.log('SUCCESS', response);
         if(response.data.success) {
 
@@ -122,44 +122,6 @@
         });
     }
 
-    function getError(message) {
-      if(message.hasOwnProperty('token'))
-        return "success";
-
-      else if (message.hasOwnProperty('message'))
-        return message.message;
-
-      else if(message.hasOwnProperty('errors')) {
-        if(message.errors.hasOwnProperty('email'))
-          return message.errors.email.message;
-      }
-      else
-        return "An unexpected error occurred";
-    }
-
-    function makePostRequest(payload, endpoint) {
-      var req = {
-        method: 'POST',
-        url: $api.getUrl() + endpoint,
-        headers: { 'Content-Type': 'application/json' },
-        data: payload
-      };
-
-      return req;
-    }
-
-    function makeAuthorizedPostRequest(payload, endpoint, token) {
-      var req = {
-        method: 'POST',
-        url: $api.getUrl() + endpoint,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
-        },
-        data: payload
-      };
-      return req;
-    }
 
   }
 })();

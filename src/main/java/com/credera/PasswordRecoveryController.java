@@ -8,15 +8,15 @@ import javax.annotation.PostConstruct;
 import com.podsurferAPI.PodsurferAPI;
 
 @Controller
-public class ForgotPasswordController {
+public class PasswordRecoveryController{
 
-  public ForgotPasswordController(){
+  public PasswordRecoveryController(){
     email = new Email();
     password = "";
   }
 
-  @ResponseBody @RequestMapping(value="/forgot-password", method=RequestMethod.POST)
-  public Response forgotPassword(@RequestBody String address){
+  @ResponseBody @RequestMapping(value="/password-recovery", method=RequestMethod.POST)
+  public Response passwordRecovery(@RequestBody String address){
     System.out.println("address: " + address);
     Response response = new Response();
 
