@@ -2,7 +2,7 @@
   'use strict';
 
     angular.module('app')
-      .config(config)
+      .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider) {
@@ -70,7 +70,5 @@
           controller: 'passwordRecoveryController',
           controllerAs: 'password-recovery'
         });
-
-    };
-
+    }
 })();
