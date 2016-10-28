@@ -18,6 +18,7 @@ public class Email {
   private Properties props;
   private Message msg;
   private Transport transport;
+  private String error = "";
   private static String email = "podsurfer3@gmail.com";
   private static String password  = "podgroup3";
   private static String host = "smtp.gmail.com";
@@ -36,7 +37,6 @@ public class Email {
     this.body = body;
     this.props = new Properties();
     props.put("mail.smtp.auth", "true");
-    //props.put("mail.smtp.starttls.enable", "true");
     props.put("mail.smtp.host", host);
     props.put("mail.smtp.port", sslport);
     props.put("mail.smtp.socketFactory.port", sslport);
@@ -66,7 +66,6 @@ public class Email {
     msg = new MimeMessage(session);
 
     try{
-      System.out.println("Creating message...");
       msg.setFrom(new InternetAddress(email));
 
       if(address != "")
@@ -83,10 +82,12 @@ public class Email {
       transport.close();
       System.out.println("Email to " + address + " sent successfully");
 
+      error = "";
       return true;
     }
     catch(Exception ex){
       System.err.println(ex.getMessage());
+      error = ex.getMessage();
       return false;
     }
   }
@@ -99,4 +100,12 @@ public class Email {
 
   public void setAddress(String address){ this.address = address;}
   public String getAddress(){ return address; }
+
+  public String getError(){ return error; }
+  public void clear(){
+    address = "";
+    subject = "";
+    body = "";
+    error = "";
+  }
 }

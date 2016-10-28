@@ -20,7 +20,7 @@
             .then(function(response){
 
               console.log("SUCCESS", response);
-              $scope.error = response.data.success;
+              $scope.error = !response.data.success;
               $scope.errorMesage = response.data.message;
 
             }, function(response){
