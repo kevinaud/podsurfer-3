@@ -22,6 +22,12 @@ public class PodcastController {
     }
 
     @ResponseBody
+    @RequestMapping(value="/podcast/{podcastId}", method=RequestMethod.POST)
+    public String updatePodcast(@PathVariable String podcastId, @RequestBody Podcast podcast) {
+        return es.updatePodcast(podcastId, podcast);
+    }
+
+    @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}", method=RequestMethod.GET)
     public String getPodcast(@PathVariable String podcastId){
         return es.getPodcast(podcastId);

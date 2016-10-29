@@ -2,13 +2,12 @@
   'use strict';
 
     angular.module('app')
-      .controller('homeController', homeController);
+      .controller('homeController', ['$scope','$user', function($scope, $user) {
 
-    function homeController() {
-      var vm = this;
-
-      vm.signupPrompt = 'New to PodSurfer? Create an account!'
-
-    }
-
+        $scope.signupPrompt = 'New to PodSurfer? Create an account!';
+        this.$onInit = function() {
+          $scope.user = $user;
+          console.log("homeauth", $scope.user.auth);
+        }
+    }]);
 })();

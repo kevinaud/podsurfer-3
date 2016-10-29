@@ -16,12 +16,18 @@
     <!-- fill up the space between left and right area -->
     <span flex></span>
 
-    <md-button ui-sref="login">
-      <md-icon>person_outline</md-icon> Login
+    <md-button ui-sref="login" ng-show="!user.auth">
+      <md-icon>person_outline</md-icon>
+      Login
     </md-button>
 
-    <md-button ui-sref="sign-up">
-      <md-icon>assignment_ind</md-icon> Sign Up
+    <md-button ui-sref="sign-up" ng-show="!user.auth">
+      <md-icon>assignment_ind</md-icon>
+      Sign Up
+    </md-button>
+
+    <md-button ng-click="signOut()" ng-show="user.auth">
+      Sign Out
     </md-button>
   
   </md-toolbar>

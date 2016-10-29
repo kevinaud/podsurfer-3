@@ -2,19 +2,38 @@
   'use strict';
 
   angular.module('app')
-    .controller('loginController', ['$scope','$user', function($scope, $user) {
+    .controller('loginController', ['$scope','$user','$state', function($scope, $user, $state) {
 
-    $scope.user = {
-      email: '',
-      password: ''
-    };
+      this.$onInit = function(){
+        if($user.auth)
+          $state.go('home');
+      }
 
-    $scope.responseError = false;
+      $scope.user = {
+        email: '',
+        password: ''
+      };
 
-    $scope.submitForm = function() {
-      $scope.responseError = true;
-      $user.login($scope.user);
-    }
-  }]);
+      $scope.error = false;
+      $scope.errorMessage = "";
+
+      $scope.submitForm = function() {
+
+        $user.login($scope.user).then(function(message) {
+
+          $scope.errorMessage = message;
+          $scope.error = !($scope.errorMessage === 'success');
+
+          if(!$scope.error) {
+            console.log("redirecting to home");
+            $state.go('home');
+          }
+        }, function(msg) {
+          $scope.error = true;
+          $scope.errorMessage = "An unexpected error ocurred";
+        });
+      };
+    }]);
 
 })();
+
