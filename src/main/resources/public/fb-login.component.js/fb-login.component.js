@@ -6,7 +6,7 @@
       templateUrl: 'fb-login/fb-login.html',
       controller: function($scope){
 
-        $scope.statusChangeCallback = function(response) {
+        function statusChangeCallback(response) {
           console.log('statusChangeCallback');
           console.log(response);
           // The response object is returned with a status field that lets the
@@ -15,14 +15,21 @@
           // for FB.getLoginStatus().
           if (response.status === 'connected') {
             // Logged into your app and Facebook.
+            $user.authserv = "facebook";
+            $user.auth = true;
+            $user.fb_auth = response.authResponse;
             testAPI();
           } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
+            $user.authserv = "";
+            $user.auth = false;
             document.getElementById('status').innerHTML = 'Please log ' +
               'into this app.';
           } else {
             // The person is not logged into Facebook, so we're not sure if
             // they are logged into this app or not.
+            $user.authserv = "";
+            $user.auth = false;
             document.getElementById('status').innerHTML = 'Please log ' +
               'into Facebook.';
           }
@@ -39,7 +46,7 @@
 
         window.fbAsyncInit = function() {
           FB.init({
-            appId      : '{your-app-id}',
+            appId      : '365070697217925',
             cookie     : true,  // enable cookies to allow the server to access
                                 // the session
             xfbml      : true,  // parse social plugins on this page
@@ -61,7 +68,6 @@
           FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
           });
-
         };
 
         // Load the SDK asynchronously

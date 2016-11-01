@@ -18,7 +18,8 @@
       name: "",
       email: "",
       _id: "",
-      authserv: ""
+      authserv: "",
+      fb_auth: undefined
     };
 
     return exports;
@@ -34,6 +35,7 @@
           var err = getError(msg);
 
           if(err === "success"){
+            $user.authserv = 'podsurfer';
             getUserInfo(msg.token).then(function(response){
               return response;
             });
@@ -60,6 +62,7 @@
           var err = getError(msg);
 
           if(err === "success"){
+            $user.authserv = 'podsurfer';
             getUserInfo(msg.token).then(function(response){
               return response;
             });
@@ -82,6 +85,7 @@
       exports.token = "";
       exports._id = "";
       exports.auth = "";
+      exports.fb_auth = undefined;
     }
 
     function getUserInfo(token) {
