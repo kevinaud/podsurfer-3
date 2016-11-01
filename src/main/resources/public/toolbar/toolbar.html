@@ -16,6 +16,10 @@
     <!-- fill up the space between left and right area -->
     <span flex></span>
 
+    <md-button ui-sref="profile" ng-show="!user.auth">
+        Profile
+    </md-button>
+
     <md-button ui-sref="login" ng-show="!user.auth">
       <md-icon>person_outline</md-icon>
       Login
@@ -29,5 +33,7 @@
     <md-button ng-click="signOut()" ng-show="user.auth">
       Sign Out
     </md-button>
+
+
   
   </md-toolbar>
