@@ -13,7 +13,6 @@ public class Podcast {
     private String producer;
     private String length;
     private String description;
-    private Object[] episodes;
     private String[] tags;
     private String imageUrl;
 
@@ -38,9 +37,6 @@ public class Podcast {
 
     public String getDescription() { return this.description; };
     public void setDescription(String description) { this.description = description; };
-
-    public Object[] getEpisodes() { return this.episodes; };
-    public void setEpisodes(Object[] episodes) { this.episodes = episodes; };
 
     public String[] getTags() { return this.tags; };
     public void setTags(String[] tags) { this.tags = tags; };
