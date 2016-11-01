@@ -182,6 +182,7 @@ public class SpringTemplateApplicationTests {
 		tags[0] = "woof";
 		tags[1] = "bark";
 		tags[2] = "yip";
+		// comment
 		assertEquals("Podcast name must be 'Paw-sitively Perfect Puppies Podcast'.", "Paw-sitively Perfect Puppies Podcast", testPodcast.getName());
 		assertEquals("Podcast link must be 'www.perfectpuppies.com'.", "www.perfectpuppies.com", testPodcast.getLink());
 		assertEquals("Podcast release should be " + testDateMatch.toString(), testDateMatch, testPodcast.getRelease());
