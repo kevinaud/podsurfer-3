@@ -17,7 +17,8 @@
       token: "",
       name: "",
       email: "",
-      _id: ""
+      _id: "",
+      authserv: ""
     };
 
     return exports;
@@ -36,6 +37,7 @@
             getUserInfo(msg.token).then(function(response){
               return response;
             });
+            exports.authserv = "podsurfer";
           }
           return err;
         }
@@ -79,6 +81,7 @@
       exports.name = "";
       exports.token = "";
       exports._id = "";
+      exports.auth = "";
     }
 
     function getUserInfo(token) {
