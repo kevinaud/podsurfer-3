@@ -30,7 +30,7 @@
           if (!$scope.error) {
             console.log("redirecting to profile");
             //TODO: change redirect to profile
-            $state.go('profile');
+            $state.go('userProfile');
           }
         }, function(msg) {
           $scope.error = true;

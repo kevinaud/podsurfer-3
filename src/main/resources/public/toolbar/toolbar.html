@@ -16,8 +16,8 @@
     <!-- fill up the space between left and right area -->
     <span flex></span>
 
-    <md-button ui-sref="profile" ng-show="!user.auth">
-        Profile
+    <md-button ui-sref="user-profile" ng-show="user.auth">
+        {{user.name}}
     </md-button>
 
     <md-button ui-sref="login" ng-show="!user.auth">

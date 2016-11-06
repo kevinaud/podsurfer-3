@@ -58,11 +58,11 @@
           controller: 'addEpisodeController',
           controllerAs: 'add-episode'
         })
-        .state('profile', {
-          url: '/profile',
-          templateUrl: 'profile/profile.html',
-          controller: 'profileController',
-          controllerAs: 'profile'
+        .state('user-profile', {
+          url: '/user-profile',
+          templateUrl: 'user-profile/user-profile.html',
+          controller: 'userProfileController',
+          controllerAs: 'user-profile'
         })
         .state('search', {
           url: '/search?query',
