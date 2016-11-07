@@ -18,9 +18,11 @@
         })
         .state('login', {
           url: '/login',
-          templateUrl: 'login/login.html',
-          controller: 'loginController',
+          templateUrl: 'login/login.html'
+          /*
+          controller: 'login',
           controllerAs: 'login'
+          */
         })
         .state('sign-up', {
           url: '/sign-up',
