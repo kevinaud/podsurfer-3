@@ -14,7 +14,8 @@
     return exports;
 
     function getUrl() {
-      return "http://localhost:8080";
+      let apiUrl = "http://localhost:8080";
+      return apiUrl;
     }
   }
 })();
