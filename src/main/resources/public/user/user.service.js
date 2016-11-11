@@ -19,7 +19,6 @@
       email: "",
       _id: "",
       authserv: "",
-      fb_auth: undefined
     };
 
     return exports;
@@ -35,7 +34,7 @@
           var err = getError(msg);
 
           if(err === "success"){
-            $user.authserv = 'podsurfer';
+            exports.authserv = 'podsurfer';
             getUserInfo(msg.token).then(function(response){
               return response;
             });
@@ -62,7 +61,7 @@
           var err = getError(msg);
 
           if(err === "success"){
-            $user.authserv = 'podsurfer';
+            exports.authserv = 'podsurfer';
             getUserInfo(msg.token).then(function(response){
               return response;
             });
@@ -85,7 +84,6 @@
       exports.token = "";
       exports._id = "";
       exports.auth = "";
-      exports.fb_auth = undefined;
     }
 
     function getUserInfo(token) {
@@ -118,18 +116,19 @@
     }
 
     function getError(message) {
-      if(message.hasOwnProperty('token'))
+      if (message.hasOwnProperty('token'))
         return "success";
 
       else if (message.hasOwnProperty('message'))
         return message.message;
 
-      else if(message.hasOwnProperty('errors')) {
-        if(message.errors.hasOwnProperty('email'))
+      else if (message.hasOwnProperty('errors')) {
+        if (message.errors.hasOwnProperty('email'))
           return message.errors.email.message;
       }
-      else
+      else {
         return "An unexpected error occurred";
+      }
     }
 
     function makePostRequest(payload, endpoint) {
