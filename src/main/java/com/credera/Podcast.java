@@ -18,6 +18,7 @@ public class Podcast {
     private String[] tags;
     private String contentAdvisoryRating;
     private String imageUrl;
+    private String primaryGenre;
 
 
     public String getName() { return this.name; };
@@ -53,4 +54,6 @@ public class Podcast {
     public String getImageUrl() { return this.imageUrl; };
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; };
 
+    private String getPrimaryGenre() { return this.primaryGenre; };
+    private void setPrimaryGenre(String primaryGenre) { this.primaryGenre = primaryGenre; };
 }
