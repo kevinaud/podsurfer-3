@@ -11,13 +11,12 @@ public class Podcast {
     private String link;
     private Date release;
     private String producer;
+    private String length;
     private String description;
     private Object[] episodes;
-    private int episodeCount;
-    private String primaryGenre;
     private String[] tags;
-    private String contentAdvisoryRating;
     private String imageUrl;
+    private String primaryGenre;
 
 
     public String getName() { return this.name; };
@@ -32,25 +31,21 @@ public class Podcast {
     public String getProducer() { return this.producer; };
     public void setProducer(String producer) { this.producer = producer; };
 
+    public String getLength() { return this.length; };
+    public void setLength(String length) { this.length = length; };
+
     public String getDescription() { return this.description; };
     public void setDescription(String description) { this.description = description; };
 
     public Object[] getEpisodes() { return this.episodes; };
     public void setEpisodes(Object[] episodes) { this.episodes = episodes; };
 
-    public int getEpisodeCount() { return this.episodeCount; };
-    public void setEpisodeCount(int count) { this.episodeCount = count; };
-
-    public String getPrimaryGenre() { return this.primaryGenre; };
-    public void setPrimaryGenre(String genre) { this.primaryGenre = genre; };
-
     public String[] getTags() { return this.tags; };
     public void setTags(String[] tags) { this.tags = tags; };
-
-    public String getContentAdvisoryRating() { return this.contentAdvisoryRating; };
-    public void setContentAdvisoryRating(String rating) { this.contentAdvisoryRating = rating; };
 
     public String getImageUrl() { return this.imageUrl; };
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; };
 
+    private String getPrimaryGenre() { return this.primaryGenre; };
+    private void setPrimaryGenre(String primaryGenre) { this.primaryGenre = primaryGenre; };
 }
