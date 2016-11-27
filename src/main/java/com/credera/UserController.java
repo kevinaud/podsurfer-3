@@ -27,9 +27,20 @@ public class UserController {
 	public Response loginUser(@RequestBody User user) {
 		return api.loginUser(user);
 	}
-  @ResponseBody @RequestMapping(value="/user", method=RequestMethod.GET)
+
+  	@ResponseBody @RequestMapping(value="/user", method=RequestMethod.GET)
 	public Response getUserInfo(@RequestHeader("Authorization") String token) {
-    return api.getUserInfo(token);
-  }
+		return api.getUserInfo(token);
+  	}
+
+	@ResponseBody @RequestMapping(value="/user/preferences", method=RequestMethod.GET)
+	public Response getUserPreferences(@RequestHeader("Authorization") String token) {
+		return api.getUserInfo(token);
+	}
+
+	@ResponseBody @RequestMapping(value="/user/preferences", method=RequestMethod.POST)
+	public Response updateUserPreferences(@RequestHeader("Authorization") String token, @RequestBody Prefences preferences) {
+		return api.getUserInfo(token);
+	}
 
 }
