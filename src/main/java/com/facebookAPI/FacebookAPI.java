@@ -18,8 +18,6 @@ import com.credera.User;
 @Service
 public class FacebookAPI {
 
-  private String apiUrl = "fb-dev-url";
-  private User user;
   private Facebook fb;
   private FacebookAdapter fbAdapter;
   private Connection<Facebook> connection;
@@ -31,8 +29,6 @@ public class FacebookAPI {
 
   public boolean authorize(String token){
     fb = new FacebookTemplate(token);
-    user = getUserInfo();
-
     return fb.isAuthorized();
   }
 
