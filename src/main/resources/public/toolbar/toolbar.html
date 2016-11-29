@@ -1,14 +1,14 @@
-<md-toolbar layout="row" class="md-toolbar-tools">
+<md-toolbar layout="row" class="md-toolbar-tools md-primary md-hue-3">
   
     <md-icon>headset</md-icon>
     <h1><a ui-sref="home">PodSurfer</a></h1>
 
     <div layout="row" layout-align="center center" class="search-bar">
       
-      <md-input-container class="md-icon-float md-block"">
+      <md-input-container class="md-icon-float md-block">
         <md-icon>search</md-icon>
         <input type="text" ng-model="searchQuery" ng-keydown="search($event)" aria-label="search bar">
-        <label style="border-color: white; color: white; margin-bottom: -2px;">Search for Podcasts</label>
+        <label style="border-color: black; color: black; margin-bottom: -2px;">Search for Podcasts</label>
       </md-input-container>
 
     </div>
@@ -36,4 +36,4 @@
 
 
   
-  </md-toolbar>
+</md-toolbar>
