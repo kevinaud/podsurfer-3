@@ -17,7 +17,6 @@ import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-/*
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringTemplateApplicationTests {
@@ -26,7 +25,6 @@ public class SpringTemplateApplicationTests {
 	 * These functions can be used to test controller classes through get or post requests.
 	 *
 	 ********************************************************************************************************************************/
-/*
 	private String appUrl = "http://localhost:8080"; // private String apiUrl = "https://podsurfer3.herokuapp.com";
 	private boolean unirestConfigured = false;
 	private static void configureUnirest(){
@@ -99,7 +97,6 @@ public class SpringTemplateApplicationTests {
 	 * These functions create test data (podcasts, episodes, and reviews).
 	 *
 	 ********************************************************************************************************************************/
-/*
 	public Podcast createPodcast()
 	{
 		Podcast testPodcast = new Podcast();
@@ -159,7 +156,6 @@ public class SpringTemplateApplicationTests {
 	 * These functions test java classes.
 	 *
 	 ********************************************************************************************************************************/
-/*
 	@Test
 	public void testEpisode()
 	{
@@ -203,7 +199,6 @@ public class SpringTemplateApplicationTests {
 	 * These functions test java spring controllers. (Possible issues during codeship deployment?)
 	 *
 	 ********************************************************************************************************************************/
-/*
 	@Test
 	public void testPodcastController()
 	{
@@ -273,4 +268,3 @@ public class SpringTemplateApplicationTests {
 //assertEquals("{\"success\":true", response.substring(0, 15));
 	}
 }
-*/
