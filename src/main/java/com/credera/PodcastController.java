@@ -81,4 +81,12 @@ public class PodcastController {
         return es.getAllReviewsForPodcast(podcastId);
     }
 
+    @ResponseBody @RequestMapping(value="/recommendations", method=RequestMethod.POST)
+    public String getRecommendations(@RequestBody String userPreferencesString) {
+
+        UserPreferences userPreferences = new UserPreferences(userPreferencesString);
+
+        return es.getRecommendations(userPreferences);
+    }
+
 }

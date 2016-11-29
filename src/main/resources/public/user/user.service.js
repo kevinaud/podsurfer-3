@@ -9,6 +9,16 @@
 
   function userService($http, $api) {
 
+    var ref = this;
+
+    console.log('initializing user service');
+    let storedToken = localStorage.getItem('token');
+    if (storedToken !== null) {
+      console.log('stored token found');
+      getUserInfo(storedToken);
+    }
+    
+
     var exports = {
       signUp: signUp,
       login: login,
@@ -29,10 +39,10 @@
         console.log('SUCCESS', response);
         if(response.data.success) {
           var msg = JSON.parse(response.data.message);
-
           var err = getError(msg);
 
           if(err === "success"){
+            localStorage.setItem('token', msg.token);
             getUserInfo(msg.token).then(function(response){
               return response;
             });
@@ -58,6 +68,7 @@
           var err = getError(msg);
 
           if(err === "success"){
+            localStorage.setItem('token', msg.token);
             getUserInfo(msg.token).then(function(response){
               return response;
             });
@@ -74,6 +85,7 @@
     }
 
     function signOut(){
+      localStorage.clear();
       exports.auth = false;
       exports.email = "";
       exports.name = "";
@@ -94,6 +106,7 @@
               if(response === "Not Found" || response === "Unauthorized") {
                 exports.auth = false;
                 exports.token = "";
+                localStorage.clear();
                 return response;
               }
               else {
@@ -104,7 +117,6 @@
                 exports.email = userInfo.email;
                 return "success";
               }
-              return response;
         }, function(response) {
           return "An unexpected error occurred";
         });

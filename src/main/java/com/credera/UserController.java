@@ -3,6 +3,7 @@ package com.credera;
 
 import java.io.IOException;
 
+import com.elasticsearch.Elasticsearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,10 +17,15 @@ import com.podsurferAPI.PodsurferAPI;
 @Controller
 public class UserController {
 	@Autowired
+	private Elasticsearch es;
+
+	@Autowired
 	private PodsurferAPI api;
 	
 	@ResponseBody @RequestMapping(value="/sign-up", method=RequestMethod.POST)
 	public Response signUpUser(@RequestBody User newUser){
+		String emptyPreferencesObject = "{}";
+		es.updateUserPreferences(newUser.getEmail(), emptyPreferencesObject);
 		return api.signUpUser(newUser);
 	}
 
@@ -34,13 +40,34 @@ public class UserController {
   	}
 
 	@ResponseBody @RequestMapping(value="/user/preferences", method=RequestMethod.GET)
-	public Response getUserPreferences(@RequestHeader("Authorization") String token) {
-		return api.getUserInfo(token);
+	public String getUserPreferences(@RequestHeader("Authorization") String token) {
+		String email = api.getUserEmail(token);
+
+		if(email != null) {
+			return es.getUserPreferences(email);
+		} else {
+			return "{\n" +
+					"	\"success\": false,\n" +
+					"	\"message\": \"user not found\"\n" +
+					"}";
+		}
+
 	}
 
 	@ResponseBody @RequestMapping(value="/user/preferences", method=RequestMethod.POST)
-	public Response updateUserPreferences(@RequestHeader("Authorization") String token, @RequestBody Prefences preferences) {
-		return api.getUserInfo(token);
+	public Response updateUserPreferences(@RequestHeader("Authorization") String token, @RequestBody String userPreferences) {
+
+		Response response = new Response();
+		String email = api.getUserEmail(token);
+
+		if(email == null) {
+			response.setMessage("user not found");
+		} else {
+			response.setSuccess(true);
+			response.setMessage(es.updateUserPreferences(email, userPreferences));
+		}
+
+		return response;
 	}
 
 }
