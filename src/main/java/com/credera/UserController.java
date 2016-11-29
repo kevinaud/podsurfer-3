@@ -44,7 +44,10 @@ public class UserController {
 		String email = api.getUserEmail(token);
 
 		if(email != null) {
-			return es.getUserPreferences(email);
+			return "{\n" +
+					"	\"success\": true,\n" +
+					"	\"preferences\": " + es.getUserPreferences(email) +
+					"}";
 		} else {
 			return "{\n" +
 					"	\"success\": false,\n" +

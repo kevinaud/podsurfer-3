@@ -8,18 +8,18 @@
 
   </div>
 
-  <div class="spinner" layout="row" layout-sm="column" layout-align="space-around" ng-show="waiting">
+  <div class="spinner" layout="row" layout-align="space-around" ng-show="waiting">
     <md-progress-circular md-diameter="96"></md-progress-circular>
   </div>
 
-  <div layout="row" layout-align="space-around center" layout-wrap layout-margin="15" ng-show="!waiting">
+  <div layout="row" layout-align="space-around start" layout-wrap layout-margin="15" ng-show="!waiting">
 
     <md-card class="recommended-podcast-card" ng-repeat="podcast in podcasts" flex="30">
 
       <md-card-title>
 
         <md-card-title-text>
-          <span class="md-headline" ng-bind-html="podcast._source.name"></span>
+          <span class="md-headline recommended-podcast-title" ng-bind-html="podcast._source.name"></span>
         </md-card-title-text>
 
       </md-card-title>

@@ -17,12 +17,14 @@
       console.log('stored token found');
       getUserInfo(storedToken);
     }
-    
 
     var exports = {
       signUp: signUp,
       login: login,
       signOut: signOut,
+      getUserInfo: getUserInfo,
+      getUserPreferences: getUserPreferences,
+      preferences: {},
       auth: false,
       token: "",
       name: "",
@@ -119,6 +121,32 @@
               }
         }, function(response) {
           return "An unexpected error occurred";
+        });
+    }
+
+    function getUserPreferences(token) {
+      return $http({
+        method: "GET",
+        url: $api.getUrl() + '/user/preferences',
+        headers: {'Authorization': "Bearer " + token}
+      })
+      .then(
+        function(response){
+
+            console.log(response);
+            if(response.data.success) {
+              
+              exports.preferences = response.data.preferences;
+              return response.data.preferences;
+            
+            }
+            else {
+              return {};
+            }
+
+        }, function(error) {
+          console.log(error);
+          return {};
         });
     }
 

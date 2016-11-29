@@ -4,22 +4,43 @@
   angular.module('app')
     .component('recommendations', {
       templateUrl: 'recommendations/recommendations.html',
-      controller: [ '$scope', '$user', recommendationsController]
+      controller: [ '$scope', '$user', '$recommendations', recommendationsController ]
     });
 
-    function recommendationsController($scope, $user) {
+    function recommendationsController($scope, $user, $recommendations) {
       $scope.podcasts = [];
-      $scope.waiting = true;
+      $scope.waiting = false;
 
       this.$onInit = function () {
+        console.log($user);
         let token = localStorage.getItem('token');
         if(token !== null) {
-          $user.getUserInfo(token).then((success) => {
-            console.log('rec success', success);
+          $scope.waiting = true;
+          $user.getUserPreferences(token).then((preferences) => {
+            
+            $recommendations.recommend(preferences).then(
+              (podcasts) => {
+                console.log('podcasts', podcasts);
+                $scope.waiting = false;
+                $scope.podcasts = podcasts;
+              },
+              (error) => {
+                $scope.waiting = false;
+                console.log('error', error);
+              }
+            );
+
           }, (error) => {
             console.log('rec error', error);
           });
         }
+      }
+
+      function getRecommendations(email) {
+        $scope.waiting = true;
+
+
+
       }
 
     }
