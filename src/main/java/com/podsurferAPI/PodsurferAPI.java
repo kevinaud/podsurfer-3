@@ -26,8 +26,8 @@ public class PodsurferAPI {
 	}
 
 	public Response getUserInfo(String token) {
-    return apiGetRequest("/api/user/me", "Authorization", token);
-  }
+        return apiGetRequest("/api/user/me", "Authorization", token);
+    }
 
 	public Response apiPostRequest(String endpoint, Object payload) {
 		
@@ -68,9 +68,7 @@ public class PodsurferAPI {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-
     return response;
-
   }
 }
 
