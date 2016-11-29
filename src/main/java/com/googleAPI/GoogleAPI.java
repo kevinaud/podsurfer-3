@@ -13,7 +13,7 @@ import com.credera.Response;
 import com.credera.User;
 
 @Service
-public class GoogleAPI extends OAuthAPI {
+public class GoogleAPI{
 
   private String apiUrl = "fb-dev-url";
   private User user;

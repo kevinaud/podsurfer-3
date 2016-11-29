@@ -61,26 +61,18 @@
   <link rel="stylesheet" type="text/css" href="app.css">
 
   <!--Loading Facebook SDK-->
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '365070697217925',
-        xfbml      : true,
-        version    : 'v2.8'
-      });
-      FB.AppEvents.logPageView();
-    };
-
-    (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=365070697217925";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
   <!--fb-login functions-->
-    <script>
+  <!--
+  <script>
+    angular.module('app').run(['$rootScope', '$window', function($rootScope, $window) {
       function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -93,26 +85,26 @@
           $user.authserv = "facebook";
           $user.auth = true;
           $user.token = response.authResponse.accessToken;
-          FB.api('/me', function(response) {
+          FB.api('/me', function (response) {
             console.log('fb/me', response);
             console.log('Successful FB login for: ' + response.name);
             $user.name = response.name;
             document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
+              'Thanks for logging in, ' + response.name + '!';
           });
         } else if (response.status === 'not_authorized') {
           // The person is logged into Facebook, but not your app.
           $user.authserv = "";
           $user.auth = false;
           document.getElementById('status').innerHTML = 'Please log ' +
-              'into this app.';
+            'into this app.';
         } else {
           // The person is not logged into Facebook, so we're not sure if
           // they are logged into this app or not.
           $user.authserv = "";
           $user.auth = false;
           document.getElementById('status').innerHTML = 'Please log ' +
-              'into Facebook.';
+            'into Facebook.';
         }
       }
 
@@ -120,18 +112,18 @@
       // Button.  See the onlogin handler attached to it in the sample
       // code below.
       function checkLoginState() {
-        FB.getLoginStatus(function(response) {
+        FB.getLoginStatus(function (response) {
           statusChangeCallback(response);
         });
       }
 
-      window.fbAsyncInit = function() {
+      window.fbAsyncInit = function () {
         FB.init({
-          appId      : '{your-app-id}',
-          cookie     : true,  // enable cookies to allow the server to access
-                              // the session
-          xfbml      : true,  // parse social plugins on this page
-          version    : 'v2.8' // use graph api version 2.8
+          appId: '{your-app-id}',
+          cookie: true,  // enable cookies to allow the server to access
+                         // the session
+          xfbml: true,  // parse social plugins on this page
+          version: 'v2.8' // use graph api version 2.8
         });
 
         // Now that we've initialized the JavaScript SDK, we call
@@ -146,17 +138,18 @@
         //
         // These three cases are handled in the callback function.
 
-        FB.getLoginStatus(function(response) {
+        FB.getLoginStatus(function (response) {
           statusChangeCallback(response);
         });
 
       };
 
       // Load the SDK asynchronously
-      (function(d, s, id) {
+      (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
+        js = d.createElement(s);
+        js.id = id;
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
@@ -165,23 +158,26 @@
       // successful.  See statusChangeCallback() for when this call is made.
       function testAPI() {
         console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
+        FB.api('/me', function (response) {
           console.log('Successful login for: ' + response.name);
           document.getElementById('status').innerHTML =
-              'Thanks for logging in, ' + response.name + '!';
+            'Thanks for logging in, ' + response.name + '!';
         });
       }
-    </script>
+    }]);
+  </script>
+  -->
 
   <!--Google-->
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="835034044664-jo5lf7ekf0b0h6nf101i84624mianbeu.apps.googleusercontent.com.apps.googleusercontent.com">
 
 </head>
 
 <body>
 
   <toolbar></toolbar>
+
 
   <div id="main">
     <div ui-view></div>

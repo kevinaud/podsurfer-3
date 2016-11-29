@@ -59,17 +59,8 @@
         <div flex>
           <div layout="row" layout-align="end center">
 
-            <!--
-            <fb:login-button
-              scope="public_profile,email"
-              onlogin="checkLoginState();">
-            </fb:login-button>
-            -->
-
-            <google-login></google-login>
-            <fb-login></fb-login>
-
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
 
             <md-button
               class="md-raised md-primary login-submit"

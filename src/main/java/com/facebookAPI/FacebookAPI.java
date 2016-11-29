@@ -16,7 +16,7 @@ import com.credera.Response;
 import com.credera.User;
 
 @Service
-public class FacebookAPI extends OAuthAPI {
+public class FacebookAPI{
 
   private FacebookAdapter fbAdapter;
 

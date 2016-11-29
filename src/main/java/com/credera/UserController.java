@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.springframework.social.facebook.api.*;
+
 import com.podsurferAPI.PodsurferAPI;
 import com.facebookAPI.FacebookAPI;
 import com.googleAPI.GoogleAPI;
@@ -18,10 +20,10 @@ import com.googleAPI.GoogleAPI;
 public class UserController {
 	@Autowired
 	private PodsurferAPI papi;
-    @Autowired
-    private FacebookAPI fapi;
-    @Autowired
-    private GoogleAPI gapi;
+  @Autowired
+  private FacebookAPI fapi;
+  @Autowired
+  private GoogleAPI gapi;
 
     //Podsurfer login endpoints
 	@ResponseBody @RequestMapping(value="/sign-up", method=RequestMethod.POST)
@@ -49,7 +51,7 @@ public class UserController {
           Response r = new Response();
           Facebook fb = fapi.getAuthorizedClient(token);
           r.setSuccess(fb.isAuthorized());
-          r.setMessage(fapi.getUserInfo(fb));
+          r.setMessage(fapi.getUserInfo(fb).toJSON());
           return r;
         }
         else if(server == "google"){
