@@ -17,7 +17,8 @@
       token: "",
       name: "",
       email: "",
-      _id: ""
+      _id: "",
+      authserv: "",
     };
 
     return exports;
@@ -33,9 +34,11 @@
           var err = getError(msg);
 
           if(err === "success"){
+            exports.authserv = 'podsurfer';
             getUserInfo(msg.token).then(function(response){
               return response;
             });
+            exports.authserv = "podsurfer";
           }
           return err;
         }
@@ -58,6 +61,7 @@
           var err = getError(msg);
 
           if(err === "success"){
+            exports.authserv = 'podsurfer';
             getUserInfo(msg.token).then(function(response){
               return response;
             });
@@ -79,6 +83,7 @@
       exports.name = "";
       exports.token = "";
       exports._id = "";
+      exports.auth = "";
     }
 
     function getUserInfo(token) {
@@ -111,18 +116,19 @@
     }
 
     function getError(message) {
-      if(message.hasOwnProperty('token'))
+      if (message.hasOwnProperty('token'))
         return "success";
 
       else if (message.hasOwnProperty('message'))
         return message.message;
 
-      else if(message.hasOwnProperty('errors')) {
-        if(message.errors.hasOwnProperty('email'))
+      else if (message.hasOwnProperty('errors')) {
+        if (message.errors.hasOwnProperty('email'))
           return message.errors.email.message;
       }
-      else
+      else {
         return "An unexpected error occurred";
+      }
     }
 
     function makePostRequest(payload, endpoint) {
