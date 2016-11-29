@@ -20,6 +20,6 @@ function ToolbarController($scope, $user, $element, $attrs, $state) {
 }
 
 angular.module('app').component('toolbar', {
-  templateUrl: 'toolbar/toolbar.html',
+  templateUrl: 'components/toolbar.html',
   controller: ToolbarController
 });
