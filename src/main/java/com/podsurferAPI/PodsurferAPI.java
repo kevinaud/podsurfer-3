@@ -43,6 +43,7 @@ public class PodsurferAPI {
 
 	}
 
+
 	public Response apiPostRequest(String endpoint, Object payload) {
 		
 		Response response = new Response();
@@ -82,9 +83,7 @@ public class PodsurferAPI {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-
     return response;
-
   }
 
 	public com.fasterxml.jackson.databind.JsonNode apiGetRequestJson(String endpoint, String headerKey, String headerValue) {

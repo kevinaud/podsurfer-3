@@ -2,7 +2,8 @@
   'use strict';
 
   angular.module('app')
-    .controller('loginController', ['$scope','$user','$state', function($scope, $user, $state) {
+    .controller('loginController', ['$scope','$user','$state',
+      function($scope, $user, $state) {
 
       this.$onInit = function(){
         if($user.auth)
@@ -18,6 +19,7 @@
       $scope.errorMessage = "";
 
       $scope.submitForm = function() {
+        console.log("logging into: ", $api.getUrl());
 
         $user.login($scope.user).then(function(message) {
 

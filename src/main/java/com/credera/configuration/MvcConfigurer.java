@@ -12,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @ComponentScan("com.podsurferAPI")
 @ComponentScan("com.elasticsearch")
+@ComponentScan("com.facebookAPI")
+@ComponentScan("com.googleAPI")
 public class MvcConfigurer extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
