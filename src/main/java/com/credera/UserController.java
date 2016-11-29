@@ -19,10 +19,12 @@ import com.googleAPI.GoogleAPI;
 public class UserController {
 	@Autowired
 	private PodsurferAPI podApi;
+  /*
   @Autowired
   private FacebookAPI fbApi;
   @Autowired
   private GoogleAPI gApi;
+  */
 
   //Podsurfer login endpoints
 	@ResponseBody @RequestMapping(value="/sign-up", method=RequestMethod.POST)
@@ -45,6 +47,7 @@ public class UserController {
   public Response getUserInfo(@RequestHeader("Authorization") String token, @RequestHeader("Server") String server){
     if(server == "podsurfer")
       return podApi.getUserInfo(token);
+    /*
     else if(server == "facebook") {
       Response r = new Response();
       r.setSuccess(fbApi.authorize(token));
@@ -58,6 +61,7 @@ public class UserController {
       return r;
 
     }
+    */
     else
       return null;
   }

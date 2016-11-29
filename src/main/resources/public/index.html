@@ -31,6 +31,7 @@
   <!-- Components -->
   <script src="toolbar/toolbar.component.js"></script>
   <script src="fb-login/fb-login.component.js"></script>
+  <script src="google-login/google-login.component.js"></script>
   <script src="rating/rating.component.js"></script>
 
   <!-- Controllers -->
@@ -78,7 +79,11 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
-  
+
+  <!--Google-->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+
 </head>
 
 <body>
