@@ -20,7 +20,13 @@ public class User {
 		this.password = password;
 		this.authServ = "podsurfer";
 	}
-	
+  public User(String email, String name, String password, String server) {
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.authServ = server;
+  }
+
 	public String getEmail() {
 		return email;
 	}
@@ -34,7 +40,7 @@ public class User {
 	}
 
 	public String getAuthServ() { return authServ; }
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
