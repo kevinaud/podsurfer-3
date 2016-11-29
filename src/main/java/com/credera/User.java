@@ -53,4 +53,8 @@ public class User {
 
 	public void setAuthServ(String authServ) { this.authServ = authServ; }
 
+    public String toJSON(){
+        return "{ \"name\": \"" + name + "\", \"email\": \"" + email + "\", \"
+    }
+
 }

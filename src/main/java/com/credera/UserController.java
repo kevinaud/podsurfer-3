@@ -1,6 +1,5 @@
 package com.credera;
 
-
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,52 +17,49 @@ import com.googleAPI.GoogleAPI;
 @Controller
 public class UserController {
 	@Autowired
-	private PodsurferAPI podApi;
-  /*
-  @Autowired
-  private FacebookAPI fbApi;
-  @Autowired
-  private GoogleAPI gApi;
-  */
+	private PodsurferAPI papi;
+    @Autowired
+    private FacebookAPI fapi;
+    @Autowired
+    private GoogleAPI gapi;
 
-  //Podsurfer login endpoints
+    //Podsurfer login endpoints
 	@ResponseBody @RequestMapping(value="/sign-up", method=RequestMethod.POST)
 	public Response signUpUser(@RequestBody User newUser){
-		return podApi.signUpUser(newUser);
+		return papi.signUpUser(newUser);
 	}
 
 	@ResponseBody @RequestMapping(value="/login", method=RequestMethod.POST)
 	public Response loginUser(@RequestBody User user) {
-    return podApi.loginUser(user);
+        return papi.loginUser(user);
 	}
 
-  @ResponseBody @RequestMapping(value="/user", method=RequestMethod.GET)
+    @ResponseBody @RequestMapping(value="/user", method=RequestMethod.GET)
 	public Response getUserInfo(@RequestHeader("Authorization") String token) {
-    return podApi.getUserInfo(token);
-  }
-
-  //Facebook login endpoints
-  @ResponseBody @RequestMapping(value="/oauth-login", method=RequestMethod.POST)
-  public Response getUserInfo(@RequestHeader("Authorization") String token, @RequestHeader("Server") String server){
-    if(server == "podsurfer")
-      return podApi.getUserInfo(token);
-    /*
-    else if(server == "facebook") {
-      Response r = new Response();
-      r.setSuccess(fbApi.authorize(token));
-      r.setMessage(r.getSuccess() ? "success" : "failed");
-      return r;
+        return papi.getUserInfo(token);
     }
-    else if(server == "google"){
-      Response r = new Response();
-      r.setSuccess(gApi.authorize(token));
-      r.setMessage(r.getSuccess() ? "success" : "failed");
-      return r;
 
-    }
-    */
-    else
-      return null;
+    //Generic login endpoint
+    @ResponseBody @RequestMapping(value="/oauth-user", method=RequestMethod.POST)
+    public Response getUserInfo(@RequestHeader("Authorization") String token, @RequestHeader("Server") String server){
+        if(server == "podsurfer"){
+          return papi.getUserInfo(token);
+        }
+        else if(server == "facebook") {
+          Response r = new Response();
+          Facebook fb = fapi.getAuthorizedClient(token);
+          r.setSuccess(fb.isAuthorized());
+          r.setMessage(fapi.getUserInfo(fb));
+          return r;
+        }
+        else if(server == "google"){
+          Response r = new Response();
+          r.setSuccess(gapi.authorize(token));
+          r.setMessage(r.getSuccess() ? "success" : "failed");
+          return r;
+        }
+        else{
+          return null;
+        }
   }
-
 }

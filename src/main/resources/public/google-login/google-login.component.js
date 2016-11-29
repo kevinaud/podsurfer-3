@@ -3,7 +3,7 @@
 angular.module('app')
   .component('google-login', {
     templateUrl: 'google-login/google-login.html',
-    controller: function($scope){
+    controller: [ '$scope', function($scope){
       function $scope.onSignIn(user){
         console.log("success");
         var profile = googleUser.getBasicProfile();
@@ -20,5 +20,5 @@ angular.module('app')
         });
 
       }
-    }
+    } ]
   });

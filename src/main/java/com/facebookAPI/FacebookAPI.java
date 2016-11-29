@@ -16,42 +16,34 @@ import com.credera.Response;
 import com.credera.User;
 
 @Service
-public class FacebookAPI {
+public class FacebookAPI extends OAuthAPI {
 
-  private String apiUrl = "fb-dev-url";
-  private User user;
-  private Facebook fb;
   private FacebookAdapter fbAdapter;
-  private Connection<Facebook> connection;
-  private ConnectionRepository connectionRepo;
 
   public FacebookAPI(){
     fbAdapter = new FacebookAdapter();
   }
 
-  public boolean authorize(String token){
-    fb = new FacebookTemplate(token);
-    user = getUserInfo();
+  public Facebook getAuthorizedClient(String token){
+    Facebook fb = new FacebookTemplate(token);
 
-    return fb.isAuthorized();
+    if(fb.isAuthorized())
+        return fb;
+    else
+        return null;
   }
 
-  public boolean isAuthorized() {
-    return fb.isAuthorized();
-  }
-
-  public User getUserInfo(){
+  public User getUserInfo(Facebook fb){
     if(!fb.isAuthorized())
       return null;
 
-    UserProfile u = fbAdapter.fetchUserProfile(fb);
+    UserProfile profile = fbAdapter.fetchUserProfile(fb);
     User user = new User();
 
     user.setAuthServ("facebook");
-    user.setName(u.getName());
-    user.setEmail(u.getEmail());
+    user.setName(profile.getName());
+    user.setEmail(profile.getEmail());
 
     return user;
   }
-
 }
