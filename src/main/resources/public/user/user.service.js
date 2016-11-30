@@ -109,21 +109,26 @@
       .then(
         function(response){
 
-              var userInfo = JSON.parse(response.data.message);
-              if(response === "Not Found" || response === "Unauthorized") {
-                exports.auth = false;
-                exports.token = "";
-                localStorage.clear();
-                return response;
-              }
-              else {
-                exports.auth = true;
-                exports.token = token;
-                exports._id = userInfo._id;
-                exports.name = userInfo.name;
-                exports.email = userInfo.email;
-                return "success";
-              }
+          console.log(response.data.messag);
+          try {
+            var userInfo = JSON.parse(response.data.message);
+            exports.auth = true;
+            exports.token = token;
+            exports._id = userInfo._id;
+            exports.name = userInfo.name;
+            exports.email = userInfo.email;
+            return "success";
+          }
+          catch(err){
+            console.error(err);
+            if (response === "Not Found" || response === "Unauthorized")
+            {
+              exports.auth = false;
+              exports.token = "";
+              localStorage.clear();
+              return response;
+            }
+          }
         }, function(response) {
           return "An unexpected error occurred";
         });
