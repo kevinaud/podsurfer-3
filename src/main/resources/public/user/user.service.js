@@ -14,7 +14,6 @@
     console.log('initializing user service');
     let storedToken = localStorage.getItem('token');
     if (storedToken !== null) {
-      console.log('stored token found');
       getUserInfo(storedToken);
     }
 
@@ -24,6 +23,7 @@
       signOut: signOut,
       getUserInfo: getUserInfo,
       getUserPreferences: getUserPreferences,
+      updatePreferences: updatePreferences,
       preferences: {},
       auth: false,
       token: "",
@@ -138,21 +138,48 @@
       .then(
         function(response){
 
-            console.log(response);
-            if(response.data.success) {
-              
-              exports.preferences = response.data.preferences;
-              return response.data.preferences;
+          if(response.data.success) {
             
-            }
-            else {
-              return {};
-            }
+            exports.preferences = response.data.preferences;
+            return response.data.preferences;
+          
+          }
+          else {
+            return {};
+          }
 
         }, function(error) {
           console.log(error);
           return {};
         });
+    }
+
+    function updatePreferences(tags) {
+
+      if(!exports.auth) {
+        return;
+      }
+
+      tags.forEach(function(tag) {
+
+        if(exports.preferences.hasOwnProperty(tag)) {
+          exports.preferences[tag]++;
+        } else {
+          exports.preferences[tag] = 1;
+        }
+  
+      });
+
+      $http(makeAuthorizedPostRequest(exports.preferences, '/user/preferences', exports.token))
+      .then(
+        function(response){
+
+          console.log(response);
+
+        }, function(error) {
+          console.log(error);
+        });
+
     }
 
     function getError(message) {

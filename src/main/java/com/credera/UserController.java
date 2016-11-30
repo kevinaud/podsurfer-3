@@ -20,11 +20,13 @@ import com.googleAPI.GoogleAPI;
 @Controller
 public class UserController {
 	@Autowired
-	private PodsurferAPI papi;
-  @Autowired
-  private FacebookAPI fapi;
-	@Autowired
 	private Elasticsearch es;
+	@Autowired
+	private PodsurferAPI papi;
+	@Autowired
+	private FacebookAPI fapi;
+	@Autowired
+	private GoogleAPI gapi;
 
 	@ResponseBody @RequestMapping(value="/sign-up", method=RequestMethod.POST)
 	public Response signUpUser(@RequestBody User newUser){

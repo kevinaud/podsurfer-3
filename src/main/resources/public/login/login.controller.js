@@ -19,7 +19,6 @@
       $scope.errorMessage = "";
 
       $scope.submitForm = function() {
-        console.log("logging into: ", $api.getUrl());
 
         $user.login($scope.user).then(function(message) {
 
