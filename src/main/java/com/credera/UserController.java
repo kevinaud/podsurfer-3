@@ -23,15 +23,14 @@ public class UserController {
 	private PodsurferAPI papi;
   @Autowired
   private FacebookAPI fapi;
-  @Autowired
-  private GoogleAPI gapi;
+	@Autowired
+	private Elasticsearch es;
 
-	
 	@ResponseBody @RequestMapping(value="/sign-up", method=RequestMethod.POST)
 	public Response signUpUser(@RequestBody User newUser){
 		String emptyPreferencesObject = "{}";
 		es.updateUserPreferences(newUser.getEmail(), emptyPreferencesObject);
-		return api.signUpUser(newUser);
+		return papi.signUpUser(newUser);
 	}
 
 	@ResponseBody @RequestMapping(value="/login", method=RequestMethod.POST)
@@ -41,12 +40,12 @@ public class UserController {
 
 	@ResponseBody @RequestMapping(value="/user", method=RequestMethod.GET)
 	public Response getUserInfo(@RequestHeader("Authorization") String token) {
-		return api.getUserInfo(token);
+		return papi.getUserInfo(token);
 	}
 
 	@ResponseBody @RequestMapping(value="/user/preferences", method=RequestMethod.GET)
 	public String getUserPreferences(@RequestHeader("Authorization") String token) {
-		String email = api.getUserEmail(token);
+		String email = papi.getUserEmail(token);
 
 		if(email != null) {
 			return "{\n" +
@@ -66,7 +65,7 @@ public class UserController {
 	public Response updateUserPreferences(@RequestHeader("Authorization") String token, @RequestBody String userPreferences) {
 
 		Response response = new Response();
-		String email = api.getUserEmail(token);
+		String email = papi.getUserEmail(token);
 
 		if(email == null) {
 			response.setMessage("user not found");
@@ -89,12 +88,6 @@ public class UserController {
           Facebook fb = fapi.getAuthorizedClient(token);
           r.setSuccess(fb.isAuthorized());
           r.setMessage(fapi.getUserInfo(fb).toJSON());
-          return r;
-        }
-        else if(server == "google"){
-          Response r = new Response();
-          r.setSuccess(gapi.authorize(token));
-          r.setMessage(r.getSuccess() ? "success" : "failed");
           return r;
         }
         else{
