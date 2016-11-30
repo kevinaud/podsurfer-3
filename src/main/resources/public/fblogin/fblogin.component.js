@@ -18,16 +18,17 @@ angular.module('app')
           // Logged into your app and Facebook.
           console.log("status = connected");
           $user.auth = true;
+          $user.authserv = "facebook";
           $state.go('home');
         } else if (response.status === 'not_authorized') {
           // The person is logged into Facebook, but not your app.
           console.log("status = not_authorized");
-          $user.auth = false;
+          $user.signOut();
         } else {
           // The person is not logged into Facebook, so we're not sure if
           // they are logged into this app or not.
           console.log("not logged in");
-          $user.auth = false;
+          $user.signOut();
         }
       }
 
