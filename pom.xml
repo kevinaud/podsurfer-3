@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.credera</groupId>
-	<artifactId>podsurfer-template</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>podsurfer-3</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>spring-template</name>
@@ -49,6 +49,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+        <dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-facebook</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-web</artifactId>
+			<version>${spring-social.version}</version>
 		</dependency>
 
 		<!-- UNIREST FOR API CALLS -->
