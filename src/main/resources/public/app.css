@@ -12,6 +12,32 @@ html, body {
   height: 100%;
 }
 
+.wrapper {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.row-item {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.row-card {
+  margin: 0px;
+  height: 100%;
+}
+
+.home-sign-up {
+  padding-right: 10px;
+}
+
+.home-login {
+  padding-left: 10px;
+}
+
 .title {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -42,21 +68,23 @@ md-input-container {
 }
 
 .login-card {
+  margin-top: 0px;
+  margin-bottom: 0px;
   padding: 20px;
+  height: 100%;
 }
 
-.login-field {
+./*login-field {
   margin-left: 15px !important;
   margin-right: 15px !important;
   width: calc(100% - 30px);
-}
+}*/
 
 .login-submit {
   margin-right: 15px !important;
 }
 
 .sign-up-card {
-  margin-top: 20px;
   padding: 20px;
 }
 
