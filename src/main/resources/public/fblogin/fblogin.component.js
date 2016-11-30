@@ -3,8 +3,8 @@
 angular.module('app')
   .component('fblogin', {
     templateUrl: 'fblogin/fblogin.html',
-    controller: ['$scope', '$window', '$user',
-      function($scope, $window, $user){
+    controller: ['$scope', '$window', '$user', '$state',
+      function($scope, $window, $user, $state){
 
       // This is called with the results from from FB.getLoginStatus().
       function statusChangeCallback(response) {
@@ -18,6 +18,7 @@ angular.module('app')
           // Logged into your app and Facebook.
           console.log("status = connected");
           $user.auth = true;
+          $state.go('home');
         } else if (response.status === 'not_authorized') {
           // The person is logged into Facebook, but not your app.
           console.log("status = not_authorized");
