@@ -41,6 +41,7 @@ angular.module('app')
         });
       }
       $scope.checkLoginState = checkLoginState;
+      $window.checkLoginState = checkLoginState;
 
       $window.fbAsyncInit = function() {
         FB.init({
