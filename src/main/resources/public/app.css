@@ -12,6 +12,36 @@ html, body {
   height: 100%;
 }
 
+.wrapper {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.row-item {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.row-card {
+  margin: 0px;
+  height: 100%;
+}
+
+.home-sign-up {
+  padding-right: 10px;
+}
+
+.home-login {
+  padding-left: 10px;
+}
+
+.page-title {
+  color: white;
+}
+
 .title {
   margin-top: 10px;
   margin-bottom: 5px;

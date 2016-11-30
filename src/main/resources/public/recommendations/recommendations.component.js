@@ -8,7 +8,7 @@
     });
 
     function recommendationsController($scope, $user, $recommendations) {
-      $scope.podcasts = [];
+      $scope.rows = [];
       $scope.waiting = false;
 
       this.$onInit = function () {
@@ -20,7 +20,7 @@
             $recommendations.recommend(preferences).then(
               (podcasts) => {
                 $scope.waiting = false;
-                $scope.podcasts = podcasts;
+                $scope.rows = splitIntoRows(podcasts);
               },
               (error) => {
                 $scope.waiting = false;
@@ -34,11 +34,13 @@
         }
       }
 
-      function getRecommendations(email) {
-        $scope.waiting = true;
+      function splitIntoRows(podcasts){
+        let rows = [], size = 3;
 
+        while (podcasts.length > 0)
+            rows.push(podcasts.splice(0, size));
 
-
+        return rows;
       }
 
     }
