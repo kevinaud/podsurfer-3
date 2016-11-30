@@ -34,6 +34,7 @@
               $scope.podcast = podcast._source;
               $scope.podcast._id = podcast._id;
               $scope.responseReceived = true;
+              $user.updatePreferences(podcast._source.tags);
             },
             function(error) {
               console.log(error);

@@ -12,7 +12,6 @@
       $scope.waiting = false;
 
       this.$onInit = function () {
-        console.log($user);
         let token = localStorage.getItem('token');
         if(token !== null) {
           $scope.waiting = true;
@@ -20,7 +19,6 @@
             
             $recommendations.recommend(preferences).then(
               (podcasts) => {
-                console.log('podcasts', podcasts);
                 $scope.waiting = false;
                 $scope.podcasts = podcasts;
               },

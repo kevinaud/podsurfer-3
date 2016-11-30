@@ -20,8 +20,6 @@
           $search.search($stateParams.query).then(
             function(hits){
 
-              console.log(hits);
-
               hits.map(function(hit){
                 let highlights = {};
 
@@ -34,8 +32,6 @@
                 }
 
                 let source = Object.assign( hit._source, highlights );
-
-                console.log(source);
 
               });
 
