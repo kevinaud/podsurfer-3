@@ -34,6 +34,7 @@ angular.module('app')
           statusChangeCallback(response);
         });
       }
+      $scope.checkLoginState = checkLoginState;
 
       $window.fbAsyncInit = function() {
         FB.init({
