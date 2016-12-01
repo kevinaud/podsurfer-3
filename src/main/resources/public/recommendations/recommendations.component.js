@@ -8,19 +8,34 @@
     });
 
     function recommendationsController($scope, $user, $recommendations) {
-      $scope.podcasts = [];
+      $scope.rows = [];
       $scope.waiting = false;
 
       this.$onInit = function () {
+
+        $user.subscribe(this);
+
         let token = localStorage.getItem('token');
         if(token !== null) {
-          $scope.waiting = true;
+          initialize(token);
+        }
+      }
+
+      this.update = function() {
+
+        let token = $user.token;
+        initialize(token);
+
+      }
+
+      function initialize(token) {
+        $scope.waiting = true;
           $user.getUserPreferences(token).then((preferences) => {
             
             $recommendations.recommend(preferences).then(
               (podcasts) => {
                 $scope.waiting = false;
-                $scope.podcasts = podcasts;
+                $scope.rows = splitIntoRows(podcasts);
               },
               (error) => {
                 $scope.waiting = false;
@@ -31,14 +46,15 @@
           }, (error) => {
             console.log('rec error', error);
           });
-        }
       }
 
-      function getRecommendations(email) {
-        $scope.waiting = true;
+      function splitIntoRows(podcasts){
+        let rows = [], size = 3;
 
+        while (podcasts.length > 0)
+            rows.push(podcasts.splice(0, size));
 
-
+        return rows;
       }
 
     }

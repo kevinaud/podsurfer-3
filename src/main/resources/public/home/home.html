@@ -1,10 +1,25 @@
-<div layout="row" ng-show="user.auth">
+<div layout="row" layout-align="center" ng-show="!user.auth">
 
-    <md-card class="recommendation-card" md-colors="{background: 'default-primary-hue-2'}" flex-offset="5" flex="90">
+    <md-card class="about-card" md-theme="default" flex="90">
 
-        <div layout="row" layout-align="center" layout-margin="10">
-                
-            <preferences flex="90" flex-gt-sm="80" flex-gt-md="50"></preferences>
+        <div layout="row" layout-margin="10">
+
+            <div layout="column" flex="100">
+                <h2 class="text-center home-title"> Welcome to Podsurfer</h2>
+            </div>
+
+        </div>
+
+        <div layout="row" layout-margin="10">
+
+            <div layout="column" flex="100">
+                <h2 class="text-center home-title">
+
+                    Browse our collection of podcasts from your favorite artists and genres. Submit, comment, and
+                    rate podcasts for others to see!
+
+                </h2>
+            </div>
 
         </div>
 
@@ -12,77 +27,53 @@
 
 </div>
 
-<div layout="row" flex>
+<div layout="row" layout-align="center" ng-show="!user.auth" md-theme="default">
 
-    <div layout="column" flex>
+    <div flex="100">
 
-        <md-card class="about-card" md-colors="{background: 'default-primary-hue-2'}" flex-offset="10" flex="90">
+        <div class="wrapper" layout="row" layout-align="center">
 
-            <div layout="row" layout-margin="10">
+            <div class="row-item home-sign-up" flex="45">
 
-                <div layout="column" flex="100">
-                    <h2 class="text-center home-title"> Welcome to Podsurfer</h2>
-                </div>
+                <md-card class="row-card" layout-align="center center">
+                   
+                    <div layout="row" layout-margin="10">
+
+                        <div layout="column" flex="100">
+                            <h2 class="text-center home-title"> {{ signupPrompt }}</h2>
+                        </div>
+
+                    </div>
+
+                    <div layout="row" layout-align="center">
+
+                        <md-button class="md-raised" ui-sref="sign-up" md-theme="default">
+                            Sign-Up
+                        </md-button>
+
+                    </div>
+               
+                </md-card>
+            </div>
+
+            <div class="row-item home-login" flex="45">
+
+                <md-card class="row-card">
+
+                    <login-card></login-card>
+                    
+                </md-card>
 
             </div>
 
-            <div layout="row" layout-margin="10">
-
-                <div layout="column" flex="100">
-                    <h2 class="text-center home-title">
-
-                        Browse our collection of podcasts from your favorite artists and genres. Submit, comment, and
-                        rate podcasts for others to see!
-
-                    </h2>
-                </div>
-
-            </div>
-
-        </md-card>
-
-    </div>
-
-    <div layout="column" flex ng-show="!user.auth">
-
-        <div layout="row">
-            <div flex="90">
-                <login-card></login-card>
-            </div>
         </div>
 
     </div>
 </div>
 
-<div layout="row">
-
-  <md-card class="sign-up-card" md-colors="{background: 'default-primary-hue-2'}" flex-offset="5" flex="90" ng-show="!user.auth">
-
-    <div layout="row" layout-margin="10">
-
-      <div layout="column" flex="100">
-          <h2 class="text-center home-title"> {{ signupPrompt }}</h2>
-      </div>
-
-    </div>
-
-    <div layout="row" >
-
-      <div layout="column" flex-offset="40" flex="20">
-        <md-button class="md-raised md-primary md-hue-1" ui-sref="sign-up">
-          Sign-Up
-        </md-button>
-      </div>
-
-    </div>
-
-  </md-card>
-
- </div>
-
  <div layout="row">
 
-    <md-card class="recommendation-card" md-colors="{background: 'default-primary-hue-2'}" flex-offset="5" flex="90">
+    <md-card class="recommendation-card" flex-offset="5" flex="90">
 
         <div layout="row" layout-margin="10">
 

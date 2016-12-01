@@ -1,67 +1,91 @@
-<md-card ng-show="!user.auth" class="login-card" layout="column">
+
+<!--<md-card ng-show="!user.auth" class="login-card">-->
 
   <form name="form" ng-submit="submitForm()" novalidate>
 
-    <md-input-container class="login-field">
-      <label>Email Address</label>
+    <div layout="row" layout-align="center" style="margin-top: 30px" >
+      
+      <md-input-container flex="90" class="login-field">
+        <label>MOOP</label>
 
-      <input
-        type="email"
-        name="email"
-        id="email"
-        ng-model="user.email"
-        required>
-    </md-input-container>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          ng-model="user.email"
+          required>
+      </md-input-container>
 
-    <div class="form-error-box" ng-show="form.email.$invalid && form.email.$dirty">
+    </div>
 
-      <div class="form-error-message" ng-show="form.email.$error.required">
-        This field is required
-      </div>
+    <div layout="row" layout-align="center">
+      
+      <div flex="90" class="form-error-box" ng-show="form.email.$invalid && form.email.$dirty">
 
-      <div class="form-error-message" ng-show="form.email.$error.email">
-        Must be a valid email address
+        <div class="form-error-message" ng-show="form.email.$error.required">
+          This field is required
+        </div>
+
+        <div class="form-error-message" ng-show="form.email.$error.email">
+          Must be a valid email address
+        </div>
+
       </div>
 
     </div>
 
-    <md-input-container class="login-field">
-      <label>Password</label>
-      <input
-        ng-model="user.password"
-        type="password"
-        name="password"
-        required>
-    </md-input-container>
-
-    <div class="form-error-box" ng-show="form.password.$invalid && form.password.$dirty">
-      <div class="form-error-message" ng-show="form.password.$error.required">
-        This field is required
-      </div>
+    <div layout="row" layout-align="center">
+      <md-input-container flex="90" class="login-field">
+        <label>FOOP</label>
+        <input
+          ng-model="user.password"
+          type="password"
+          name="password"
+          required>
+      </md-input-container>
     </div>
 
-    <div class="form-error-box" ng-show="error">
-      <div class="form-error-message" ng-show="error">
-        {{ errorMessage }}
+    <div layout="row" layout-align="center">
+
+      <div flex="90" class="form-error-box" ng-show="form.password.$invalid && form.password.$dirty">
+        <div class="form-error-message" ng-show="form.password.$error.required">
+          This field is required
+        </div>
       </div>
+
     </div>
 
-    <div flex>
-      <div layout="row" layout-align="end center">
+    <div layout="row" layout-align="center">
+     
+      <div flex="90" class="form-error-box" ng-show="error">
+        <div class="form-error-message" ng-show="error">
+          {{ errorMessage }}
+        </div>
+      </div>
+
+    </div>
+
+    <div layout="row" layout-align="center" style="margin-bottom: 20px">
+      <div flex="90">
+      
+        <div layout="row" layout-align="end center">
 
         <!--<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>-->
         <fblogin></fblogin>
+        <!--TEST 6 -->
 
-        <md-button
-          class="md-raised md-primary login-submit"
-          type="submit"
-          ng-disabled="form.$invalid">
-          Log In
-        </md-button>
+          <md-button
+            class="md-raised login-submit"
+            type="submit"
+            ng-disabled="form.$invalid">
+            Log In
+          </md-button>
 
+        </div>
+      
       </div>
     </div>
 
   </form>
 
-</md-card>
+<!--</md-card>-->
