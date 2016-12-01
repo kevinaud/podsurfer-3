@@ -1,0 +1,107 @@
+<div layout="row">
+  <div flex>
+
+    <h1 class="text-center">Add Episode</h1>
+
+  </div>
+</div>
+<div layout="row">
+  <div flex="60" flex-offset="20" flex-gt-md="40" flex-offset-gt-md="30">
+
+    <md-card class="add-episode-card" layout="column">
+
+      <form name="form" ng-submit="submit()" novalidate>
+
+        <md-input-container class="add-episode-field">
+          <label>Name</label>
+
+          <input
+            type="text"
+            name="name"
+            id="name"
+            ng-model="episode.name"
+            required>
+        </md-input-container>
+
+        <div class="form-error-box" ng-show="form.name.$invalid && form.name.$dirty">
+
+          <div class="form-error-message" ng-show="form.name.$error.required">
+            This field is required
+          </div>
+
+        </div>
+
+       <md-input-container class="add-episode-field">
+          <label>Description</label>
+          <textarea 
+            name="description"
+            id="description"
+            ng-model="episode.description" 
+            md-maxlength="500" 
+            rows="5" 
+            md-select-on-focus
+            required></textarea>
+
+        </md-input-container>
+
+        <div class="form-error-box" ng-show="form.description.$invalid && form.description.$dirty">
+
+          <div class="form-error-message" ng-show="form.description.$error.required">
+            This field is required
+          </div>
+
+        </div>
+
+        <md-card-content>
+          <span layout="row">
+          
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Hours</label>
+              <md-select ng-model="length.selectedHours">
+                <md-option ng-repeat="hour in length.hours" value="{{hour}}">
+                  {{hour}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Minutes</label>
+              <md-select ng-model="length.selectedMinutes">
+                <md-option ng-repeat="minute in length.minutes" value="{{minute}}">
+                  {{minute}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Seconds</label>
+              <md-select ng-model="length.selectedSeconds">
+                <md-option ng-repeat="second in length.seconds" value="{{second}}">
+                  {{second}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+
+          </span>
+
+        </md-card-content>
+
+        <div flex>
+          <div layout="row" layout-align="end center">
+
+            <md-button
+              class="md-raised md-primary add-podcast-submit"
+              type="submit"
+              ng-disabled="form.$invalid">
+              Submit
+            </md-button>
+
+          </div>
+        </div>
+
+      </form>
+      
+    </md-card>
+      
+  </div>
+</div>

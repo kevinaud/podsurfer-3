@@ -1,0 +1,15 @@
+<h1 class="text-center">Preferences</h1>
+
+<div class="spinner" layout="row" layout-align="space-around" ng-show="waiting">
+  <md-progress-circular md-diameter="96"></md-progress-circular>
+</div>
+
+<div layout="row" layout-align="center">
+
+  <canvas id="bar"
+    class="chart chart-bar"
+    chart-data="data"
+    chart-labels="labels"
+    chart-options="chartOptions"></canvas>
+
+</div>

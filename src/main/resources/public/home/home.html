@@ -1,0 +1,90 @@
+<div layout="row" layout-align="center" ng-show="!user.auth">
+
+    <md-card class="about-card" md-colors="{background: 'default-primary-hue-2'}" flex="90">
+
+        <div layout="row" layout-margin="10">
+
+            <div layout="column" flex="100">
+                <h2 class="text-center home-title"> Welcome to Podsurfer</h2>
+            </div>
+
+        </div>
+
+        <div layout="row" layout-margin="10">
+
+            <div layout="column" flex="100">
+                <h2 class="text-center home-title">
+
+                    Browse our collection of podcasts from your favorite artists and genres. Submit, comment, and
+                    rate podcasts for others to see!
+
+                </h2>
+            </div>
+
+        </div>
+
+    </md-card>
+
+</div>
+
+
+<div layout="row" layout-align="center" ng-show="!user.auth">
+
+    <div flex="100">
+
+        <div class="wrapper" layout="row" layout-align="center">
+
+            <div class="row-item home-sign-up" flex="45">
+                <md-card class="row-card" layout-align="center center" md-colors="{background: 'default-primary-hue-2'}">
+                   
+                    <div layout="row" layout-margin="10">
+
+                        <div layout="column" flex="100">
+                            <h2 class="text-center home-title"> {{ signupPrompt }}</h2>
+                        </div>
+
+                    </div>
+
+                    <div layout="row" layout-align="center">
+
+                        <md-button class="md-raised md-primary md-hue-1" ui-sref="sign-up">
+                            Sign-Up
+                        </md-button>
+
+                    </div>
+               
+                </md-card>
+            </div>
+
+            <div class="row-item home-login" flex="45">
+                <md-card class="row-card" md-colors="{background: 'default-primary-hue-2'}">
+                    <login-card></login-card>
+                </md-card>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+ <div layout="row">
+
+    <md-card class="recommendation-card" md-colors="{background: 'default-primary-hue-2'}" flex-offset="5" flex="90">
+
+        <div layout="row" layout-margin="10">
+
+            <div layout="column" flex="100">
+                <h2 class="text-center home-title"> Popular Podcasts</h2>
+            </div>
+
+        </div>
+
+    </md-card>
+
+ </div>
+
+ <div layout="row">
+
+     <recommendations flex-offset="5" flex="90" ng-show="user.auth"></recommendations>
+
+ </div>
