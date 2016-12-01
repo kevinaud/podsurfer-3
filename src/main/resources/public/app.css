@@ -81,6 +81,35 @@ md-input-container {
   width: calc(100% - 30px);
 }
 
+.login-field md-input-container.md-default-theme label,
+.login-field md-input-container.md-default-theme .md-placeholder {
+  color:white !important;
+}
+
+.login-field md-input-container .md-input {
+  color: white !important;
+  border-color: white !important;
+}
+
+.login-field md-input-container .md-input::-webkit-input-placeholder {
+  color: white !important;
+}
+
+.login-field md-input-container:not(.md-input-has-value) input::-webkit-input-placeholder {
+  color: white !important;
+}
+
+.login-field md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+  border-color: white !important;
+}
+
+.login-field md-input-container .md-errors-spacer {
+  min-height: 0px;
+  min-width: 0px;
+  height: 0px;
+  color: white;
+}
+
 .login-submit {
   margin-right: 15px !important;
 }
@@ -204,7 +233,7 @@ md-input-container {
   min-height: 0px;
   min-width: 0px;
   height: 0px;
-  color: black;
+  color: white;
 }
 
 .search-bar md-input-container .md-input::-webkit-input-placeholder {
@@ -251,12 +280,9 @@ md-input-container {
   color: #009688;
 }
 
-/*
-md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
-    color: #3F51B5 !important;
-    background-color:#3F51B5 !important;
+.md-tabs {
+    color: white !important;
 }
-*/
 
 .add-podcast-card, .add-episode-card {
   margin-top: 20px;
@@ -282,7 +308,7 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
 }
 
 .add-podcast-tag-field .md-input-focused md-icon {
-  color: black !important;
+  color: white !important;
 }
 
 .add-podcast-tag {
@@ -316,7 +342,7 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
 }
 
 md-content {
-  background: white !important;
+  background: black;
 }
 
 .podcast-review-card, .podcast-episode-card {
