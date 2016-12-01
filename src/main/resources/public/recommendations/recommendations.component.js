@@ -12,9 +12,24 @@
       $scope.waiting = false;
 
       this.$onInit = function () {
+
+        $user.subscribe(this);
+
         let token = localStorage.getItem('token');
         if(token !== null) {
-          $scope.waiting = true;
+          initialize(token);
+        }
+      }
+
+      this.update = function() {
+
+        let token = $user.token;
+        initialize(token);
+
+      }
+
+      function initialize(token) {
+        $scope.waiting = true;
           $user.getUserPreferences(token).then((preferences) => {
             
             $recommendations.recommend(preferences).then(
@@ -31,7 +46,6 @@
           }, (error) => {
             console.log('rec error', error);
           });
-        }
       }
 
       function splitIntoRows(podcasts){
