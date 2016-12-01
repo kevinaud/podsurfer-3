@@ -36,10 +36,6 @@ angular.module('app')
               'Authorization': $user.token,
               'Server': 'facebook'
             }
-          }).then(function(response){
-
-          }, function(response){
-
           });
 
           $state.go('home');
