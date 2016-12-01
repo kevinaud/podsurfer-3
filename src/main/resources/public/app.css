@@ -280,12 +280,9 @@ md-input-container {
   color: #009688;
 }
 
-/*
-md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
-    color: #3F51B5 !important;
-    background-color:#3F51B5 !important;
+.md-tabs {
+    color: white !important;
 }
-*/
 
 .add-podcast-card, .add-episode-card {
   margin-top: 20px;
@@ -345,7 +342,7 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
 }
 
 md-content {
-  background: white !important;
+  background: black;
 }
 
 .podcast-review-card, .podcast-episode-card {
