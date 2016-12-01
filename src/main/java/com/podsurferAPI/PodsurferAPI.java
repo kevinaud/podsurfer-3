@@ -61,6 +61,8 @@ public class PodsurferAPI {
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			response.setSuccess(false);
+
 		}
 		
 		return response;
@@ -81,7 +83,8 @@ public class PodsurferAPI {
       response.setMessage(tokenResponse.getBody().toString());
     } catch (UnirestException e) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+		e.printStackTrace();
+		response.setSuccess(false);
     }
     return response;
   }

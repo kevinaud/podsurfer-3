@@ -1,5 +1,6 @@
 package com.credera;
 
+import com.podsurferAPI.PodsurferAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,18 +14,41 @@ import com.elasticsearch.Elasticsearch;
 public class PodcastController {
 
     @Autowired
+    private PodsurferAPI podsurferAPI;
+
+    @Autowired
     private Elasticsearch es;
 
     @ResponseBody
     @RequestMapping(value="/podcast", method=RequestMethod.POST)
-    public String savePodcast(@RequestBody Podcast podcast){
-        return es.savePodcast(podcast);
+    public String savePodcast(@RequestBody Podcast podcast, @RequestHeader("Authorization") String token){
+        Response authResponse = podsurferAPI.getUserInfo(token);
+        String response;
+        if(authResponse.getSuccess())
+        {
+            response = es.savePodcast(podcast);
+        }
+        else
+        {
+            response  = "Authentication failed";
+        }
+        return response;
     }
 
     @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}", method=RequestMethod.POST)
-    public String updatePodcast(@PathVariable String podcastId, @RequestBody Podcast podcast) {
-        return es.updatePodcast(podcastId, podcast);
+    public String updatePodcast(@PathVariable String podcastId, @RequestBody Podcast podcast, @RequestHeader("Authorization") String token) {
+        Response authResponse = podsurferAPI.getUserInfo(token);
+        String response;
+        if(authResponse.getSuccess())
+        {
+            response = es.updatePodcast(podcastId, podcast);
+        }
+        else
+        {
+            response  = "Authentication failed";
+        }
+        return response;
     }
 
     @ResponseBody
@@ -35,8 +59,18 @@ public class PodcastController {
 
     @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}/episodes", method=RequestMethod.POST)
-    public String saveEpisode(@PathVariable String podcastId, @RequestBody Episode episode){
-        return es.saveEpisode(podcastId, episode);
+    public String saveEpisode(@PathVariable String podcastId, @RequestBody Episode episode,  @RequestHeader("Authorization") String token){
+        Response authResponse = podsurferAPI.getUserInfo(token);
+        String response;
+        if(authResponse.getSuccess())
+        {
+            response = es.saveEpisode(podcastId, episode);
+        }
+        else
+        {
+            response  = "Authentication failed";
+        }
+        return response;
     }
 
     @ResponseBody
@@ -63,10 +97,21 @@ public class PodcastController {
         return es.getAllEpisodesForPodcast(podcastId);
     }
 
+
     @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}/reviews", method=RequestMethod.POST)
-    public String saveReview(@PathVariable String podcastId, @RequestBody Review review){
-        return es.saveReview(podcastId, review);
+    public String saveReview(@PathVariable String podcastId, @RequestBody Review review,  @RequestHeader("Authorization") String token){
+        Response authResponse = podsurferAPI.getUserInfo(token);
+        String response;
+        if(authResponse.getSuccess())
+        {
+            response = es.saveReview(podcastId, review);
+        }
+        else
+        {
+            response  = "Authentication failed";
+        }
+        return response;
     }
 
     @ResponseBody
@@ -87,6 +132,12 @@ public class PodcastController {
         UserPreferences userPreferences = new UserPreferences(userPreferencesString);
 
         return es.getRecommendations(userPreferences);
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/podcast/popular", method=RequestMethod.GET)
+    public String getPopularPodcasts(){
+        return es.getPopularPodcasts();
     }
 
 }
