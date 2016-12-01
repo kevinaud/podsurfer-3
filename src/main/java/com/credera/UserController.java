@@ -61,8 +61,29 @@ public class UserController {
 	}
 
 	@ResponseBody @RequestMapping(value="/user", method=RequestMethod.GET)
-	public Response getUserInfo(@RequestHeader("Authorization") String token) {
-		return papi.getUserInfo(token);
+	public Response getUserInfo(@RequestHeader("Authorization") String token, @RequestHeader("Server") String server) {
+		if(server.equals("podsurfer")) {
+			return papi.getUserInfo(token);
+		}
+		else if(server.equals("facebook")){
+			Response r = new Response();
+			FacebookClient fb = fapi.getAuthorizedClient(token);
+			if(fb != null){
+				r.setSuccess(true);
+				r.setMessage(fapi.getUserInfoJson(fb));
+			}
+			else{
+				r.setSuccess(false);
+				r.setMessage("Authentication Failed");
+			}
+			return r;
+		}
+		else{
+			Response r = new Response();
+			r.setSuccess(false);
+			r.setMessage("invalid server");
+			return r;
+		}
 	}
 
 	@ResponseBody @RequestMapping(value="/user/preferences", method=RequestMethod.GET)
