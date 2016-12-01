@@ -29,7 +29,11 @@
       var req = {
         method: 'POST',
         url: '/podcast',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + $user.token,
+          'Server': localStorage.getItem('authserv')
+        },
         data: podcast
       };
 
@@ -64,7 +68,6 @@
           console.log(error);
         }
       );
-
     }
 
     function getPodcastEpisodeByNumber(podcastId, episodeNumber) {
@@ -221,7 +224,7 @@
 
     }
 
-    function addEpisode(podcastId, episode) {
+    function addEpisode(podcastId, episode, cb) {
 
       console.log("authserv",localStorage.getItem('authserv'));
       var req = {
@@ -241,7 +244,8 @@
       return $http(req).then(
         function(response) {
           console.log(response);
-          $state.go('podcasts', { 'podcastId': response.data._id });
+          if(cb)
+            cb();
         },
         function(error) {
           console.log(error);
