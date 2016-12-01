@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import com.elasticsearch.Elasticsearch;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.social.facebook.api.*;
 
@@ -35,6 +37,26 @@ public class UserController {
 		String emptyPreferencesObject = "{}";
 		es.updateUserPreferences(newUser.getEmail(), emptyPreferencesObject);
 		return papi.signUpUser(newUser);
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/user/favorite/{podcastId}", method=RequestMethod.GET)
+	public String addFavorite(@PathVariable String podcastId, @RequestHeader("Authorization") String token){
+		String response = new String();
+		Response authResponse = getUserInfo(token);
+		if(authResponse.getSuccess())
+		{
+			String userInfoAsJsonString = getUserInfo(token).getMessage();
+			JSONObject userInfoAsJson = new JSONObject(userInfoAsJsonString);
+			String userEmail = userInfoAsJson.getString("email");
+			System.out.println(userEmail);
+			response = userEmail;
+		}
+		else
+		{
+			response = "Adding favorite failed.";
+		}
+		return response;
 	}
 
 	@ResponseBody @RequestMapping(value="/login", method=RequestMethod.POST)
@@ -116,5 +138,5 @@ public class UserController {
         else{
           return null;
         }
-  }
+  	}
 }
