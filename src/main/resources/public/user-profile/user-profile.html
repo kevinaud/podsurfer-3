@@ -1,15 +1,23 @@
 <div layout="row">
+    <div flex>
+
+        <h1 class="text-center">{{capitalize(user.name)}}</h1>
+
+
+    </div>
+</div>
+<div layout="row">
     <div  flex="90" flex-offset="5" flex-gt-xs="80" flex-offset-gt-xs="10" flex-gt-sm="60" flex-offset-gt-sm="20" flex-gt-md="40" flex-offset-gt-md="30">
         <md-card class="sign-up-card" layout="column">
 
             <div ng-cloak>
-                <md-content>
+                <md-content md-theme="default">
                     <md-tabs md-dynamic-height md-border-bottom>
                         <md-tab label="About">
-                            <md-content class="md-padding">
-                                <label> Name: {{user.name}} </label>
+                            <md-content class="md-padding" >
+                                <label> Name: {{capitalize(user.name)}} </label>
                             </md-content>
-                            <md-content class = "md-padding">
+                            <md-content class = "md-padding" ng-show="user.email">
                                 <label> Email: {{user.email}} </label>
                             </md-content>
                         </md-tab>
