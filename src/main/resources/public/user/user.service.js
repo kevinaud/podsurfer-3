@@ -26,6 +26,9 @@
       getUserPreferences: getUserPreferences,
       updatePreferences: updatePreferences,
       subscribe: subscribe,
+      getFavorites: getFavorites,
+      removeFavorite: removeFavorite,
+      addFavorite: addFavorite,
       preferences: {},
       favorites: [],
       auth: false,
@@ -247,10 +250,17 @@
         return;
       }
 
-      $http(makeAuthorizedPostRequest(exports.preferences, '/user/favorite', exports.token))
+      $http({
+        method: 'POST',
+        url: '/user/favorite/' + id,
+        headers: { 'Authorization': 'Bearer ' + exports.token }
+      })
       .then(
         function(response){
-
+          console.log(response);
+          exports.favorites.push(id);
+          notify();
+              
         }, function(error) {
           console.log(error);
         });
@@ -259,18 +269,20 @@
 
     function removeFavorite(id) {
 
-      if(!exports.auth) {
-        return;
-      }
-
       $http({
         method: 'DELETE',
         url: '/user/favorite/' + id,
-        headers: { 'Authorization': 'Bearer ' + token }
+        headers: { 'Authorization': 'Bearer ' + exports.token }
       })
       .then(
         function(response){
 
+          let index = exports.favorites.indexOf(id);
+          if (index > -1) {
+            exports.favorites.splice(index, 1);
+          }
+
+          notify();
           console.log(response);
           console.log('delete favorite', response);
 
@@ -282,7 +294,7 @@
 
     function getFavorites() {
 
-      if(exports.auth && exports.token){
+      if(exports.token){
 
         return $http({
           method: "GET",
@@ -294,6 +306,7 @@
 
             if(response.data.favorites) {
               
+              console.log(response)
               exports.favorites = response.data.favorites;
 
               notify();

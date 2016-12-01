@@ -76,21 +76,33 @@
 
         this.update = function() {
           
+          let found = false;
           if ($user.favorites) {
             $user.favorites.forEach(function(id) {
 
               if(id === $scope.podcastId) {
-                $scope.favorited = true;
+                found = true;
               }
 
             });
           }
+          $scope.favorited = found;
 
         }
 
-        $scope.toggleFavorited = function() {
+        $scope.favorite = function() {
           
-          $podcast.addFavorite(exports.id);
+          if (!$scope.favorited) {
+            $user.addFavorite($scope.podcastId);
+          }
+
+        }
+
+        $scope.unfavorite = function() {
+          
+          if ($scope.favorited) {
+            $user.removeFavorite($scope.podcastId);
+          }
 
         }
 
