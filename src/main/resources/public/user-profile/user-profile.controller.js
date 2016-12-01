@@ -12,8 +12,14 @@
 
                 angular.module('userProfileDynamicHeight', ['ngMaterial']);
 
+                $scope.capitalize=function(string){
+                    string = string.toLowerCase();
+                    return string.substring(0,1).toUpperCase()+string.substring(1);
+
+                }
+
+            }] );
 
 
-            }]);
 
 })();
