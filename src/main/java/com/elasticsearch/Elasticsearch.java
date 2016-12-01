@@ -22,6 +22,18 @@ public class Elasticsearch {
     public String savePodcast(Podcast podcast) {
         return esPostObject("/podcasts/podcast", podcast);
     }
+    
+    // NEW
+    public String getFavorites(String encodedEmail)
+    {
+    	return esGetRequest("/users/user/" + encodedEmail + "/_source");
+    }
+    
+    // NEW
+    public String editFavorites(String encodedEmail, Favorites favoritesList)
+    {
+    	return esPostObject("/users/user/" + encodedEmail, favoritesList);
+    }
 
     public String updatePodcast(String podcastId, Podcast podcast) {
         return esPostObject("/podcasts/podcast/" + podcastId, podcast);
@@ -114,25 +126,38 @@ public class Elasticsearch {
 
     }
 
+    public String getPopularPodcasts() {
+     
+        String query =  "{\n" +
+                        "   \"sort\" : {\n" +
+                        "       \"views\": {\n" +
+                        "           \"order\" : \"desc\"\n" +
+                        "       }\n" +
+                        "   }\n" +
+                        "}";
+
+        return esPostString("/podcasts/podcast/_search", query);
+    }
+
     public String getAllReviewsForPodcast(String podcastId) {
 
         String query =  "{\n" +
-                "    \"query\": {\n" +
-                "        \"has_parent\": {\n" +
-                "            \"type\": \"podcast\",\n" +
-                "            \"query\": {\n" +
-                "                \"terms\": {\n" +
-                "                    \"_uid\": [ \"podcast#" + podcastId + "\" ]  \n" +
-                "                }\n" +
-                "            }\n" +
-                "        }\n" +
-                "    },\n" +
-                "    \"aggs\": {\n" +
-                "       \"avg_rating\": {\n" +
-                "           \"avg\": { \"field\": \"rating\"}\n" +
-                "       }\n" +
-                "    }\n" +
-                "}";
+                        "    \"query\": {\n" +
+                        "        \"has_parent\": {\n" +
+                        "            \"type\": \"podcast\",\n" +
+                        "            \"query\": {\n" +
+                        "                \"terms\": {\n" +
+                        "                    \"_uid\": [ \"podcast#" + podcastId + "\" ]  \n" +
+                        "                }\n" +
+                        "            }\n" +
+                        "        }\n" +
+                        "    },\n" +
+                        "    \"aggs\": {\n" +
+                        "       \"avg_rating\": {\n" +
+                        "           \"avg\": { \"field\": \"rating\"}\n" +
+                        "       }\n" +
+                        "    }\n" +
+                        "}";
 
         System.out.print(query);
 

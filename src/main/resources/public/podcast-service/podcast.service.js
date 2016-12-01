@@ -91,6 +91,25 @@
 
     }
 
+    function getPopular() {
+
+      var req = {
+        method: 'GET',
+        url: $api.getUrl() + '/podcast/popular',
+        headers: { 'Content-Type': 'application/json' },
+      };
+
+      return $http(req).then(
+        function(response) {
+          console.log(response);
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
+
+    }
+
     function getPodcastByEpisodeId(episodeId) {
 
       var req = {

@@ -1,6 +1,6 @@
 <div layout="row" layout-align="center" ng-show="!user.auth">
 
-    <md-card class="about-card" md-colors="{background: 'default-primary-hue-2'}" flex="90">
+    <md-card class="about-card" md-theme="default" flex="90">
 
         <div layout="row" layout-margin="10">
 
@@ -27,15 +27,15 @@
 
 </div>
 
-
-<div layout="row" layout-align="center" ng-show="!user.auth">
+<div layout="row" layout-align="center" ng-show="!user.auth" md-theme="default">
 
     <div flex="100">
 
         <div class="wrapper" layout="row" layout-align="center">
 
             <div class="row-item home-sign-up" flex="45">
-                <md-card class="row-card" layout-align="center center" md-colors="{background: 'default-primary-hue-2'}">
+
+                <md-card class="row-card" layout-align="center center">
                    
                     <div layout="row" layout-margin="10">
 
@@ -47,7 +47,7 @@
 
                     <div layout="row" layout-align="center">
 
-                        <md-button class="md-raised md-primary md-hue-1" ui-sref="sign-up">
+                        <md-button class="md-raised" ui-sref="sign-up" md-theme="default">
                             Sign-Up
                         </md-button>
 
@@ -57,9 +57,13 @@
             </div>
 
             <div class="row-item home-login" flex="45">
-                <md-card class="row-card" md-colors="{background: 'default-primary-hue-2'}">
+
+                <md-card class="row-card">
+
                     <login-card></login-card>
+                    
                 </md-card>
+
             </div>
 
         </div>
@@ -69,7 +73,7 @@
 
  <div layout="row">
 
-    <md-card class="recommendation-card" md-colors="{background: 'default-primary-hue-2'}" flex-offset="5" flex="90">
+    <md-card class="recommendation-card" flex-offset="5" flex="90">
 
         <div layout="row" layout-margin="10">
 
