@@ -179,7 +179,7 @@ md-input-container {
 }
 
 .rated {
-  color: #F44336;
+  color: #F44336 !important;
 }
 
 .rating-fire:focus {
