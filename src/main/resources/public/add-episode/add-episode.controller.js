@@ -11,6 +11,7 @@
       name: "",
       description: "",
       link: "",
+      number: "",
       producer: ""
     };
 
@@ -47,7 +48,7 @@
       
       convertToSeconds($scope.length);
 
-      $podcast.getNumberOfEpisodes(1).then(
+      $podcast.getNumberOfEpisodes($stateParams.podcastId).then(
         function(numEpisodes) {
 
           let currentDate = getCurrentDate();
