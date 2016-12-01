@@ -5,9 +5,9 @@
     .module('app')
     .service('$user', userService);
 
-  userService.$inject = ['$http', '$api']
+  userService.$inject = ['$http'];
 
-  function userService($http, $api) {
+  function userService($http){
 
     var ref = this;
 
@@ -137,7 +137,7 @@
     function getUserPreferences(token) {
       return $http({
         method: "GET",
-        url: $api.getUrl() + '/user/preferences',
+        url: '/user/preferences',
         headers: {'Authorization': "Bearer " + token}
       })
       .then(

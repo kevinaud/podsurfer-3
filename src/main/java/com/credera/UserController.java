@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import org.springframework.social.facebook.api.*;
-
+import com.restfb.FacebookClient;
 import com.podsurferAPI.PodsurferAPI;
 import com.facebookAPI.FacebookAPI;
-import com.googleAPI.GoogleAPI;
 
 @Controller
 public class UserController {
@@ -25,8 +23,6 @@ public class UserController {
 	private PodsurferAPI papi;
 	@Autowired
 	private FacebookAPI fapi;
-	@Autowired
-	private GoogleAPI gapi;
 
 	@ResponseBody @RequestMapping(value="/sign-up", method=RequestMethod.POST)
 	public Response signUpUser(@RequestBody User newUser){
@@ -82,21 +78,26 @@ public class UserController {
     //Generic login endpoint
     @ResponseBody @RequestMapping(value="/oauth-user", method=RequestMethod.POST)
     public Response getUserInfo(@RequestHeader("Authorization") String token, @RequestHeader("Server") String server){
-        if(server == "podsurfer"){
-          return papi.getUserInfo(token);
-        }
-        else if(server == "facebook") {
-          Response r = new Response();
-          Facebook fb = fapi.getAuthorizedClient(token);
-          r.setSuccess(fb.isAuthorized());
-          r.setMessage(fapi.getUserInfo(fb).toJSON());
-          return r;
-        }
-        else{
-					Response r = new Response();
-					r.setSuccess(false);
-					r.setMessage("Server not valid");
-					return r;
-        }
+
+      if(server.equals("podsurfer")){
+        return papi.getUserInfo(token);
+      }
+      else if(server.equals("facebook")) {
+        Response r = new Response();
+        FacebookClient fb = fapi.getAuthorizedClient(token);
+				r.setSuccess(fb != null);
+				if(fb == null)
+					r.setMessage("token invalid");
+				else
+					r.setMessage(fapi.getUserInfoJson(fb));
+
+				return r;
+      }
+      else{
+        Response r = new Response();
+        r.setSuccess(false);
+        r.setMessage(server + " is invalid");
+        return r;
+      }
   }
 }

@@ -16,18 +16,26 @@ angular.module('app')
         // for FB.getLoginStatus().
         if (response.status === 'connected') {
           // Logged into your app and Facebook.
-          console.log("status = connected");
+          console.log("fb login successful");
           $user.auth = true;
           $user.authserv = "facebook";
-          $user.token =  response.authResponse.accesToken;
+          $user.token =  response.authResponse.accessToken;
           console.log('user', $user);
-          $state.go('home');
+
+          FB.api('/me', function(response) {
+            console.log('Successful login for: ' + response.name);
+            document.getElementById('status').innerHTML =
+              'Thanks for logging in, ' + response.name + '!';
+
+            $user.name = response.name;
+            $user.id = response.id;
+          });
 
           return $http({
             method: "POST",
             url: '/oauth-user',
             headers: {
-              'Authorization': token,
+              'Authorization': $user.token,
               'Server': 'facebook'
             }
           }).then(function(){
@@ -35,6 +43,8 @@ angular.module('app')
           }, function(){
 
           });
+
+          $state.go('home');
 
         } else if (response.status === 'not_authorized') {
           // The person is logged into Facebook, but not your app.

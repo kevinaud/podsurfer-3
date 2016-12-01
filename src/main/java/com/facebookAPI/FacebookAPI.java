@@ -1,49 +1,46 @@
 package com.facebookAPI;
 
-import org.springframework.stereotype.Controller;
+import com.restfb.exception.FacebookOAuthException;
 import org.springframework.stereotype.Service;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 
-import org.springframework.social.facebook.api.*;
-import org.springframework.social.facebook.connect.*;
-import org.springframework.social.facebook.api.impl.FacebookTemplate;
-import org.springframework.social.connect.*;
-
-import com.credera.Response;
-import com.credera.User;
+import com.restfb.*;
+import com.restfb.json.JsonObject;
 
 @Service
 public class FacebookAPI{
 
-  private FacebookAdapter fbAdapter;
+  private String[] fields = { "email","name" };
 
   public FacebookAPI(){
-    fbAdapter = new FacebookAdapter();
+
   }
 
-  public Facebook getAuthorizedClient(String token){
-    Facebook fb = new FacebookTemplate(token);
-
-    if(fb.isAuthorized())
-        return fb;
-    else
-        return null;
-  }
-
-  public User getUserInfo(Facebook fb){
-    if(!fb.isAuthorized())
+  public FacebookClient getAuthorizedClient(String token){
+    try {
+      FacebookClient fb = new DefaultFacebookClient(token, Version.VERSION_2_8);
+      return fb;
+    }catch(FacebookOAuthException e){
+      e.printStackTrace();
       return null;
+    }
+  }
 
-    UserProfile profile = fbAdapter.fetchUserProfile(fb);
-    User user = new User();
+  public com.credera.User getUserInfo(FacebookClient fb){
 
-    user.setAuthServ("facebook");
-    user.setName(profile.getName());
-    user.setEmail(profile.getEmail());
-
+    com.restfb.types.User fbuser = fb.fetchObject("me", com.restfb.types.User.class);
+    com.credera.User user = new com.credera.User();
+    user.setName(fbuser.getName());
+    user.setId(fbuser.getId());
     return user;
   }
+
+  public String getUserInfoJson(FacebookClient fb){
+    com.restfb.types.User fbuser = fb.fetchObject("me", com.restfb.types.User.class);
+    JsonObject json = new JsonObject();
+    json.put("name",fbuser.getName());
+    json.put("email",fbuser.getId());
+    System.out.println(json.toString());
+    return json.toString();
+  }
+
 }
