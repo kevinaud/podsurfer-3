@@ -120,7 +120,9 @@
       return $http({
         method: "GET",
         url: '/user',
-        headers: {'Authorization': "Bearer " + token}
+        headers: {
+          'Authorization': "Bearer " + token
+        }
       })
         .then(
           function(response){
