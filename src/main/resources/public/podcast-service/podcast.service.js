@@ -5,9 +5,10 @@
     .module('app')
     .service('$podcast', podcastService);
 
-  podcastService.$inject = ['$http'];
+<<<<<<< HEAD
+  podcastService.$inject = ['$http','$user'];
 
-  function podcastService($http) {
+  function podcastService($http, $user) {
 
     var exports = {
       addPodcast: addPodcast,
@@ -95,7 +96,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/popular',
+        url: '/podcast/popular',
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -224,9 +225,16 @@
       var req = {
         method: 'POST',
         url: '/podcast/' + podcastId + '/episodes',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + $user.token,
+                    'Server': $user.authserv
+                  },
         data: episode
       };
+
+      console.log(req);
+      console.log(episode);
 
       return $http(req).then(
         function(response) {
