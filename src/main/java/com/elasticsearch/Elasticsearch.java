@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class Elasticsearch {
 
-    private String elasticsearchUrl = "https://iysmoiwf:5bbh9mfewqtnqei3@myrtle-1552752.us-east-1.bonsai.io";
+    private String elasticsearchUrl = "https://search-podsurfer-qvfiylziz3nlsnsfewlzggrnf4.us-east-1.es.amazonaws.com";
 
     public Elasticsearch(){
 

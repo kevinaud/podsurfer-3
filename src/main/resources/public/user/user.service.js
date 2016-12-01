@@ -10,6 +10,7 @@
   function userService($http, $api) {
 
     var ref = this;
+    var subscribers = [];
 
     console.log('initializing user service');
     let storedToken = localStorage.getItem('token');
@@ -24,6 +25,7 @@
       getUserInfo: getUserInfo,
       getUserPreferences: getUserPreferences,
       updatePreferences: updatePreferences,
+      subscribe: subscribe,
       preferences: {},
       auth: false,
       token: "",
@@ -34,6 +36,16 @@
     };
 
     return exports;
+
+    function subscribe(subscriber) {
+      subscribers.push(subscriber)
+    }
+
+    function notify(){
+      subscribers.forEach(function(subscriber) {
+        subscriber.update();
+      });
+    }
 
     function login(creds){
 
@@ -51,6 +63,7 @@
               return response;
             });
             exports.authserv = "podsurfer";
+            notify();
           }
           return err;
         }
