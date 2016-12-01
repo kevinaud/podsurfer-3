@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 html, body {
-  background-image: url("wallpaper.jpg");
+  background-color: black;
   height: 100%;
 }
 
@@ -174,21 +174,21 @@ md-input-container {
 }
 
 .md-input-focused md-icon {
-  color:black !important;
+  color:white !important;
 }
 
 .search-bar md-input-container.md-default-theme label,   
 .search-bar md-input-container.md-default-theme .md-placeholder {  
-    color:black !important;
+    color:white !important;
 }
 
 .search-bar md-input-container:not(.md-input-invalid).md-input-focused .md-input {
-    border-color: black !important;
+    border-color: white !important;
 }
 
 .search-bar md-input-container .md-input {
-  color: black !important;
-  border-color: black !important;
+  color: white !important;
+  border-color: white !important;
 }
 
 .search-bar md-icon.material-icons {
@@ -208,11 +208,11 @@ md-input-container {
 }
 
 .search-bar md-input-container .md-input::-webkit-input-placeholder {
-  color: black !important;
+  color: white !important;
 }
 
 .search-bar md-input-container:not(.md-input-has-value) input::-webkit-input-placeholder {
-  color: black !important;
+  color: white !important;
 }
 
 .search-bar .md-input-container {

@@ -13,16 +13,16 @@
 
       this.$onInit = function () {
             
-          $podcast.popular().then(
-            (podcasts) => {
-              $scope.waiting = false;
-              $scope.rows = splitIntoRows(podcasts);
-            },
-            (error) => {
-              $scope.waiting = false;
-              console.log('error', error);
-            }
-          );
+        $podcast.popular().then(
+          (podcasts) => {
+            $scope.waiting = false;
+            $scope.rows = splitIntoRows(podcasts);
+          },
+          (error) => {
+            $scope.waiting = false;
+            console.log('error', error);
+          }
+        );
 
       }
 

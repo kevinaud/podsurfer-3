@@ -8,7 +8,7 @@
 <div layout="row">
   <div flex="90" flex-offset="5" flex-gt-xs="80" flex-offset-gt-xs="10" flex-gt-sm="60" flex-offset-gt-sm="20" flex-gt-md="40" flex-offset-gt-md="30">
 
-    <md-card ng-show="!user.auth" class="login-card" layout="column">
+    <md-card ng-show="!user.auth" class="login-card" layout="column" md-theme="default">
 
       <form name="form" ng-submit="submitForm()" novalidate>
 
@@ -64,7 +64,7 @@
             <!-- tsnhuaoe -->
 
             <md-button
-              class="md-raised md-primary login-submit"
+              class="md-raised login-submit"
               type="submit"
               ng-disabled="form.$invalid">
               Log In
