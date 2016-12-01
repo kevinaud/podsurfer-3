@@ -9,7 +9,7 @@ angular.module('app')
       // This is called with the results from from FB.getLoginStatus().
       function statusChangeCallback(response) {
         console.log('statusChangeCallback');
-        console.log(response);
+        console.log('response', response);
         // The response object is returned with a status field that lets the
         // app know the current login status of the person.
         // Full docs on the response object can be found in the documentation
@@ -17,10 +17,9 @@ angular.module('app')
         if (response.status === 'connected') {
           // Logged into your app and Facebook.
           console.log("status = connected");
-          console.log("response ", response);
           $user.auth = true;
           $user.authserv = "facebook";
-          console.log($user);
+          console.log('user', $user);
           $state.go('home');
 
           return $http({
