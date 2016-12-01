@@ -18,12 +18,13 @@
 
         <md-card-actions flex="50">
 
-          <span layout="row" layout-align="end start" ng-show="$user.auth">
-            <md-button class="md-raised md-primary"
-              ui-sref="add-episode({ podcastId: podcastId })">Add Episode</md-button>
-          </span>
+          <img src="{{podcast.imageUrl}}" alt="Image not found" height="300" width="300"> </img>
 
         </md-card-actions>
+
+          <span layout="row" layout-align="end start" ng-show="$user.auth">
+              <md-button class="md-raised md-primary" ui-sref="add-episode({ podcastId: podcastId })">Add Episode</md-button>
+          </span>
 
       </span>
 
