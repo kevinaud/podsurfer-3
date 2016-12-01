@@ -37,6 +37,7 @@
             this.rate = r;
             $scope.rate = r;
             $scope.review.rating = r;
+            console.log(r);
           }
 
         }
