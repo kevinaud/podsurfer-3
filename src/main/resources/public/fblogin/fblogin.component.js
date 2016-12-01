@@ -18,7 +18,7 @@ angular.module('app')
           // Logged into your app and Facebook.
           console.log("fb login successful");
           $user.auth = true;
-          localStorage.setItem('authserv', "facebook");
+          $user.authserv = 'facebook';
           $user.token =  response.authResponse.accessToken;
           console.log('user', $user);
 

@@ -13,7 +13,7 @@
     var subscribers = [];
 
     let storedToken = localStorage.getItem('token');
-    if (storedToken !== null) {
+    if (storedToken !== null && storedToken !== undefined) {
       getUserInfo(storedToken);
     }
 
@@ -25,7 +25,11 @@
       getUserPreferences: getUserPreferences,
       updatePreferences: updatePreferences,
       subscribe: subscribe,
+      getFavorites: getFavorites,
+      removeFavorite: removeFavorite,
+      addFavorite: addFavorite,
       preferences: {},
+      favorites: [],
       auth: false,
       token: "",
       name: "",
@@ -49,7 +53,6 @@
 
       return $http(makePostRequest(creds, '/login')).then(function(response) {
 
-        console.log('SUCCESS', response);
         if(response.data.success) {
           var msg = JSON.parse(response.data.message);
           var err = getError(msg);
@@ -103,7 +106,7 @@
 
     function signOut(){
       var authserv = localStorage.getItem('authserv');
-      if(localStorage.getItem('authserv') === 'facebook') {
+      if(authserv === 'facebook') {
         $window.fbLogout(function () {
           localStorage.clear();
           exports.auth = false;
@@ -216,6 +219,116 @@
         }, function(error) {
           console.log(error);
         });
+
+    }
+
+    function getUserPreferences(token) {
+      return $http({
+        method: "GET",
+        url: '/user/preferences',
+        headers: {
+          'Authorization': "Bearer " + token,
+          'Server': localStorage.getItem('authserv')
+        }
+      })
+      .then(
+        function(response){
+
+          if(response.data.success) {
+            
+            exports.preferences = response.data.preferences;
+            return response.data.preferences;
+          
+          }
+          else {
+            return {};
+          }
+
+        }, function(error) {
+          console.log(error);
+          return {};
+        });
+    }
+
+    function addFavorite(id) {
+
+      if(!exports.auth) {
+        return;
+      }
+
+      $http({
+        method: 'POST',
+        url: '/user/favorite/' + id,
+        headers: { 'Authorization': 'Bearer ' + exports.token }
+      })
+      .then(
+        function(response){
+          console.log(response);
+          exports.favorites.push(id);
+          notify();
+              
+        }, function(error) {
+          console.log(error);
+        });
+
+    }
+
+    function removeFavorite(id) {
+
+      $http({
+        method: 'DELETE',
+        url: '/user/favorite/' + id,
+        headers: { 'Authorization': 'Bearer ' + exports.token }
+      })
+      .then(
+        function(response){
+
+          let index = exports.favorites.indexOf(id);
+          if (index > -1) {
+            exports.favorites.splice(index, 1);
+          }
+
+          notify();
+          console.log(response);
+          console.log('delete favorite', response);
+
+        }, function(error) {
+          console.log(error);
+        });
+
+    }
+
+    function getFavorites() {
+
+      if(exports.token){
+
+        return $http({
+          method: "GET",
+          url: '/user/favorite',
+          headers: { 'Authorization': "Bearer " + exports.token }
+        })
+        .then(
+          function(response){
+
+            if(response.data.favorites) {
+              
+              console.log(response)
+              exports.favorites = response.data.favorites;
+
+              notify();
+              return response.data.favorites;
+            
+            }
+            else {
+              return {};
+            }
+
+          }, function(error) {
+            console.log(error);
+            return {};
+          });
+
+      }
 
     }
 
