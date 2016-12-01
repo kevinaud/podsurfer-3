@@ -25,9 +25,8 @@
           content: ""
         }
 
-<<<<<<< HEAD
         $scope.favorited = false;
-=======
+        
         this.rate;
         this.interactive;
 
@@ -62,7 +61,6 @@
         $scope.ratingUpdate = function(rating) {
           console.log('parent', rating);
         }
->>>>>>> master
 
         this.$onInit = function () {
 
