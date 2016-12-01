@@ -20,6 +20,7 @@ angular.module('app')
           console.log("response ", response);
           $user.auth = true;
           $user.authserv = "facebook";
+          console.log($user);
           $state.go('home');
 
           return $http({
