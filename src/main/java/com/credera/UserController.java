@@ -1,6 +1,8 @@
 package com.credera;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import com.elasticsearch.Elasticsearch;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +50,21 @@ public class UserController {
 	@ResponseBody @RequestMapping(value="/user/preferences", method=RequestMethod.GET)
 	public String getUserPreferences(@RequestHeader("Authorization") String token) {
 		String email = papi.getUserEmail(token);
+		System.out.println("test");
 
 		if(email != null) {
+
+			String encodedEmail = "";
+			try {
+				encodedEmail = URLEncoder.encode(email, "UTF-8");
+				System.out.println(encodedEmail);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+
 			return "{\n" +
 					"	\"success\": true,\n" +
-					"	\"preferences\": " + es.getUserPreferences(email) +
+					"	\"preferences\": " + es.getUserPreferences(encodedEmail) +
 					"}";
 		} else {
 			return "{\n" +
@@ -72,8 +84,17 @@ public class UserController {
 		if(email == null) {
 			response.setMessage("user not found");
 		} else {
+
+			String encodedEmail = "";
+			try {
+				encodedEmail = URLEncoder.encode(email, "UTF-8");
+				System.out.println(encodedEmail);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+
 			response.setSuccess(true);
-			response.setMessage(es.updateUserPreferences(email, userPreferences));
+			response.setMessage(es.updateUserPreferences(encodedEmail, userPreferences));
 		}
 
 		return response;
