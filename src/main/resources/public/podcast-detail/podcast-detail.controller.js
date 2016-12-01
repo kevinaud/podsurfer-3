@@ -2,8 +2,8 @@
   'use strict';
 
     angular.module('app')
-      .controller('podcastDetailController', [ '$scope', '$stateParams', '$podcast', '$user',
-        function($scope, $stateParams, $podcast, $user) {
+      .controller('podcastDetailController', [ '$scope', '$stateParams', '$podcast', '$user', '$http', '$api',
+        function($scope, $stateParams, $podcast, $user, $http, $api) {
 
         let podcastId = $stateParams.podcastId;
 
@@ -23,6 +23,40 @@
         $scope.review = {
           rating: 1,
           content: ""
+        }
+
+        this.rate;
+        this.interactive;
+
+        $scope.rate = 1;
+        $scope.interactive = true;
+
+        $scope.setRate = function(r){ 
+
+          if(this.interactive === true) {
+            this.rate = r;
+            $scope.rate = r;
+            $scope.review.rating = r;
+          }
+
+        }
+
+        $scope.getRate = function(){ 
+          return this.rate; 
+        }
+
+        this.$onChanges = function (changesObj) {
+
+          if (changesObj.rate) {
+            this.rate = changesObj.rate.currentValue;
+            $scope.rate = changesObj.rate.currentValue;
+            onUpdate(this.rate);
+          }
+          
+        };
+
+        $scope.ratingUpdate = function(rating) {
+          console.log('parent', rating);
         }
 
         this.$onInit = function () {
@@ -50,6 +84,27 @@
               console.log(error);
             }
           );
+
+          $scope.submit = function (){
+            console.log($scope.review)
+                 var req = {
+                  method: 'POST',
+                  url: $api.getUrl() + '/podcast/' + podcastId + '/reviews',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + $user.token
+                  },
+                  data: $scope.review
+                };
+                return $http(req).then(
+                  (response) => {
+                    console.log(response);
+                  },
+                  (error) => {
+                    console.log(error);
+                  }
+                );
+          }
 
           $podcast.getReviewsOfAPodcast($stateParams.podcastId).then(
             function(reviews) {
