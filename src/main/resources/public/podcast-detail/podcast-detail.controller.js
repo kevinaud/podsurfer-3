@@ -2,8 +2,8 @@
   'use strict';
 
     angular.module('app')
-      .controller('podcastDetailController', [ '$scope', '$stateParams', '$podcast', '$user', '$http',
-        function($scope, $stateParams, $podcast, $user, $http) {
+      .controller('podcastDetailController', [ '$scope', '$stateParams', '$podcast', '$user', '$http', '$api',
+        function($scope, $stateParams, $podcast, $user, $http, $api) {
 
         let podcastId = $stateParams.podcastId;
 
@@ -96,7 +96,7 @@
             console.log($scope.review)
                  var req = {
                   method: 'POST',
-                  url: '/podcast/' + podcastId + '/reviews',
+                  url: $api.getUrl() + '/podcast/' + podcastId + '/reviews',
                   headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + $user.token,

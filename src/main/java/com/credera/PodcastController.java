@@ -4,74 +4,50 @@ import com.podsurferAPI.PodsurferAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import com.facebookAPI.FacebookAPI;
-import com.restfb.FacebookClient;
 
 import com.elasticsearch.Elasticsearch;
 
+/**
+ * Created by kevinaud on 10/5/16.
+ */
 @Controller
 public class PodcastController {
 
     @Autowired
     private PodsurferAPI podsurferAPI;
-    @Autowired
-    private FacebookAPI fapi;
+
     @Autowired
     private Elasticsearch es;
 
     @ResponseBody
     @RequestMapping(value="/podcast", method=RequestMethod.POST)
-    public String savePodcast(@RequestBody Podcast podcast, @RequestHeader("Authorization") String token,
-                              @RequestHeader("Server") String server){
-
-      String response;
-
-      if(server.equals("podsurfer")) {
-          Response authResponse = podsurferAPI.getUserInfo(token);
-          if (authResponse.getSuccess()) {
-              response = es.savePodcast(podcast);
-          } else {
-              response = "Authentication failed";
-          }
-      }
-      else if(server.equals("facebook")){
-        FacebookClient fb = fapi.getAuthorizedClient(token);
-        if(fb != null){
-          response = es.savePodcast(podcast);
-        } else {
-            response = "Authentication failed";
+    public String savePodcast(@RequestBody Podcast podcast, @RequestHeader("Authorization") String token){
+        Response authResponse = podsurferAPI.getUserInfo(token);
+        String response;
+        if(authResponse.getSuccess())
+        {
+            response = es.savePodcast(podcast);
         }
-      }
-      else
-          response = "invalid server";
-
-      return response;
+        else
+        {
+            response  = "Authentication failed";
+        }
+        return response;
     }
 
     @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}", method=RequestMethod.POST)
-    public String updatePodcast(@PathVariable String podcastId, @RequestBody Podcast podcast, @RequestHeader("Authorization") String token,
-                                @RequestHeader("Server") String server) {
+    public String updatePodcast(@PathVariable String podcastId, @RequestBody Podcast podcast, @RequestHeader("Authorization") String token) {
+        Response authResponse = podsurferAPI.getUserInfo(token);
         String response;
-        if(server.equals("podsurfer")) {
-            Response authResponse = podsurferAPI.getUserInfo(token);
-            if (authResponse.getSuccess()) {
-                response = es.updatePodcast(podcastId, podcast);
-            } else {
-                response = "Authentication failed";
-            }
-        }
-        else if(server.equals("facebook")){
-            FacebookClient fb = fapi.getAuthorizedClient(token);
-            if(fb != null){
-                response = es.savePodcast(podcast);
-            } else {
-                response = "Authentication Failed";
-            }
+        if(authResponse.getSuccess())
+        {
+            response = es.updatePodcast(podcastId, podcast);
         }
         else
-            response = "invalid server";
-
+        {
+            response  = "Authentication failed";
+        }
         return response;
     }
 
@@ -83,28 +59,18 @@ public class PodcastController {
 
     @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}/episodes", method=RequestMethod.POST)
-    public String saveEpisode(@PathVariable String podcastId, @RequestBody Episode episode,  @RequestHeader("Authorization") String token,
-                              @RequestHeader("Server") String server){
-      String response;
-      if(server.equals("podsurfer")) {
-          Response authResponse = podsurferAPI.getUserInfo(token);
-          if (authResponse.getSuccess()) {
-              response = es.saveEpisode(podcastId, episode);
-          } else {
-              response = "Authentication failed";
-          }
-      }
-      else if(server.equals("facebook")){
-        FacebookClient fb = fapi.getAuthorizedClient(token);
-        if(fb != null){
+    public String saveEpisode(@PathVariable String podcastId, @RequestBody Episode episode,  @RequestHeader("Authorization") String token){
+        Response authResponse = podsurferAPI.getUserInfo(token);
+        String response;
+        if(authResponse.getSuccess())
+        {
             response = es.saveEpisode(podcastId, episode);
-        } else {
-            response = "Authentication Failed";
         }
-      }
-      else
-          response = "invalid server";
-      return response;
+        else
+        {
+            response  = "Authentication failed";
+        }
+        return response;
     }
 
     @ResponseBody
@@ -134,27 +100,17 @@ public class PodcastController {
 
     @ResponseBody
     @RequestMapping(value="/podcast/{podcastId}/reviews", method=RequestMethod.POST)
-    public String saveReview(@PathVariable String podcastId, @RequestBody Review review,  @RequestHeader("Authorization") String token,
-                             @RequestHeader("Server") String server){
+    public String saveReview(@PathVariable String podcastId, @RequestBody Review review,  @RequestHeader("Authorization") String token){
+        Response authResponse = podsurferAPI.getUserInfo(token);
         String response;
-        if(server.equals("podsurfer")) {
-            Response authResponse = podsurferAPI.getUserInfo(token);
-            if (authResponse.getSuccess()) {
-                response = es.saveReview(podcastId, review);
-            } else {
-                response = "Authentication failed";
-            }
-        }
-        else if(server.equals("facebook")){
-            FacebookClient fb = fapi.getAuthorizedClient(token);
-            if(fb != null){
-                response = es.saveReview(podcastId, review);
-            } else {
-                response = "Authentication Failed";
-            }
+        if(authResponse.getSuccess())
+        {
+            response = es.saveReview(podcastId, review);
         }
         else
-            response = "invalid server";
+        {
+            response  = "Authentication failed";
+        }
         return response;
     }
 

@@ -7,12 +7,13 @@
     </div>
 </div>
 <div layout="row">
-    <div  flex="90" flex-offset="5" flex-gt-xs="80" flex-offset-gt-xs="10" flex-gt-sm="60" flex-offset-gt-sm="20" flex-gt-md="40" flex-offset-gt-md="30">
+    <div  flex="90" flex-offset="5" flex-gt-xs="80" flex-offset-gt-xs="10" flex-gt-sm="70" flex-offset-gt-sm="15" flex-gt-md="60" flex-offset-gt-md="20">
         <md-card class="sign-up-card" layout="column">
 
             <div ng-cloak>
                 <md-content md-theme="default">
                     <md-tabs md-dynamic-height md-border-bottom>
+                        
                         <md-tab label="About">
                             <md-content class="md-padding" >
                                 <label> Name: {{capitalize(user.name)}} </label>
@@ -21,9 +22,34 @@
                                 <label> Email: {{user.email}} </label>
                             </md-content>
                         </md-tab>
-                        <md-tab label="Favorites">
+                        
+                        <md-tab ng-attr-label="{{ 'Favorited Podcasts (' + numFavorites + ')' }}">
+                        <md-content class="md-padding">
 
-                        </md-tab>
+                            <div layout="row" ng-repeat="podcast in podcasts">
+                                <md-card class="podcast-episode-card">
+
+                                    <md-card-title>
+
+                                        <md-card-title-text>
+                                            <span class="md-headline">{{ podcast._source.name }}</span>
+                                        </md-card-title-text>
+                                    
+                                    </md-card-title>
+
+                                    <md-card-content>{{ podcast._source.description }}</md-card-content>
+
+                                    <md-card-actions layout="row" layout-align="end center">
+                                    <md-button class="md-raised md-primary" 
+                                        ui-sref="podcasts({ podcastId: podcast._id })">View</md-button>
+                                    </md-card-actions>
+
+                                </md-card>
+                            </div>
+
+                        </md-content>
+                    </md-tab>
+                    
                         <md-tab label="Preferences">
                             <md-content class="md-padding">
 
@@ -31,6 +57,7 @@
 
                             </md-content>
                         </md-tab>
+                    
                     </md-tabs>
                 </md-content>
             </div>

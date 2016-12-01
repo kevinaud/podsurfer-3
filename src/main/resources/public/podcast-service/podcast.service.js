@@ -5,9 +5,9 @@
     .module('app')
     .service('$podcast', podcastService);
 
-  podcastService.$inject = ['$http','$user', '$state'];
+  podcastService.$inject = ['$http', '$api', '$user'];
 
-  function podcastService($http, $user, $state) {
+  function podcastService($http, $api, $user) {
 
     var exports = {
       addPodcast: addPodcast,
@@ -35,7 +35,7 @@
           'Server': localStorage.getItem('authserv')
         },
         data: podcast
-      };
+      }
 
       console.log(req);
 
@@ -226,14 +226,12 @@
 
     function addEpisode(podcastId, episode, cb) {
 
-      console.log("authserv",localStorage.getItem('authserv'));
       var req = {
         method: 'POST',
         url: '/podcast/' + podcastId + '/episodes',
         headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + $user.token,
-                    'Server': localStorage.getItem('authserv')
+                    'Authorization': 'Bearer ' + $user.token
                   },
         data: episode
       };

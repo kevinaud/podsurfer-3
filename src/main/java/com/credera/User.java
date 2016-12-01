@@ -5,34 +5,26 @@ public class User {
 	private String email;
 	private String name;
 	private String password;
-	private String id;
+	private String authServ;
 
 	public User() {
 		email = "";
 		name = "";
 		password = "";
-		id = "";
+        authServ = "podsurfer";
 	}
-
-	public User(String email, String name){
-		this.name = name;
-		this.email = email;
-		this.password = "";
-		id = "";
-	}
-
+	
 	public User(String email, String name, String password) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		id = "";
+		this.authServ = "podsurfer";
 	}
-
   public User(String email, String name, String password, String server) {
     this.name = name;
     this.email = email;
     this.password = password;
-		id = "";
+    this.authServ = server;
   }
 
 	public String getEmail() {
@@ -47,7 +39,7 @@ public class User {
 		return password;
 	}
 
-	public String getId() { return id; }
+	public String getAuthServ() { return authServ; }
 
 	public void setEmail(String email) {
 		this.email = email;
@@ -59,6 +51,10 @@ public class User {
 	
 	public void setPassword(String password) { this.password = password; }
 
-	public void setId(String id){ this.id = id; }
+	public void setAuthServ(String authServ) { this.authServ = authServ; }
+
+    public String toJSON(){
+        return "{ \"name\": \"" + name + "\", \"email\": \"" + email + "\", \"";
+    }
 
 }

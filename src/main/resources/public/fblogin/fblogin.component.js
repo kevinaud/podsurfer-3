@@ -16,41 +16,38 @@ angular.module('app')
         // for FB.getLoginStatus().
         if (response.status === 'connected') {
           // Logged into your app and Facebook.
-          console.log("fb login successful");
+          console.log("status = connected");
           $user.auth = true;
-          $user.authserv = 'facebook';
-          $user.token =  response.authResponse.accessToken;
+          $user.authserv = "facebook";
           console.log('user', $user);
+          $state.go('home');
 
           FB.api('/me', function(response) {
-            console.log('Successful login for: ' + response.name);
-
+            console.log('Successful login: ', response);
             $user.name = response.name;
-            $user.id = response.id;
+            $user._id = response.id;
+            return $http({
+              method: "GET",
+              url: '/user',
+              headers: {
+                'Authorization': "Bearer " + $user.token,
+                'Server': 'facebook'
+              }
+            }).then(function(response){
+              $state.go('home');
+            });
           });
 
-          return $http({
-            method: "GET",
-            url: '/user',
-            headers: {
-              'Authorization': $user.token,
-              'Server': 'facebook'
-            }
-          });
-
-          $state.go('home');
 
         } else if (response.status === 'not_authorized') {
           // The person is logged into Facebook, but not your app.
           console.log("status = not_authorized");
-          if($user.auth)
-            $user.signOut();
+          $user.signOut();
         } else {
           // The person is not logged into Facebook, so we're not sure if
           // they are logged into this app or not.
           console.log("not logged in");
-          if($user.auth)
-            $user.signOut();
+          $user.signOut();
         }
       }
 
@@ -64,14 +61,7 @@ angular.module('app')
       }
       $scope.checkLoginState = checkLoginState;
       $window.checkLoginState = checkLoginState;
-      $window.fbLogout = function(cb){
-        FB.logout(function(response){
-          console.log("FB.logout", response);
-          cb();
-        });
-      }
 
-      this.$onInit = $window.fbAsyncInit;
       $window.fbAsyncInit = function() {
         FB.init({
           appId      : '365070697217925',

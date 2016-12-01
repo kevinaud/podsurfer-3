@@ -25,9 +25,9 @@
           <img src="{{podcast.imageUrl}}" ng-show="podcast.imageUrl" alt="Image not found" height="200" width="200"> </img>
         </div>
 
-        <md-card-actions layout="column" layout-align="space-around center">
+        <md-card-actions layout="column" layout-align="space-around center" ng-show="$user.auth">
           
-          <md-button ng-show="favorited" ng-click="unfavorite()"  class="md-fab">
+          <md-button ng-show="favorited" ng-click="unfavorite()" class="md-fab">
             <md-icon>favorite</md-icon>
           </md-button>
 

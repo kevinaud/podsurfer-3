@@ -3,8 +3,13 @@
 angular.module('app')
   .component('loginCard', {
     templateUrl: 'loginCard/loginCard.html',
-    controller: ['$scope', '$user', '$state',
-      function($scope, $user, $state){
+    controller: ['$scope', '$user', '$state', '$api',
+      function($scope, $user, $state, $api){
+
+        this.$onInit = function(){
+          if($user.auth)
+            $state.go('home');
+        }
 
         $scope.user = {
           email: '',
@@ -15,6 +20,7 @@ angular.module('app')
         $scope.errorMessage = "";
 
         $scope.submitForm = function() {
+          console.log("logging into: ", $api.getUrl());
 
           $user.login($scope.user).then(function(message) {
 
