@@ -12,7 +12,7 @@
         $scope.ratingReceived = false;
 
         $scope.podcast;
-        $scope.episodes;
+        $scope.episodes;  
         $scope.reviews;
 
         $scope.numEpisodes;
@@ -25,16 +25,21 @@
           content: ""
         }
 
+        $scope.favorited = false;
+
         this.$onInit = function () {
 
           $scope.responseReceived = false;
+          $user.subscribe(this);
 
           $podcast.getPodcast($stateParams.podcastId).then(
             function(podcast) {
               $scope.podcast = podcast._source;
               $scope.podcast._id = podcast._id;
               $scope.responseReceived = true;
-              $user.updatePreferences(podcast._source.tags);
+              if($user.auth){
+                $user.updatePreferences(podcast._source.tags);
+              }
             },
             function(error) {
               console.log(error);
@@ -68,6 +73,26 @@
           );
       
         };
+
+        this.update = function() {
+          
+          if ($user.favorites) {
+            $user.favorites.forEach(function(id) {
+
+              if(id === $scope.podcastId) {
+                $scope.favorited = true;
+              }
+
+            });
+          }
+
+        }
+
+        $scope.toggleFavorited = function() {
+          
+          $podcast.addFavorite(exports.id);
+
+        }
 
     }]);
 

@@ -13,10 +13,10 @@
 
       this.$onInit = function () {
             
-        $podcast.popular().then(
+        $podcast.getPopular().then(
           (podcasts) => {
             $scope.waiting = false;
-            $scope.rows = splitIntoRows(podcasts.slice(0,5));
+            $scope.rows = splitIntoRows(podcasts.slice(0,6));
           },
           (error) => {
             $scope.waiting = false;

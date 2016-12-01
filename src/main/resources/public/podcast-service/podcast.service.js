@@ -18,7 +18,8 @@
       getPodcastByEpisodeId: getPodcastByEpisodeId,
       getEpisodeById: getEpisodeById,
       getNumberOfEpisodes: getNumberOfEpisodes,
-      addEpisode: addEpisode
+      addEpisode: addEpisode,
+      getPopular: getPopular
     };
 
     return exports;
@@ -102,6 +103,7 @@
       return $http(req).then(
         function(response) {
           console.log(response);
+          return response.data.hits.hits;
         },
         function(error) {
           console.log(error);
