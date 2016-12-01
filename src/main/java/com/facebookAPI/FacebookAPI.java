@@ -16,6 +16,9 @@ public class FacebookAPI{
   }
 
   public FacebookClient getAuthorizedClient(String token){
+
+    if(token.contains("Bearer "))
+      token = token.replace("Bearer ","");
     try {
       FacebookClient fb = new DefaultFacebookClient(token, Version.VERSION_2_8);
       return fb;
@@ -38,7 +41,7 @@ public class FacebookAPI{
     com.restfb.types.User fbuser = fb.fetchObject("me", com.restfb.types.User.class);
     JsonObject json = new JsonObject();
     json.put("name",fbuser.getName());
-    json.put("email",fbuser.getId());
+    json.put("id",fbuser.getId());
     System.out.println(json.toString());
     return json.toString();
   }

@@ -5,9 +5,9 @@
     .module('app')
     .service('$podcast', podcastService);
 
-  podcastService.$inject = ['$http', '$api'];
+  podcastService.$inject = ['$http'];
 
-  function podcastService($http, $api) {
+  function podcastService($http) {
 
     var exports = {
       addPodcast: addPodcast,
@@ -27,10 +27,10 @@
 
       var req = {
         method: 'POST',
-        url: $api.getUrl(),
+        url: '/podcast',
         headers: { 'Content-Type': 'application/json' },
         data: podcast
-      }
+      };
 
       console.log(req);
 
@@ -49,7 +49,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/' + id,
+        url: '/podcast/' + id,
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -70,7 +70,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes/' + episodeNumber,
+        url: '/podcast/' + podcastId + '/episodes/' + episodeNumber,
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -95,7 +95,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/episodes/' + episodeId + '/podcast'
+        url: '/episodes/' + episodeId + '/podcast'
       };
 
       return $http(req).then(
@@ -118,7 +118,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/episodes/' + podcastId + '/' + episodeId
+        url: '/episodes/' + podcastId + '/' + episodeId
       };
 
       return $http(req).then(
@@ -136,7 +136,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes',
+        url: '/podcast/' + podcastId + '/episodes',
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -157,7 +157,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/' + podcastId + '/reviews',
+        url: '/podcast/' + podcastId + '/reviews',
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -183,7 +183,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes',
+        url: '/podcast/' + podcastId + '/episodes',
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -204,7 +204,7 @@
 
       var req = {
         method: 'POST',
-        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes',
+        url: '/podcast/' + podcastId + '/episodes',
         headers: { 'Content-Type': 'application/json' },
         data: episode
       };

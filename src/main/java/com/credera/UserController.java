@@ -66,55 +66,87 @@ public class UserController {
 	}
 
 	@ResponseBody @RequestMapping(value="/user/preferences", method=RequestMethod.GET)
-	public String getUserPreferences(@RequestHeader("Authorization") String token) {
-		String email = papi.getUserEmail(token);
-		System.out.println("test");
+	public String getUserPreferences(@RequestHeader("Authorization") String token, @RequestHeader("Server") String server) {
+		if(server.equals("podsurfer")) {
+			String email = papi.getUserEmail(token);
+			System.out.println("test");
 
-		if(email != null) {
+			if (email != null) {
 
-			String encodedEmail = "";
-			try {
-				encodedEmail = URLEncoder.encode(email, "UTF-8");
-				System.out.println(encodedEmail);
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
+				String encodedEmail = "";
+				try {
+					encodedEmail = URLEncoder.encode(email, "UTF-8");
+					System.out.println(encodedEmail);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
 
-			return "{\n" +
+				return "{\n" +
 					"	\"success\": true,\n" +
 					"	\"preferences\": " + es.getUserPreferences(encodedEmail) +
 					"}";
-		} else {
-			return "{\n" +
+			} else {
+				return "{\n" +
 					"	\"success\": false,\n" +
 					"	\"message\": \"user not found\"\n" +
 					"}";
+			}
 		}
-
+		else if(server.equals("facebook")){
+      FacebookClient fb = fapi.getAuthorizedClient(token);
+			if(fb != null) {
+				return "{\n" +
+					"	\"success\": true,\n" +
+					"	\"preferences\": " + es.getUserPreferences(fapi.getUserInfo(fb).getId()) +
+					"}";
+			}
+			else {
+				return "{\n" +
+					"	\"success\": false,\n" +
+					"	\"message\": \"user not found\"\n" +
+					"}";
+			}
+		}
+		else
+			return "invalid server";
 	}
 
 	@ResponseBody @RequestMapping(value="/user/preferences", method=RequestMethod.POST)
-	public Response updateUserPreferences(@RequestHeader("Authorization") String token, @RequestBody String userPreferences) {
+	public Response updateUserPreferences(@RequestHeader("Authorization") String token, @RequestHeader("Server") String server,
+																				@RequestBody String userPreferences) {
 
 		Response response = new Response();
-		String email = papi.getUserEmail(token);
+    if(server.equals("podsurfer")) {
+			String email = papi.getUserEmail(token);
 
-		if(email == null) {
-			response.setMessage("user not found");
-		} else {
+			if (email == null) {
+				response.setMessage("user not found");
+			} else {
 
-			String encodedEmail = "";
-			try {
-				encodedEmail = URLEncoder.encode(email, "UTF-8");
-				System.out.println(encodedEmail);
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
+				String encodedEmail = "";
+				try {
+					encodedEmail = URLEncoder.encode(email, "UTF-8");
+					System.out.println(encodedEmail);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+
+				response.setSuccess(true);
+				response.setMessage(es.updateUserPreferences(encodedEmail, userPreferences));
 			}
-
-			response.setSuccess(true);
-			response.setMessage(es.updateUserPreferences(encodedEmail, userPreferences));
 		}
-
+		else if(server.equals("facebook")){
+			FacebookClient fb = fapi.getAuthorizedClient(token);
+			if(fb != null) {
+				String id = fapi.getUserInfo(fb).getId();
+				response.setSuccess(true);
+				response.setMessage(es.updateUserPreferences(id, userPreferences));
+			}
+		}
+		else{
+			response.setSuccess(false);
+			response.setMessage("invalid server");
+		}
 		return response;
 	}
 

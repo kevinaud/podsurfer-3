@@ -5,14 +5,13 @@
     .module('app')
     .service('$user', userService);
 
-  userService.$inject = ['$http'];
+  userService.$inject = ['$http', '$window', '$state'];
 
-  function userService($http){
+  function userService($http, $window, $state){
 
     var ref = this;
     var subscribers = [];
 
-    console.log('initializing user service');
     let storedToken = localStorage.getItem('token');
     if (storedToken !== null) {
       getUserInfo(storedToken);
@@ -32,7 +31,7 @@
       name: "",
       email: "",
       _id: "",
-      authserv: "",
+      authserv: ""
     };
 
     return exports;
@@ -60,9 +59,9 @@
             localStorage.setItem('token', msg.token);
             exports.authserv = 'podsurfer';
             getUserInfo(msg.token).then(function(response){
+              console.log('user info', response);
               return response;
             });
-            exports.authserv = "podsurfer";
             notify();
           }
           return err;
@@ -105,62 +104,67 @@
 
     function signOut(){
       localStorage.clear();
+      if(exports.authserv === 'facebook')
+        $window.fbLogout();
       exports.auth = false;
       exports.email = "";
       exports.name = "";
       exports.token = "";
       exports._id = "";
-      exports.auth = "";
+      exports.authserv = "";
+
+      $state.go('home');
     }
 
     function getUserInfo(token) {
       return $http({
         method: "GET",
-        url: $api.getUrl() + '/user',
+        url: '/user',
         headers: {'Authorization': "Bearer " + token}
       })
-      .then(
-        function(response){
+        .then(
+          function(response){
 
-          console.log(response.data.messag);
-          try {
-            var userInfo = JSON.parse(response.data.message);
-            exports.auth = true;
-            exports.token = token;
-            exports._id = userInfo._id;
-            exports.name = userInfo.name;
-            exports.email = userInfo.email;
-            return "success";
-          }
-          catch(err){
-            console.error(err);
-            if (response === "Not Found" || response === "Unauthorized")
-            {
-              exports.auth = false;
-              exports.token = "";
-              localStorage.clear();
-              return response;
+            console.log(response.data.message);
+            try {
+              var userInfo = JSON.parse(response.data.message);
+              exports.auth = true;
+              exports.token = token;
+              exports._id = userInfo._id;
+              exports.name = userInfo.name;
+              exports.email = userInfo.email;
+              return "success";
             }
-          }
-        }, function(response) {
-          return "An unexpected error occurred";
-        });
+            catch(err){
+              if (response === "Not Found" || response === "Unauthorized")
+              {
+                exports.auth = false;
+                exports.token = "";
+                localStorage.clear();
+                return response;
+              }
+            }
+          }, function(response) {
+            return "An unexpected error occurred";
+          });
     }
 
     function getUserPreferences(token) {
       return $http({
         method: "GET",
         url: '/user/preferences',
-        headers: {'Authorization': "Bearer " + token}
+        headers: {
+          'Authorization': "Bearer " + token,
+          'Server': exports.authserv
+        }
       })
-      .then(
-        function(response){
+        .then(
+          function(response){
 
           if(response.data.success) {
             
             exports.preferences = response.data.preferences;
             return response.data.preferences;
-          
           }
           else {
             return {};
@@ -219,7 +223,7 @@
     function makePostRequest(payload, endpoint) {
       var req = {
         method: 'POST',
-        url: $api.getUrl() + endpoint,
+        url: endpoint,
         headers: { 'Content-Type': 'application/json' },
         data: payload
       };
@@ -230,10 +234,11 @@
     function makeAuthorizedPostRequest(payload, endpoint, token) {
       var req = {
         method: 'POST',
-        url: $api.getUrl() + endpoint,
+        url: endpoint,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
+          'Authorization': 'Bearer ' + token,
+          'Server': exports.authserv
         },
         data: payload
       };

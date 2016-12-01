@@ -7,7 +7,6 @@
         $scope.signupPrompt = 'New to PodSurfer? Create an account';
         this.$onInit = function() {
           $scope.user = $user;
-          console.log("homeauth", $scope.user.auth);
         }
     }]);
 })();

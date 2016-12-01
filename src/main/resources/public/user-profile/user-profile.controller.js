@@ -1,19 +1,18 @@
-/**
- * Created by QB on 11/29/2016.
- */
 (function() {
-    'use strict';
+  'use strict';
 
-    angular.module('app')
-        .controller('userProfileController', [ '$scope', '$user',
-            function($scope, $user) {
+  angular.module('app')
+    .controller('userProfileController', [ '$scope', '$user', '$state',
+      function($scope, $user, $state) {
 
-                $scope.user= $user;
+        this.$onInit = function(){
+          if(!$user.auth)
+            $state.go('home');
+        }
 
-                angular.module('userProfileDynamicHeight', ['ngMaterial']);
+        $scope.user= $user;
 
+        angular.module('userProfileDynamicHeight', ['ngMaterial']);
 
-
-            }]);
-
+      }]);
 })();
