@@ -19,17 +19,23 @@ angular.module('app')
           console.log("status = connected");
           $user.auth = true;
           $user.authserv = "facebook";
+          $user.token =  response.authResponse.accesToken;
           console.log('user', $user);
           $state.go('home');
 
           return $http({
-            method: "GET",
-            url: $api.getUrl() + '/user/preferences',
+            method: "POST",
+            url: '/oauth-user',
             headers: {
-              'Authorization': "Bearer " + token,
+              'Authorization': token,
               'Server': 'facebook'
             }
-          })
+          }).then(function(){
+
+          }, function(){
+
+          });
+
         } else if (response.status === 'not_authorized') {
           // The person is logged into Facebook, but not your app.
           console.log("status = not_authorized");

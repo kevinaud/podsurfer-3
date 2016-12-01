@@ -93,7 +93,10 @@ public class UserController {
           return r;
         }
         else{
-          return null;
+					Response r = new Response();
+					r.setSuccess(false);
+					r.setMessage("Server not valid");
+					return r;
         }
   }
 }
