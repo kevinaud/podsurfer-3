@@ -134,4 +134,10 @@ public class PodcastController {
         return es.getRecommendations(userPreferences);
     }
 
+    @ResponseBody
+    @RequestMapping(value="/podcast/popular", method=RequestMethod.GET)
+    public String getPopularPodcasts(){
+        return es.getPopularPodcasts();
+    }
+
 }
