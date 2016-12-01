@@ -17,35 +17,33 @@
 
         </md-card-title>
 
-        <md-card-actions flex="50">
-
-          <img src="{{podcast.imageUrl}}" alt="Image not found" height="300" width="300"> </img>
-
-          <span layout="row" layout-align="end center" ng-show="$user.auth">
-
-            <md-button ng-show="favorited" ng-click="unfavorite()"  class="md-fab" style="margin-right: 8px;">
-              <md-icon>favorite</md-icon>
-            </md-button>
-
-            <md-button ng-show="!favorited" ng-click="favorite()" class="md-fab" style="margin-right: 8px;">
-              <md-icon>favorite_border</md-icon>
-            </md-button>
-
-            <md-button class="md-raised md-primary"
-              ui-sref="add-podcast">Add Podcast</md-button>
-
-            <md-button class="md-raised md-primary"
-              ui-sref="add-episode({ podcastId: podcastId })">Add Episode</md-button>
-
-          </span>
-
-        </md-card-actions>
-
-          <span layout="row" layout-align="end start" ng-show="$user.auth">
-              <md-button class="md-raised md-primary" ui-sref="add-episode({ podcastId: podcastId })">Add Episode</md-button>
-          </span>
-
       </span>
+
+      <md-card-content layout="row" layout-align="space-between">
+          
+        <div class="md-media-xl card-media" style="margin-bottom: 0px;">
+          <img src="{{podcast.imageUrl}}" alt="Image not found" height="200" width="200"> </img>
+        </div>
+
+        <md-card-actions layout="column" layout-align="space-around center">
+          
+          <md-button ng-show="favorited" ng-click="unfavorite()"  class="md-fab">
+            <md-icon>favorite</md-icon>
+          </md-button>
+
+          <md-button ng-show="!favorited" ng-click="favorite()" class="md-fab">
+            <md-icon>favorite_border</md-icon>
+          </md-button>
+          
+          <md-button class="md-raised md-primary"
+            ui-sref="add-podcast">Add Podcast</md-button>
+          
+          <md-button class="md-raised md-primary"
+            ui-sref="add-episode({ podcastId: podcastId })">Add Episode</md-button>
+        
+        </md-card-actions>
+      
+      </md-card-content>
 
       <md-content layout="row" ng-show="responseReceived">
         <md-tabs md-dynamic-height md-border-bottom flex="100">
