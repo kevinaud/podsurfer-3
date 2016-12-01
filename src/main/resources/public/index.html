@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<!-- TEST 4 -->
+
 <html ng-app="app">
 
 <head>
@@ -28,8 +30,17 @@
   <script src="app.module.js"></script>
   <script src="app.route.js"></script>
 
+  <!-- charts -->
+  <script src="charts/Chart.min.js"></script>
+  <script src="charts/angular-chart.min.js"></script>
+
   <!-- Components -->
   <script src="toolbar/toolbar.component.js"></script>
+  <script src="recommendations/recommendations.component.js"></script>
+  <script src="fblogin/fblogin.component.js"></script>
+  <script src="rating/rating.component.js"></script>
+  <script src="loginCard/loginCard.component.js"></script>
+  <script src="preferences-graph/preferences-graph.component.js"></script>
 
   <!-- Controllers -->
   <script src="home/home.controller.js"></script>
@@ -47,9 +58,9 @@
   <!-- Services -->
   <script src="api/api.service.js"></script>
   <script src="user/user.service.js"></script>
-  <script src="rating/rating.component.js"></script>
   <script src="search/search.service.js"></script>
   <script src="podcast-service/podcast.service.js"></script>
+  <script src="recommendations/recommendations.service.js"></script>
 
   <!-- Form Validation Directives -->
   <script src="validators/contain-uppercase.js"></script>
@@ -59,7 +70,13 @@
 
   <!-- Custom Styles -->
   <link rel="stylesheet" type="text/css" href="app.css">
-  
+
+  <!--Google-->
+  <!--
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="835034044664-jo5lf7ekf0b0h6nf101i84624mianbeu.apps.googleusercontent.com.apps.googleusercontent.com">
+  -->
+
 </head>
 
 <body>

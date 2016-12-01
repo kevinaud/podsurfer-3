@@ -1,16 +1,11 @@
 package com.elasticsearch;
 
+import com.credera.*;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.stereotype.Service;
-
-import com.credera.Response;
-import com.credera.Podcast;
-import com.credera.Episode;
-import com.credera.SearchQuery;
-import com.credera.Review;
 
 /**
  * Created by kevinaud on 10/4/16.
@@ -198,14 +193,46 @@ public class Elasticsearch {
     public String searchEpisode(SearchQuery searchQuery) {
 
         String query =  "{\n" +
-                "   \"query\" : {\n" +
-                "       \"term\": {\n" +
-                "           \"_all\" : \"" + searchQuery.getQuery() + "\"\n" +
-                "       }\n" +
-                "   }\n" +
-                "}";
+                        "   \"query\" : {\n" +
+                        "       \"term\": {\n" +
+                        "           \"_all\" : \"" + searchQuery.getQuery() + "\"\n" +
+                        "       }\n" +
+                        "   }\n" +
+                        "}";
 
         return esPostString("/podcasts/episode/_search", query);
+
+    }
+
+    public String getRecommendations(UserPreferences userPreferences) {
+
+        String query =  "{\n" +
+                        "   \"query\" : {\n" +
+                        "       \"bool\": {\n" +
+                        "           \"should\" : " + userPreferences.toTermsArray() +
+                        "       }\n" +
+                        "   }\n" +
+                        "}";
+
+        System.out.println(query);
+
+        return esPostString("/podcasts/podcast/_search", query);
+
+    }
+
+    public String getUserPreferences(String email) {
+        return esGetRequest("/users/preferences/" + email + "/_source");
+    }
+
+    public String updateUserPreferences(String email, String userPreferences) {
+
+        String endpoint = "/users/preferences/" + email + "/_update";
+        String query = "{\n" +
+                        "   \"doc\" : " + userPreferences + ",\n" +
+                        "   \"doc_as_upsert\": true\n" +
+                        "}";
+
+        return esPostString(endpoint, query);
 
     }
 

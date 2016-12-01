@@ -4,7 +4,8 @@
     angular.module('app', [
         'ui.router',
         'ngMaterial',
-        'ngSanitize'
+        'ngSanitize',
+        'chart.js'
     ]).config(function($mdThemingProvider) {
 
         $mdThemingProvider.theme('default')

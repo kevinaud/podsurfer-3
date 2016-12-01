@@ -60,9 +60,24 @@ md-input-container {
   padding: 20px;
 }
 
-.recommendation-card {
+.recommendations-card {
+  margin-left: 0px;
+  margin-right: 0px;
+}
 
+.recommended-podcast-card {
+  margin-top: 20px;
+  padding: 20px;
+  width: 100%;
+}
 
+.recommended-podcast-title {
+  font-size: 20px;
+}
+
+.spinner {
+  margin-bottom: 50px;
+  margin-top: 30px;
 }
 
 .about-card {

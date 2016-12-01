@@ -2,7 +2,8 @@
   'use strict';
 
   angular.module('app')
-    .controller('loginController', ['$scope','$user','$state', function($scope, $user, $state) {
+    .controller('loginController', ['$scope','$user','$state', '$api',
+      function($scope, $user, $state, $api) {
 
       this.$onInit = function(){
         if($user.auth)
