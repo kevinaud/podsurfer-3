@@ -322,7 +322,7 @@ public class UserController {
 	}
 
     //Generic login endpoint
-    @ResponseBody @RequestMapping(value="/oauth-user", method=RequestMethod.POST)
+    @ResponseBody @RequestMapping(value="/user", method=RequestMethod.GET)
     public Response getUserInfo(@RequestHeader("Authorization") String token, @RequestHeader("Server") String server){
 
       if(server.equals("podsurfer")){

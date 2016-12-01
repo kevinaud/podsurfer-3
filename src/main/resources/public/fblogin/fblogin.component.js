@@ -18,7 +18,7 @@ angular.module('app')
           // Logged into your app and Facebook.
           console.log("fb login successful");
           $user.auth = true;
-          $user.authserv = "facebook";
+          localStorage.setItem('authserv', "facebook");
           $user.token =  response.authResponse.accessToken;
           console.log('user', $user);
 
@@ -30,8 +30,8 @@ angular.module('app')
           });
 
           return $http({
-            method: "POST",
-            url: '/oauth-user',
+            method: "GET",
+            url: '/user',
             headers: {
               'Authorization': $user.token,
               'Server': 'facebook'
@@ -47,18 +47,14 @@ angular.module('app')
         } else if (response.status === 'not_authorized') {
           // The person is logged into Facebook, but not your app.
           console.log("status = not_authorized");
-          /*
           if($user.auth)
             $user.signOut();
-            */
         } else {
           // The person is not logged into Facebook, so we're not sure if
           // they are logged into this app or not.
           console.log("not logged in");
-          /*
           if($user.auth)
             $user.signOut();
-            */
         }
       }
 
@@ -72,9 +68,10 @@ angular.module('app')
       }
       $scope.checkLoginState = checkLoginState;
       $window.checkLoginState = checkLoginState;
-      $window.fbLogout = function(){
+      $window.fbLogout = function(cb){
         FB.logout(function(response){
           console.log("FB.logout", response);
+          cb();
         });
       }
 

@@ -30,8 +30,7 @@
       token: "",
       name: "",
       email: "",
-      _id: "",
-      authserv: ""
+      _id: ""
     };
 
     return exports;
@@ -57,7 +56,7 @@
 
           if(err === "success"){
             localStorage.setItem('token', msg.token);
-            exports.authserv = 'podsurfer';
+            localStorage.setItem('authserv','podsurfer');
             getUserInfo(msg.token).then(function(response){
               console.log('user info', response);
               return response;
@@ -86,7 +85,7 @@
 
           if(err === "success"){
             localStorage.setItem('token', msg.token);
-            exports.authserv = 'podsurfer';
+            localStorage.setItem('authserv','podsurfer');
             getUserInfo(msg.token).then(function(response){
               return response;
             });
@@ -103,25 +102,39 @@
     }
 
     function signOut(){
-      localStorage.clear();
-      if(exports.authserv === 'facebook')
-        $window.fbLogout();
-      exports.auth = false;
-      exports.email = "";
-      exports.name = "";
-      exports.token = "";
-      exports._id = "";
-      exports.authserv = "";
-
-      $state.go('home');
+      var authserv = localStorage.getItem('authserv');
+      if(localStorage.getItem('authserv') === 'facebook') {
+        $window.fbLogout(function () {
+          localStorage.clear();
+          exports.auth = false;
+          exports.email = "";
+          exports.name = "";
+          exports.token = "";
+          exports._id = "";
+          $state.go('home');
+        });
+      }
+      else {
+        localStorage.clear();
+        exports.auth = false;
+        exports.email = "";
+        exports.name = "";
+        exports.token = "";
+        exports._id = "";
+        $state.go('home');
+      }
     }
 
     function getUserInfo(token) {
+      var authserv = localStorage.getItem('authserv');
+      console.log('authserv',authserv);
+
       return $http({
         method: "GET",
         url: '/user',
         headers: {
-          'Authorization': "Bearer " + token
+          'Authorization': "Bearer " + token,
+          'Server': authserv ? authserv : "podsurfer"
         }
       })
         .then(
@@ -157,7 +170,7 @@
         url: '/user/preferences',
         headers: {
           'Authorization': "Bearer " + token,
-          'Server': exports.authserv
+          'Server': localStorage.getItem('authserv')
         }
       })
         .then(
@@ -240,7 +253,7 @@
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token,
-          'Server': exports.authserv
+          'Server': localStorage.getItem('authserv')
         },
         data: payload
       };
