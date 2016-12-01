@@ -2,11 +2,12 @@
 
   <div layout="row" layout-margin="10">
 
-    <div layout="column" flex="100">
-      <h1 class="text-center home-title">Recommended for You</h1>
-    </div>
 
+  <div layout="column" flex="100">
+    <h1 class="text-center home-title">Recommended for You</h1>
   </div>
+
+</div>
 
 <div class="spinner" layout="row" layout-align="space-around" ng-show="waiting">
   <md-progress-circular md-diameter="96"></md-progress-circular>
@@ -25,7 +26,8 @@
 
       </md-card-title>
 
-      <md-card-content ng-bind-html="podcast._source.description">
+      <md-card-content>
+        {{ podcast._source.description | limitTo:50 }}
       </md-card-content>
 
       <md-card-actions layout="row" layout-align="end center">

@@ -16,7 +16,13 @@
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    fontColor: "#FFFFFF"
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: "#FFFFFF"
                 }
             }]
         }

@@ -15,7 +15,9 @@
     console.log('initializing user service');
     let storedToken = localStorage.getItem('token');
     if (storedToken !== null && storedToken !== undefined) {
-      getUserInfo(storedToken);
+      getUserInfo(storedToken).then(() => {
+        notify();
+      });
     }
 
     var exports = {
@@ -142,6 +144,7 @@
                 getFavorites().then(
                   (success) => {
                     console.log('SUCCESS', success);
+                    notify();
                   },
                   (error) => {
                     console.log('ERROR', error);
