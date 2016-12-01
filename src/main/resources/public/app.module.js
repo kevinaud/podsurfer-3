@@ -13,7 +13,8 @@
                 'default': '900'})
             .accentPalette('grey',{
                 'default': '700'})
-            // .backgroundPalette('grey',{'default': '900'})
+            //
+            // .backgroundPalette('black')
             .dark();
     })
 
