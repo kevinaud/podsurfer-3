@@ -22,6 +22,18 @@ public class Elasticsearch {
     public String savePodcast(Podcast podcast) {
         return esPostObject("/podcasts/podcast", podcast);
     }
+    
+    // NEW
+    public String getFavorites(String encodedEmail)
+    {
+    	return esGetRequest("/users/user/" + encodedEmail + "/_source");
+    }
+    
+    // NEW
+    public String editFavorites(String encodedEmail, Favorites favoritesList)
+    {
+    	return esPostObject("/users/user/" + encodedEmail, favoritesList);
+    }
 
     public String updatePodcast(String podcastId, Podcast podcast) {
         return esPostObject("/podcasts/podcast/" + podcastId, podcast);
