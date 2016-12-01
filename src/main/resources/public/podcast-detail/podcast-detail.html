@@ -1,6 +1,7 @@
 <md-content>
 
 <div layout="row" ng-show="responseReceived" md-theme="default">
+
     <md-card class="podcast-detail-card" flex-offset="5" flex="90" flex-gt-md="60" flex-offset-gt-md="20"><md-content>
 
       <span layout="row">
@@ -18,9 +19,22 @@
 
         <md-card-actions flex="50">
 
-          <span layout="row" layout-align="end start" ng-show="$user.auth">
+          <span layout="row" layout-align="end center" ng-show="$user.auth">
+
+            <md-button ng-show="favorited" ng-click="unfavorite()"  class="md-fab" style="margin-right: 8px;">
+              <md-icon>favorite</md-icon>
+            </md-button>
+
+            <md-button ng-show="!favorited" ng-click="favorite()" class="md-fab" style="margin-right: 8px;">
+              <md-icon>favorite_border</md-icon>
+            </md-button>
+
+            <md-button class="md-raised md-primary"
+              ui-sref="add-podcast">Add Podcast</md-button>
+
             <md-button class="md-raised md-primary"
               ui-sref="add-episode({ podcastId: podcastId })">Add Episode</md-button>
+
           </span>
 
         </md-card-actions>

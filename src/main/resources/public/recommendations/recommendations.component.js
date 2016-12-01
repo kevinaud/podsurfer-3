@@ -35,7 +35,7 @@
             $recommendations.recommend(preferences).then(
               (podcasts) => {
                 $scope.waiting = false;
-                $scope.rows = splitIntoRows(podcasts);
+                $scope.rows = splitIntoRows(podcasts.slice(0,6));
               },
               (error) => {
                 $scope.waiting = false;
