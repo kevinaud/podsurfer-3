@@ -5,9 +5,9 @@
     .module('app')
     .service('$podcast', podcastService);
 
-  podcastService.$inject = ['$http', '$api', '$user'];
+  podcastService.$inject = ['$http','$user', '$state'];
 
-  function podcastService($http, $api, $user) {
+  function podcastService($http, $user, $state) {
 
     var exports = {
       addPodcast: addPodcast,
@@ -28,10 +28,14 @@
 
       var req = {
         method: 'POST',
-        url: $api.getUrl(),
-        headers: { 'Content-Type': 'application/json' },
+        url: '/podcast',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + $user.token,
+          'Server': localStorage.getItem('authserv')
+        },
         data: podcast
-      }
+      };
 
       console.log(req);
 
@@ -50,7 +54,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/' + id,
+        url: '/podcast/' + id,
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -64,14 +68,13 @@
           console.log(error);
         }
       );
-
     }
 
     function getPodcastEpisodeByNumber(podcastId, episodeNumber) {
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes/' + episodeNumber,
+        url: '/podcast/' + podcastId + '/episodes/' + episodeNumber,
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -96,7 +99,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/popular',
+        url: '/podcast/popular',
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -116,7 +119,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/episodes/' + episodeId + '/podcast'
+        url: '/episodes/' + episodeId + '/podcast'
       };
 
       return $http(req).then(
@@ -139,7 +142,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/episodes/' + podcastId + '/' + episodeId
+        url: '/episodes/' + podcastId + '/' + episodeId
       };
 
       return $http(req).then(
@@ -157,7 +160,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes',
+        url: '/podcast/' + podcastId + '/episodes',
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -178,7 +181,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/' + podcastId + '/reviews',
+        url: '/podcast/' + podcastId + '/reviews',
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -204,7 +207,7 @@
 
       var req = {
         method: 'GET',
-        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes',
+        url: '/podcast/' + podcastId + '/episodes',
         headers: { 'Content-Type': 'application/json' },
       };
 
@@ -221,14 +224,16 @@
 
     }
 
-    function addEpisode(podcastId, episode) {
+    function addEpisode(podcastId, episode, cb) {
 
+      console.log("authserv",localStorage.getItem('authserv'));
       var req = {
         method: 'POST',
-        url: $api.getUrl() + '/podcast/' + podcastId + '/episodes',
+        url: '/podcast/' + podcastId + '/episodes',
         headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + $user.token
+                    'Authorization': 'Bearer ' + $user.token,
+                    'Server': localStorage.getItem('authserv')
                   },
         data: episode
       };
@@ -239,6 +244,8 @@
       return $http(req).then(
         function(response) {
           console.log(response);
+          if(cb)
+            cb();
         },
         function(error) {
           console.log(error);

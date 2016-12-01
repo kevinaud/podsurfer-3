@@ -5,14 +5,13 @@
     .module('app')
     .service('$user', userService);
 
-  userService.$inject = ['$http', '$api']
+  userService.$inject = ['$http', '$window', '$state'];
 
-  function userService($http, $api) {
+  function userService($http, $window, $state){
 
     var ref = this;
     var subscribers = [];
 
-    console.log('initializing user service');
     let storedToken = localStorage.getItem('token');
     if (storedToken !== null && storedToken !== undefined) {
       getUserInfo(storedToken).then(() => {
@@ -37,8 +36,7 @@
       token: "",
       name: "",
       email: "",
-      _id: "",
-      authserv: "",
+      _id: ""
     };
 
     return exports;
@@ -63,11 +61,11 @@
 
           if(err === "success"){
             localStorage.setItem('token', msg.token);
-            exports.authserv = 'podsurfer';
+            localStorage.setItem('authserv','podsurfer');
             getUserInfo(msg.token).then(function(response){
+              console.log('user info', response);
               return response;
             });
-            exports.authserv = "podsurfer";
             notify();
           }
           return err;
@@ -92,7 +90,7 @@
 
           if(err === "success"){
             localStorage.setItem('token', msg.token);
-            exports.authserv = 'podsurfer';
+            localStorage.setItem('authserv','podsurfer');
             getUserInfo(msg.token).then(function(response){
               return response;
             });
@@ -109,80 +107,83 @@
     }
 
     function signOut(){
-      localStorage.clear();
-      exports.auth = false;
-      exports.email = "";
-      exports.name = "";
-      exports.token = "";
-      exports._id = "";
-      exports.auth = "";
-      notify();
+      var authserv = localStorage.getItem('authserv');
+      if(authserv === 'facebook') {
+        $window.fbLogout(function () {
+          localStorage.clear();
+          exports.auth = false;
+          exports.email = "";
+          exports.name = "";
+          exports.token = "";
+          exports._id = "";
+          $state.go('home');
+        });
+      }
+      else {
+        localStorage.clear();
+        exports.auth = false;
+        exports.email = "";
+        exports.name = "";
+        exports.token = "";
+        exports._id = "";
+        $state.go('home');
+      }
     }
 
     function getUserInfo(token) {
+      var authserv = localStorage.getItem('authserv');
+      console.log('authserv',authserv);
+      return $http({
+        method: "GET",
+        url: '/user',
+        headers: {
+          'Authorization': "Bearer " + token,
+          'Server': authserv ? authserv : "podsurfer"
+        }
+      })
+        .then(
+          function(response){
 
-        console.log('get user info');
-
-        if(token) {
-          console.log('token exists');
-          return $http({
-            method: "GET",
-            url: $api.getUrl() + '/user',
-            headers: {'Authorization': "Bearer " + token}
-          })
-          .then(
-            function(response){
-
-              console.log(response.data.messag);
-              try {
-                var userInfo = JSON.parse(response.data.message);
-                exports.auth = true;
-                exports.token = token;
-                exports._id = userInfo._id;
-                exports.name = userInfo.name;
-                exports.email = userInfo.email;
-                getFavorites().then(
-                  (success) => {
-                    console.log('SUCCESS', success);
-                    notify();
-                  },
-                  (error) => {
-                    console.log('ERROR', error);
-                  }
-                );
-                notify();
-                return "success";
+            console.log(response.data.message);
+            try {
+              var userInfo = JSON.parse(response.data.message);
+              exports.auth = true;
+              exports.token = token;
+              exports._id = userInfo._id;
+              exports.name = userInfo.name;
+              exports.email = userInfo.email;
+              return "success";
+            }
+            catch(err){
+              if (response === "Not Found" || response === "Unauthorized")
+              {
+                exports.auth = false;
+                exports.token = "";
+                localStorage.clear();
+                return response;
               }
-              catch(err){
-                console.error(err);
-                if (response === "Not Found" || response === "Unauthorized")
-                {
-                  exports.auth = false;
-                  exports.token = "";
-                  localStorage.clear();
-                  return response;
-                }
-              }
-            }, function(response) {
-              return "An unexpected error occurred";
-            });
-      }
+            }
+          }, function(response) {
+            return "An unexpected error occurred";
+          });
     }
 
     function getUserPreferences(token) {
       return $http({
         method: "GET",
-        url: $api.getUrl() + '/user/preferences',
-        headers: {'Authorization': "Bearer " + token}
+        url: '/user/preferences',
+        headers: {
+          'Authorization': "Bearer " + token,
+          'Server': localStorage.getItem('authserv')
+        }
       })
-      .then(
-        function(response){
+        .then(
+          function(response){
 
           if(response.data.success) {
             
             exports.preferences = response.data.preferences;
             return response.data.preferences;
-          
           }
           else {
             return {};
@@ -225,8 +226,11 @@
     function getUserPreferences(token) {
       return $http({
         method: "GET",
-        url: $api.getUrl() + '/user/preferences',
-        headers: {'Authorization': "Bearer " + token}
+        url: '/user/preferences',
+        headers: {
+          'Authorization': "Bearer " + token,
+          'Server': localStorage.getItem('authserv')
+        }
       })
       .then(
         function(response){
@@ -301,7 +305,7 @@
 
         return $http({
           method: "GET",
-          url: $api.getUrl() + '/user/favorite',
+          url: '/user/favorite',
           headers: { 'Authorization': "Bearer " + exports.token }
         })
         .then(
@@ -348,7 +352,7 @@
     function makePostRequest(payload, endpoint) {
       var req = {
         method: 'POST',
-        url: $api.getUrl() + endpoint,
+        url: endpoint,
         headers: { 'Content-Type': 'application/json' },
         data: payload
       };
@@ -359,10 +363,11 @@
     function makeAuthorizedPostRequest(payload, endpoint, token) {
       var req = {
         method: 'POST',
-        url: $api.getUrl() + endpoint,
+        url: endpoint,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
+          'Authorization': 'Bearer ' + token,
+          'Server': localStorage.getItem('authserv')
         },
         data: payload
       };

@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('app')
-    .controller('addEpisodeController', ['$scope', '$podcast', '$stateParams', 
-      function($scope, $podcast, $stateParams) {
+    .controller('addEpisodeController', ['$scope', '$podcast', '$stateParams','$state',
+      function($scope, $podcast, $stateParams,$state) {
 
     console.log('PODCAST ID', $stateParams.podcastId);
 
@@ -61,7 +61,9 @@
             number: numEpisodes + 1
           }
 
-          $podcast.addEpisode($stateParams.podcastId, episode);
+          $podcast.addEpisode($stateParams.podcastId, episode, function(){
+            $state.go('podcasts',{ 'podcastId': $stateParams.podcastId });
+          });
 
         },
         function(error) {

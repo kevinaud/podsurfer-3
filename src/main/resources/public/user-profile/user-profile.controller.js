@@ -1,8 +1,5 @@
-/**
- * Created by QB on 11/29/2016.
- */
 (function() {
-    'use strict';
+  'use strict';
 
     angular.module('app')
         .controller('userProfileController', [ '$scope', '$user', '$podcast',
@@ -14,9 +11,6 @@
                 $user.subscribe(this);
                 $scope.favorites = $user.favorites;
                 $scope.numFavorites = 0;
-                $scope.podcasts = [];
-
-                angular.module('userProfileDynamicHeight', ['ngMaterial']);
 
                 $scope.capitalize=function(string){
                     string = string.toLowerCase();
@@ -24,6 +18,10 @@
                 }
 
                 this.$onInit = function () {
+
+                    if(!$user.auth) {
+                        $state.go('home');
+                    }
 
                     ref.update();
 
@@ -58,8 +56,7 @@
 
                 }
 
-            }] );
+        angular.module('userProfileDynamicHeight', ['ngMaterial']);
 
-
-
+      }]);
 })();

@@ -2,8 +2,8 @@
   'use strict';
 
     angular.module('app')
-      .controller('podcastDetailController', [ '$scope', '$stateParams', '$podcast', '$user', '$http', '$api',
-        function($scope, $stateParams, $podcast, $user, $http, $api) {
+      .controller('podcastDetailController', [ '$scope', '$stateParams', '$podcast', '$user', '$http',
+        function($scope, $stateParams, $podcast, $user, $http) {
 
         let podcastId = $stateParams.podcastId;
 
@@ -69,6 +69,7 @@
 
           $podcast.getPodcast($stateParams.podcastId).then(
             function(podcast) {
+              console.log(podcast);
               $scope.podcast = podcast._source;
               $scope.podcast._id = podcast._id;
               $scope.responseReceived = true;
@@ -95,10 +96,11 @@
             console.log($scope.review)
                  var req = {
                   method: 'POST',
-                  url: $api.getUrl() + '/podcast/' + podcastId + '/reviews',
+                  url: '/podcast/' + podcastId + '/reviews',
                   headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + $user.token
+                    'Authorization': 'Bearer ' + $user.token,
+                    'Server': localStorage.getItem('authserv')
                   },
                   data: $scope.review
                 };
