@@ -26,8 +26,14 @@
       Sign Up
     </md-button>
 
+    <md-button ui-sref="user-profile" ng-show="user.auth">
+        {{user.name}}
+    </md-button>
+
     <md-button ng-click="signOut()" ng-show="user.auth">
       Sign Out
     </md-button>
-  
+
+
+
 </md-toolbar>
