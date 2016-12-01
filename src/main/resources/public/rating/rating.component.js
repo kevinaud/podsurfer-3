@@ -30,14 +30,9 @@
           if (changesObj.rate) {
             this.rate = changesObj.rate.currentValue;
             $scope.rate = changesObj.rate.currentValue;
-            onUpdate(this.rate);
           }
           
         };
-
-        this.update = function(rating) {
-
-        }
 
         /*$scope.favorite = false;
         $scope.favoriteIcon = "star_border";
@@ -54,9 +49,8 @@
         $scope.setFavoriteRight = function(){ $scope.favoriteRight = false; }*/
       },
       bindings: {
-        rate: '=',
-        interactive: '<',
-        onUpdate: '&'
+        rate: '<',
+        interactive: '<'
       }
     });
 })();

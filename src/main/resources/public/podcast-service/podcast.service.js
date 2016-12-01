@@ -5,7 +5,6 @@
     .module('app')
     .service('$podcast', podcastService);
 
-<<<<<<< HEAD
   podcastService.$inject = ['$http','$user'];
 
   function podcastService($http, $user) {
