@@ -110,12 +110,12 @@ public class UserController {
 			}
 			else
 			{
-				response = "Favorites already contains " + podcastId + ".";
+				response = "{ \"success\": false, \"message\": \"Favorites already contains " + podcastId + ".\" }";
 			}
 		}
 		else
 		{
-			response = "Adding favorite failed.";
+			response = "{ \"success\": false, \"message\": \"Adding favorites failed\" }";
 		}
 		return response;
 	}
@@ -160,12 +160,12 @@ public class UserController {
 			}
 			else
 			{
-				response = "Favorites does not contain " + podcastId + ".";
+				response = "{ \"message\": \"Favorites does not contain " + podcastId + ".\"}";
 			}
 		}
 		else
 		{
-			response = "Deleting favorite failed.";
+			response = "{ \"message\": \"Deleting favorite failed.\" }";
 		}
 		return response;
 	}
