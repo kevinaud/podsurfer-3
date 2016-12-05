@@ -17,7 +17,6 @@ import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-/*
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringTemplateApplicationTests {
@@ -26,7 +25,6 @@ public class SpringTemplateApplicationTests {
 	 * These functions can be used to test controller classes through get or post requests.
 	 *
 	 ********************************************************************************************************************************/
-/*
 	private String appUrl = "http://localhost:8080"; // private String apiUrl = "https://podsurfer3.herokuapp.com";
 	private boolean unirestConfigured = false;
 	private static void configureUnirest(){
@@ -99,7 +97,6 @@ public class SpringTemplateApplicationTests {
 	 * These functions create test data (podcasts, episodes, and reviews).
 	 *
 	 ********************************************************************************************************************************/
-/*
 	public Podcast createPodcast()
 	{
 		Podcast testPodcast = new Podcast();
@@ -159,7 +156,6 @@ public class SpringTemplateApplicationTests {
 	 * These functions test java classes.
 	 *
 	 ********************************************************************************************************************************/
-/*
 	@Test
 	public void testEpisode()
 	{
@@ -203,60 +199,7 @@ public class SpringTemplateApplicationTests {
 	 * These functions test java spring controllers. (Possible issues during codeship deployment?)
 	 *
 	 ********************************************************************************************************************************/
-/*
-	@Test
-	public void testPodcastController()
-	{
-// All of these tests require podcast with ID AVf5FdgQEoOOTOV5Go7E
-// and episode with ID AVf5HCLTEoOOTOV5Go7G
-// and review with ID AVgY-nHBEoOOTOV5GyxO
-// to be in the heroku module.
-		Podcast testPodcast = createPodcast();
-		Episode testEpisode = createEpisode();
-		String response = "";
-// savePodcast
-// THIS REQUEST IS ADDING PODCASTS... ADD A DELETE FUNCTION TO COUNTER IT
-// response = controllerPostRequest("/podcast", testPodcast);
-		System.out.println(response);
-		assertNotEquals("{ \"Error\": \"An Unexpected error occured\" }", response);
-// getPodcast
-		response = controllerGetRequest("/podcast/AVf5FdgQEoOOTOV5Go7E");
-		System.out.println(response);
-		assertEquals("{\"found\":true", response.substring(0, 13));
-// saveEpisode
-// THIS REQUEST IS ADDING EPISODED... ADD A DELETE FUNCTION TO COUNTER
-		response = controllerPostRequest("/podcast/AVf5FdgQEoOOTOV5Go7E/episodes", testEpisode);
-		System.out.println(response);
-		assertNotEquals("{ \"Error\": \"An Unexpected error occured\" }", response);
-// getPodcastByEpisodeNumber
-		response = controllerGetRequest("/podcast/AVf5FdgQEoOOTOV5Go7E/episodes/1");
-		System.out.println(response);
-		assertNotEquals("{ \"Error\": \"An Unexpected error occured\" }", response);
-// getEpisodeById
-		response = controllerGetRequest("/episodes/AVf5FdgQEoOOTOV5Go7E/AVf5HCLTEoOOTOV5Go7G");
-		System.out.println(response);
-		assertEquals("{\"found\":true", response.substring(0, 13));
-// getPodcastByEpisodeId
-		response = controllerGetRequest("/episodes/AVf5HCLTEoOOTOV5Go7G/podcast");
-		System.out.println(response);
-		assertNotEquals("{ \"Error\": \"An Unexpected error occured\" }", response);
-// getAllEpisodesForPodcast
-		response = controllerGetRequest("/podcast/AVf5FdgQEoOOTOV5Go7E/episodes");
-		System.out.println(response);
-		assertNotEquals("{ \"Error\": \"An Unexpected error occured\" }", response);
-// saveReview
-// response = controllerPostRequest("/podcast/AVf5FdgQEoOOTOV5Go7E/reviews", createReview());
-		System.out.println(response);
-// assertEquals("{\"_index\":\"podcasts\",\"created\":true", response.substring(0, 34));
-// getPodcastReviewById
-		response = controllerGetRequest("/podcast/AVf5FdgQEoOOTOV5Go7E/reviews/AVgY-nHBEoOOTOV5GyxO");
-		System.out.println(response);
-		assertEquals("{\"found\":true", response.substring(0, 13));
-//getAllReviewsForPodcast
-		response = controllerGetRequest("/podcast/AVf5FdgQEoOOTOV5Go7E/reviews");
-		System.out.println(response);
-		assertNotEquals("{ \"Error\": \"An Unexpected error occured\" }", response);
-	}
+
 	@Test
 	public void testUserController()
 	{
@@ -273,4 +216,3 @@ public class SpringTemplateApplicationTests {
 //assertEquals("{\"success\":true", response.substring(0, 15));
 	}
 }
-*/
